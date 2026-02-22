@@ -156,23 +156,6 @@ export class account extends baseModel {
   @Prop({ required: false, default: {} })
   extras?: extras;
 
-  @Prop({ required: false })
-  paddle_subscription_id?: string;
-
-  @Prop({ required: false })
-  paddle_user_id?: string;
-
-  @Prop({ required: false })
-  paddle_next_bill_date?: Date;
-
-  @Prop({ required: false })
-  paddle_subscription_cancel_url?: string;
-
-  @Prop({ required: false })
-  paddle_subscription_update_url?: string;
-
-  @Prop({ required: false })
-  paddle_subscription_receipt_url?: string;
 }
 
 export const AccountsSchema = SchemaFactory.createForClass(account);

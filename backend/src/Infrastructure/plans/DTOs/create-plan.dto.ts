@@ -3,17 +3,7 @@ import {
   IsNumber,
   IsOptional,
   IsString,
-  ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
-
-class PaddlePlanIds {
-  @IsNumber()
-  yearly: number;
-
-  @IsNumber()
-  monthly: number;
-}
 
 export class createPlanDTO {
   @IsString()
@@ -67,11 +57,4 @@ export class createPlanDTO {
 
   @IsNumber()
   price: number;
-
-  @ValidateNested()
-  @Type(() => PaddlePlanIds)
-  paddle_plan_ids: PaddlePlanIds = {
-    yearly: 0,
-    monthly: 0,
-  };
 }
