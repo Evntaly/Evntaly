@@ -1,0 +1,71 @@
+<div class="card card-full">
+  <div class="card-inner">
+      <div class="card-title-group mb-1">
+          <div class="card-title">
+              <h6 class="title">Browser and OS</h6>
+              <p>Check out a full breakdown of your users’ browsers and operating systems too.</p>
+          </div>
+      </div>
+      <ul *ngIf="browserData.length > 0" class="nav nav-tabs nav-tabs-card nav-tabs-xs" role="tablist">
+          <li class="nav-item" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" href="#browser" aria-selected="true" role="tab" (click)="onTabSwitch('browsers')">Browser</a>
+          </li>
+          <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#browser-version" aria-selected="false" role="tab" tabindex="-1" (click)="onTabSwitch('browser-versions')">Browser Version</a>
+          </li>
+          <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#os" aria-selected="false" tabindex="-1" role="tab" (click)="onTabSwitch('os')">OS</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#os-version" aria-selected="false" tabindex="-1" role="tab" (click)="onTabSwitch('os-version')">OS Version</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#device-type" aria-selected="true" role="tab" (click)="onTabSwitch('device-type')">Device Type</a>
+          </li>
+      </ul>
+      <div *ngIf="browserData.length > 0" class="tab-content mt-0">
+          <div class="tab-pane active show" id="browser" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="browserData"></evntaly-rank-chart>
+            </div>
+          </div>
+          <div class="tab-pane" id="browser-version" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="browserVersionData" ></evntaly-rank-chart>
+            </div>
+          </div>
+          <div class="tab-pane" id="os" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="osData"></evntaly-rank-chart>
+            </div>
+          </div>
+          <div class="tab-pane" id="os-version" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="osVersionData"></evntaly-rank-chart>
+            </div>
+          </div>
+          <div class="tab-pane" id="device-type" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="deviceTypeData"></evntaly-rank-chart>
+            </div>
+          </div>
+      </div>
+
+      <div *ngIf="browserData.length == 0">
+        <div class="row justify-content-center py-4 py-md-5">
+          <div class="col-12 col-md-10 col-lg-12 col-xl-12">
+            <div class="d-flex flex-column align-items-center text-center mx-auto" style="max-width: 400px;">
+              <div class="mb-3">
+                <em class="icon ni ni-package-fill" style="font-size: 100px; color: #e5e8eb;"></em>
+                <!-- <img src="assets/images/no-history.svg" alt="No data available" style="width: 160px; height: auto;"/> -->
+              </div>
+              <div class="empty-state-content w-100">
+                <h4 class="nk-block-title mb-2">Nothing to see here ... yet!</h4>
+                <p class="text-muted mb-0">No data available yet. Start sending events to see browser and OS insights.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

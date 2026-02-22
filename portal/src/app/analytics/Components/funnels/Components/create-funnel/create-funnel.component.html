@@ -1,0 +1,47 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-primary bg-primary-dim mb-3" style="background-color: #a9aedc !important;">
+          <em style="font-size: 25px;" class="icon ni ni-grid-add-fill-c"></em>
+        </div>
+        <h4>Create New Funnel</h4>
+        <p>Create a funnel to track user behavior or identify patterns.</p>
+
+        <div class="mt-3 mb-3">
+          <label class="form-label fw-medium mb-2">Funnel Name</label>
+          <input type="text" class="form-control" placeholder="Funnel Name" [(ngModel)]="funnelName">
+          <br>
+
+          <label class="form-label fw-medium mb-2">Funnel Description</label>
+          <input type="text" class="form-control" placeholder="Funnel Description" [(ngModel)]="funnelDescription">
+          <br>
+
+
+          <label class="form-label fw-medium mb-2">Funnel Steps</label>
+          <div *ngFor="let step of steps; let i = index" class="form-group mb-2">
+            <div class="form-control-wrap">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="disabled-btn btn-outline-primary btn-dim input-group-text">Step {{step.stepNumber}}</span>
+                </div>
+                <select2 style="width: 85.4%;" class="form-control-wrap" [data]="parentEvents" displaySearchStatus="always"
+                  noResultMessage="No Events Found" placeholder="Select Event" [(ngModel)]="step.eventId"
+                  [disabled]="isStepDisabled(i)"></select2>
+              </div>
+            </div>
+          </div>
+
+          <a *ngIf="canAddMoreSteps()" href="#" class="mb-3 d-inline-block text-primary" (click)="addStep(); $event.preventDefault()">
+            <em class="icon ni ni-plus-c"></em><span>Add another step</span>
+          </a>
+        </div>
+
+        <ul class="row gx-4 mt-4">
+          <li class="col-6"><button class="btn btn-primary btn-block" (click)="createFunnel()">Create Funnel</button></li>
+          <li class="col-6"><button class="btn btn-outline-light btn-block" data-bs-dismiss="modal" (click)="close()">Cancel</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

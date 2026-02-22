@@ -1,0 +1,43 @@
+<div class="nk-block-head">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h4 class="nk-block-title">Projects</h4>
+      <div class="nk-block-des">
+        <p>Find the list of your projects</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-12 col-lg-6 col-xl-12">
+    <ng-container *ngFor="let p of data; let last = last">
+      <div class="card" [ngClass]="{ 'mb-3' : !last }">
+        <div class="card-inner" style="padding: 15px;">
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <div class="ms-3">
+                <h6 style="margin-bottom: 5px;">{{ p.name }}  <span *ngIf="p.projectID === currentProjectID" class="badge badge-dim  rounded-pill bg-success">Active</span></h6>
+                <span class="sub-text" style="cursor: pointer;">{{ p.projectID}} <em (click)="copyCodeToClipboard(p.projectID)" class="icon ni ni-copy"></em> </span>
+              </div>
+            </div>
+            <ul class="btn-toolbar justify-center gx-1 me-n1 flex-nowrap">
+              <li matTooltip="Select Project"><a (click)="selectProject(p.projectID)" class="btn btn-trigger btn-icon">
+                <em *ngIf="p.projectID !== currentProjectID"  class="icon ni ni-check-circle"></em>
+                <em *ngIf="p.projectID === currentProjectID"  class="icon ni ni-check-circle-fill"></em>
+              </a></li>
+              <li matTooltip="Delete Projects"><a (click)="deleteProjectConfirmation(p.projectID)" class="btn btn-trigger btn-icon"><em class="icon ni ni-trash"></em></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="col-12 col-lg-6 col-xl-12" *ngIf="data.length < 3">
+    <button (click)="createNewProject()"
+      class="h-100 w-100 bg-white border border-dashed round-xl p-4 d-flex align-items-center justify-content-center"
+      data-bs-toggle="modal" data-bs-target="#add-card">
+      <span class="text-soft">Add New Project</span>
+    </button>
+  </div>
+</div>

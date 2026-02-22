@@ -1,0 +1,80 @@
+<div class="main-section">
+  <div class="form-wrapper">
+    <main class="form-side">
+      <a href="#" title="Logo">
+        <img src="../../../../assets/images/logo-no-txt.png" alt="Laplace Logo" class="logo">
+      </a>
+      <form class="my-form">
+        <div class="form-welcome-row mt-3">
+          <h1>Welcome to Evntaly 👋</h1>
+          <h2>Create your account now!</h2>
+        </div>
+        <div class="socials-row">
+          <a style="cursor: pointer;" (click)="createAccountWithGithub()" title="Use Github">
+            <img src="assets/images/Github_light.svg" alt="Github">
+            Sign up with Github
+          </a>
+        </div>
+        <div class="socials-row">
+          <a style="cursor: pointer;" (click)="createAccountWithGoogle()" title="Use Google">
+            <img src="assets/images/google.png" alt="Google">
+            Sign up with Google
+          </a>
+        </div>
+        <div class="or-divider">
+          <div class="or-divider-line"></div>
+          or
+          <div class="or-divider-line"></div>
+        </div>
+        <div class="text-field">
+          <label for="email">Email</label>
+          <input [(ngModel)] = "account.email" type="email" id="email" name="email" autocomplete="off" placeholder="you@example.com" required>
+          <div class="error-message">Email in incorrect format</div>
+        </div>
+        <div class="text-field">
+          <label for="password">Password</label>
+          <input [(ngModel)] = "account.password" id="password" type="password" name="password" placeholder="Your password" title="Minimum 6 characters at
+                                                    least 1 Alphabet and 1 Number"
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\W]{6,}$" required>
+          <div class="error-message">Minimum 6 characters at
+            least 1 Alphabet and 1 Number</div>
+        </div>
+        <button class="my-form__button" type="submit" (click)="createAccount()">
+          <span>
+            <span *ngIf="loading" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Sign up
+          </span>
+        </button>
+        <div class="my-form__actions">
+          <div class="my-form__row">
+            <span></span>
+            <a class="cta_new" (click)="redierctToLogin()">
+              Have an account? Log in
+            </a>
+          </div>
+        </div>
+      </form>
+    </main>
+    <aside class="info-side">
+    </aside>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  _linkedin_partner_id = "8577513";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(l) {
+  if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+  window.lintrk.q=[]}
+  var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8577513&fmt=gif" />
+</noscript>

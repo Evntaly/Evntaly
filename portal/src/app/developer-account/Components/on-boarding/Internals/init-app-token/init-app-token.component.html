@@ -1,0 +1,65 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-primary bg-primary-dim mb-3" style="background-color: #a9aedc !important;">
+          <!-- <em style="font-size: 27px;" class="icon ni ni-package-fill"></em> -->
+          <em style="font-size: 27px;" class="icon ni ni-unlock-fill"></em>
+        </div>
+        <h4>Project Initialization</h4>
+        <p>These credentials allow your app to access Evntaly SDK. They are secret. Please don't share your app
+          credentials with anyone. </p>
+        <div class="form-validate is-alter">
+          <div class="row g-3">
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label" for="cp1-team-size">Project Name</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" [value]="account.projects[0].name" [(ngModel)] = "projectName">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary btn-dim" (click)="updateProjectName()">Change Name</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label" for="cp1-team-name">Developer Secret . <small
+                    (click)="toggle_secret = toggle_secret == 'password' ? 'text' : 'password'">show/hide</small></label>
+                <div class="input-group">
+                  <input [type]="toggle_secret" class="form-control" [value]="account.developer_secret" disabled>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary btn-dim" (click)="copyToClipboard(account.developer_secret)">Copy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label" for="cp1-team-size">Private Access Token . <small
+                    (click)="toggle_token = toggle_token == 'password' ? 'text' : 'password'">show/hide</small></label>
+                <div class="input-group">
+                  <input [type]="toggle_token" class="form-control" [value]="account.projects[0].tokens[0]" disabled>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary btn-dim" (click)="copyToClipboard(account.projects[0].tokens[0])">Copy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ul class="row gx-12 mt-4">
+          <li class="col-12">
+            <button class="btn btn-primary btn-block" data-bs-dismiss="modal" (click)="next()">
+              Next
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

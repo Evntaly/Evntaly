@@ -1,0 +1,18 @@
+<div class="card card-full">
+  <div class="card-inner">
+    <div class="card-title-group">
+      <div class="card-title">
+        <h6 class="title">Map
+          <!-- <span matTooltip="This is new map, you can zoom in and out, and drag the map to see the world." class="badge badge-dim bg-success rounded-pill"> New
+          </span> -->
+        </h6>
+        <p>Discover your users’ global footprint.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card-inner chart-wrapper" style="padding-top: 0px; padding-bottom: 30px;">
+    <div echarts [options]="chartOptions" [merge]="mergeChartOptions" class="demo-chart" style="height: 600px; width: 100%; overflow: auto;"></div>
+  </div>
+</div>

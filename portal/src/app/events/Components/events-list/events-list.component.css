@@ -1,0 +1,18 @@
+.icon-in-list {
+  position: relative;
+  top: 3px;
+}
+
+.custom-link:hover {
+  color: #000B73;
+}
+
+.custom-input {
+  width: 10% !important;
+}
+
+.loader-cntnr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

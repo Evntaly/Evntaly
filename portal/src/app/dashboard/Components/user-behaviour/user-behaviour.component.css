@@ -1,0 +1,25 @@
+/* Control card height and spacing - reduced by 40% */
+.card-full {
+  height: 300px; /* Reduced card height to match chart better */
+  margin-bottom: 0; /* Remove any bottom margin */
+}
+
+.card-inner {
+  padding-bottom: 1px; /* Further reduced padding to give chart more space */
+  /* padding: 0.9rem; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chart container - reduced by 40% */
+.chart {
+  width: 100%;   /* Full width */
+  height: 281px;
+  max-height: 269px;
+}
+
+/* Reduce title section height */
+.card-title-group {
+  margin-bottom: 0.5rem; /* Reduce spacing after title */
+}

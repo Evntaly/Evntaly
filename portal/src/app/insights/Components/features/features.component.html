@@ -1,0 +1,182 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Features</h3>
+      <div class="nk-block-des text-soft">
+        <p>Features that delivered within events
+          <span style="cursor: pointer;" (click)="showDocs()">
+            <small style="text-decoration: underline;">
+            <em class="icon ni ni-book-fill"></em>
+            Docs
+            </small>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="nk-block-head-content">
+      <div class="toggle-wrap nk-block-tools-toggle">
+        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
+            class="icon ni ni-more-v"></em></a>
+        <div class="toggle-expand-content" data-content="pageMenu">
+          <ul class="nk-block-tools g-3">
+            <li>
+              <div class="form-control-wrap">
+                <div class="form-icon form-icon-right">
+                  <em class="icon ni ni-search"></em>
+                </div>
+                <input type="text" class="form-control" id="default-04" placeholder="Search by feature name"
+                  (keyup)="searchByFeatureName($event)">
+              </div>
+            </li>
+            <li>
+              <div class="dropdown">
+                <a href="#" class="dropdown-toggle btn btn-primary btn-primary" data-bs-toggle="dropdown"
+                  aria-expanded="false"><span><span class="d-none d-md-inline"></span>
+                    {{ selected_range }}
+                  </span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <ul class="link-list-opt no-bdr">
+                    <ng-container *ngFor="let i of dates">
+                      <li (click)="changeDateFilter(i.text)" [ngClass]="{ 'active': i.is_active }"
+                        style="cursor: pointer;"><a><span style="font-size: 13px;">{{ i.text }}</span></a></li>
+                    </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <!-- <li class="nk-block-tools-opt">
+              <a href="#" class="toggle btn btn-primary btn-primary d-md-none"><em
+                  class="icon ni ni-download-cloud"></em>Export</a>
+              <a href="#" class="toggle btn btn-primary d-none d-md-inline-flex"><em
+                  class="icon ni ni-download-cloud"></em><span>Export</span></a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nk-block">
+  <div class="card card-stretch">
+    <div class="card-inner-group">
+      <div class="card-inner p-0">
+        <table class="nk-tb-list nk-tb-ulist">
+          <thead>
+            <tr class="nk-tb-item nk-tb-head">
+              <ng-container *ngFor="let f of columns">
+                <th [class]="f.size"><span class="sub-text" style="font-size: 14px;">{{ f.name }}
+                    <em style="cursor: pointer;" *ngIf="f.sort_enabled" class="icon ni ni-swap-v"
+                      (click)="sortGrid(f.sort_field_name)"></em>
+                  </span>
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="loading">
+            <tr class="nk-tb-item">
+              <ng-container *ngFor="let f of columns">
+                <td [ngClass]="f.size">
+                  <p class="placeholder-glow">
+                    <span class="placeholder col-12"
+                      style="border-radius: 8px; background-color: rgb(222, 222, 222);"></span>
+                  </p>
+                </td>
+              </ng-container>
+            </tr>
+            <tr class="nk-tb-item">
+              <ng-container *ngFor="let f of columns">
+                <td [ngClass]="f.size">
+                  <p class="placeholder-glow">
+                    <span class="placeholder col-12"
+                      style="border-radius: 8px; background-color: rgb(222, 222, 222);"></span>
+                  </p>
+                </td>
+              </ng-container>
+            </tr>
+          </tbody>
+          <tbody *ngIf="!loading">
+            <ng-container *ngFor="let f of data">
+              <tr class="nk-tb-item">
+                <td class="nk-tb-col" (click)="showFeature(f.name)">
+                  <a style="cursor: pointer;" class="project-title">
+                    <div class="nk-tnx-type-icon"
+                      [ngClass]="getFeatureAdoptionPerfomanceBGColorAndIcon(f.adoption_performance).bg"
+                      matTooltip="Change in feature adoption based on a comparison with the previous equivalent period">
+                      <em [class]="getFeatureAdoptionPerfomanceBGColorAndIcon(f.adoption_performance).icon"></em>
+                    </div>
+                    <div class="project-info">
+                      <h6 class="title">{{ f.name }}</h6>
+                    </div>
+                  </a>
+                </td>
+
+                <td class="nk-tb-col">
+                  <div class="project-list-progress">
+                    <div class="progress progress-pill progress-md bg-light">
+                      <div class="progress-bar" [attr.data-progress]="f.adoption"></div>
+                    </div>
+                    <div class="project-progress-percent">{{ f.adoption.toFixed(2) }}%</div>
+                  </div>
+                </td>
+
+                <td class="nk-tb-col tb-col-lg">
+                  <span class="tb-lead-sub" style="font-size: larger; font-weight: 500;">{{ f.total_events }}</span>
+                  <span [ngClass]="getPerformanceBGColorAndText(f.total_events_performance).bg" class="badge badge-dot"
+                    style="font-size: 11px;" matTooltip="Based on a comparison with the previous equivalent period"
+                    matTooltipPosition="above">{{getPerformanceBGColorAndText(f.total_events_performance).txt}}</span>
+                </td>
+
+                <td class="nk-tb-col tb-col-lg">
+                  <span class="tb-lead-sub" style="font-size: larger; font-weight: 500;">{{ f.unique_users_using_feature
+                    }}</span>
+                  <span [ngClass]="getPerformanceBGColorAndText(f.unique_users_using_feature_performance).bg"
+                    class="badge badge-dot" style="font-size: 11px;"
+                    matTooltip="Based on a comparison with the previous equivalent period" matTooltipPosition="above">{{
+                    getPerformanceBGColorAndText(f.unique_users_using_feature_performance).txt }}</span>
+                </td>
+
+                <td class="nk-tb-col tb-col-md">
+                  <span class="badge badge-dim" [ngClass]="getTimeAgoBGColor(f.last_seen_active_time_ago)"><em
+                      class="icon ni ni-clock"></em><span>
+                      {{ f.last_seen_active_time_ago }}
+                    </span></span>
+                </td>
+
+                <td class="nk-tb-col tb-col-lg">
+                  <span class="tb-lead-sub" style="font-size: larger; font-weight: 500;">
+                    {{ f.registeration_date | date: 'short' }}
+                  </span>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+
+        <div *ngIf="!loading && data.length == 0">
+          <div class="row justify-content-center py-5">
+            <div class="col-md-7 col-lg-7 col-7">
+              <div class="mb-3 text-center">
+                <img src="assets/images/no-documents.svg" alt="" />
+              </div>
+              <div class="nk-block-head text-center">
+                <div class="nk-block-head-content">
+                  <h3 class="nk-block-title mb-2">Oops! No Features Found</h3>
+                  <p>Try tweaking your filters or adjusting the date range to find some features.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="card-inner" *ngIf="collectionSize > 10">
+        <div class="nk-block-between-md g-3">
+          <evntaly-grid-pagination [pageSize]=pageSize [collectionSize]=collectionSize
+            (changePage)="changeGridPage($event)" selectedPage=1 maxSize=10></evntaly-grid-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

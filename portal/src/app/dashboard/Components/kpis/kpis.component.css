@@ -1,0 +1,30 @@
+/* Fancy shadow effect for KPI cards */
+.card.bg-light {
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 2px 25px rgba(0, 0, 0, 0.05),
+    0 8px 35px rgba(150, 182, 255, 0.15);
+  border: none;
+  /* transition: all 0.3s ease; */
+  /* transform: translateY(0px); */
+  /* border-radius: 12px; */
+}
+
+/* Hover effect for enhanced interactivity */
+.card.bg-light:hover {
+  /* box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 4px 35px rgba(0, 0, 0, 0.08),
+    0 12px 45px rgba(150, 182, 255, 0.25); */
+  /* transform: translateY(-5px); */
+}
+
+/* Enhanced card inner styling */
+.card.bg-light .card-inner {
+  border-radius: 12px;
+}
+
+/* Subtle background gradient for extra depth */
+.card.bg-light {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+}

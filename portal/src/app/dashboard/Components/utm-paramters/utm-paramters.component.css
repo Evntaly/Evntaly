@@ -1,0 +1,61 @@
+.card-full {
+  height: 400px; /* Fixed card height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tab-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-pane {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+.tab-pane.active {
+  display: flex !important;
+  flex-direction: column;
+}
+
+/* Ensure nav tabs don't take too much space */
+.nav-tabs {
+  flex-shrink: 0;
+}
+
+.card-title-group {
+  flex-shrink: 0;
+}
+
+.tab-content-wrapper {
+  height: 100%;
+  padding: 12px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scrollable-rank-chart {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for rank chart */
+.scrollable-rank-chart::-webkit-scrollbar {
+  display: none; /* WebKit */
+}

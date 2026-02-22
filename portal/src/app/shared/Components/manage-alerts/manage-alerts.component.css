@@ -1,0 +1,17 @@
+/* select option {
+  font-size: 14px;
+}
+ */
+
+.select2-search__field:focus {
+  outline: none;
+  outline-color: #b9b9b9 !important;
+}
+
+.select2-results {
+  padding: 6px !important;
+}
+
+.select2-results__options {
+  border-radius: 4px !important;
+}

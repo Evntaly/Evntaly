@@ -1,0 +1,40 @@
+.chart-container{
+  width: 100%;   /* Full width */
+  height: 320px; /* Increased chart height to fill more card space */
+  max-height: 320px; /* Consistent with fixed height */
+  overflow: hidden; /* Prevent chart from overflowing container */
+}
+
+.demo-chart {
+  overflow: hidden; /* Ensure chart stays within bounds */
+  position: relative;
+  box-sizing: border-box;
+}
+
+.chart-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.card-full {
+  overflow: hidden; /* Prevent any overflow from the card itself */
+}
+
+/* Control card height and spacing - reduced by 40% */
+.card-full {
+  height: 400px; /* Reduced card height to match chart better */
+  margin-bottom: 0; /* Remove any bottom margin */
+}
+
+.card-inner {
+  padding-bottom: 1px; /* Further reduced padding to give chart more space */
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Reduce title section height */
+.card-title-group {
+  margin-bottom: 0.5rem; /* Reduce spacing after title */
+}

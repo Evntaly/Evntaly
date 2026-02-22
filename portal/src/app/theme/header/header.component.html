@@ -1,0 +1,87 @@
+  <div class="container-xl wide-xl">
+      <div class="nk-header-wrap">
+          <div class="nk-menu-trigger d-xl-none ms-n1 me-3">
+              <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+          </div>
+          <div class="nk-header-brand d-xl-none">
+              <a href="html/index.html" class="logo-link">
+                  <img class="logo-light logo-img" src="assets/images/logo.png" alt="logo">
+                  <img class="logo-dark logo-img" src="assets/images/logo.png" alt="logo-dark">
+              </a>
+          </div>
+
+          <div class="nk-header-menu">
+            <div class="nk-header-menu-inner">
+              <ul class="nk-menu nk-menu-main">
+                <li class="nk-menu-item has-sub">
+                  <a href="#" class="nk-menu-link nk-menu-toggle">
+                    <div class="user-avatar sq xs bg-primary">
+                      <span style="font-size: 14px;">{{projectName.substring(0, 1)}}</span>
+                  </div> &nbsp;&nbsp;
+                    <span class="nk-menu-text">My Projects </span>
+                  </a>
+                  <ul class="nk-menu-sub" style="padding: 2px;">
+                    <ul class="link-list-opt">
+                      <ng-container *ngFor="let i of projects; let last = last;">
+                        <li style="cursor: pointer;" (click)="selectProject(i.projectID)" [ngClass]="{ 'active': i.is_selected }">
+                          <a><span>{{ i.name }}</span></a></li>
+                      </ng-container>
+                      <li *ngIf="projects.length < 3"><a style="cursor: pointer;" (click)="createNewProject()"><em class="icon ni ni-plus"></em><span>Create Project</span></a></li>
+                    </ul>
+                  </ul>
+                </li>
+                <li class="nk-menu-item">
+                  <a style="cursor: pointer;" (click)="showDocs()" class="nk-menu-link">
+                    <span class="nk-menu-text"><em class="icon ni ni-book-fill"></em> Documentations</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+
+
+          <div class="nk-header-tools">
+              <ul class="nk-quick-nav">
+                  <li class="dropdown user-dropdown">
+                      <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                          <div class="user-toggle">
+                              <div class="user-avatar sm">
+                                  <em class="icon ni ni-user-alt"></em>
+                              </div>
+                          </div>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
+                          <div class="dropdown-inner user-card-wrap bg-lighter d-md-block">
+                              <div class="user-card">
+                                  <div class="user-avatar">
+                                      <span style="font-size: 20px;">{{ developer?.name?.substring(0, 2).toUpperCase() }}</span>
+                                  </div>
+                                  <div class="user-info">
+                                      <span class="lead-text">{{ developer?.name }}</span>
+                                      <span class="sub-text">{{ developer?.email }}</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="dropdown-inner">
+                              <ul class="link-list">
+                                  <li><a routerLink="/account/settings/info"><em class="icon ni ni-setting-alt"></em><span>Account Settings</span></a></li>
+                                  <li *ngIf="isMobile"><a routerLink="/account/settings/projects"><em class="icon ni ni-swap"></em><span>Switch Projects</span></a></li>
+                                  <li><a style="cursor: pointer;" (click)="showDocs()"><em class="icon ni ni-book"></em><span>Developer Docs</span></a></li>
+                                  <!-- <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li> -->
+                                  <!-- <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li> -->
+                              </ul>
+                          </div>
+                          <div class="dropdown-inner">
+                              <ul class="link-list">
+                                  <li style="cursor: pointer;"><a (click)="signout()"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+

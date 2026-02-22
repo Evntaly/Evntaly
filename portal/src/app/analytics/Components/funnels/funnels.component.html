@@ -1,0 +1,49 @@
+<div class="nk-block-head nk-block-head-sm" *ngIf="funnels.length > 0">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Funnels
+        <!-- <span matTooltip="Dashboard is redesigned to be more clear and easy to understand, and more enhancements are coming soon." class="badge badge-dim bg-info rounded-pill">👋 New Look</span> -->
+      </h3>
+      <div class="nk-block-des text-soft">
+        <p>Track your users' journey through your application</p>
+      </div>
+    </div>
+    <div class="nk-block-head-content" *ngIf="funnels.length > 0">
+        <button class="btn btn-primary" (click)="openCreateFunnelModal()">
+          <em class="icon ni ni-grid-add-c"></em> &nbsp;
+          Create Funnel
+        </button>
+    </div>
+    </div>
+</div>
+
+
+<div class="row" *ngIf="funnels.length > 0">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 mb-3" *ngFor="let funnel of funnels">
+        <app-funnel [funnelData]="funnel"></app-funnel>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center py-5" *ngIf="funnels.length === 0">
+  <div class="col-md-7 col-lg-4">
+    <div class="mb-3 text-center">
+      <img src="assets/images/no-documents.svg" alt="" />
+    </div>
+    <div class="nk-block-head text-center">
+      <div class="nk-block-head-content">
+        <h3 class="nk-block-title mb-2">Funnels Start Here!</h3>
+        <p>Create a funnel to track your users' journey through your application.</p>
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary" (click)="openCreateFunnelModal()">
+        <em class="icon ni ni-grid-add-c"></em> &nbsp;
+        Create Funnel
+      </button>
+    </div>
+  </div>
+</div>

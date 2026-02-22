@@ -1,0 +1,52 @@
+.card-full {
+  height: 400px; /* Fixed card height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-inner:first-child {
+  flex-shrink: 0; /* Keep header section fixed */
+}
+
+.chart-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Keep original table styling intact */
+.nk-tb-list.is-compact {
+  /* Preserve original styles */
+}
+
+.nk-tb-head {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 2;
+  border-bottom: 1px solid #e5e9f2;
+}
+
+.tab-content-wrapper {
+  height: 100%;
+  padding: 12px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scrollable-rank-chart {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for rank chart */
+.scrollable-rank-chart {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scrollable-rank-chart::-webkit-scrollbar {
+  display: none; /* WebKit */
+}

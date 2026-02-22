@@ -1,0 +1,308 @@
+/* Traffic Sources Chart Styles */
+.traffic-sources-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-top: 1rem;
+}
+
+.traffic-source-row {
+  position: relative;
+  margin-bottom: 0.125rem;
+}
+
+.source-bar-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e5e9f2;
+  background: #fff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.source-bar-wrapper:hover {
+  box-shadow: 0 2px 8px rgba(31, 43, 58, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Left section with icon and label - now overlaid on bar */
+.source-label-section {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 0 0.875rem;
+  height: 100%;
+  min-width: 140px;
+  border-radius: 0;
+  border: none;
+}
+
+.source-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 0.625rem;
+  flex-shrink: 0;
+}
+
+.source-icon em {
+  font-size: 14px;
+  color: #364a63;
+  text-shadow: none;
+}
+
+.source-name {
+  color: #364a63;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-shadow: none;
+}
+
+/* Animated bar extending full width */
+.source-bar-section {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #000B73;
+  border-radius: 5px;
+  min-width: 20px;
+  z-index: 1;
+  opacity: 0.9;
+  animation: barSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transform-origin: left center;
+}
+
+/* Visit count on the right */
+.visit-count {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #364a63;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 3;
+  animation: fadeInSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+/* Animations */
+@keyframes barSlideIn {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 0.12;
+  }
+}
+
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* Hover animation for bars */
+.source-bar-wrapper:hover .source-bar-section {
+  opacity: 0.18;
+  transition: opacity 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .source-bar-wrapper {
+    height: 28px;
+  }
+
+  .source-label-section {
+    min-width: 120px;
+    padding: 0 0.625rem;
+  }
+
+  .source-bar-section {
+    left: 0;
+  }
+
+  .source-name {
+    font-size: 12px;
+  }
+
+  .visit-count {
+    font-size: 13px;
+    right: 0.625rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .traffic-sources-chart {
+    gap: 0.25rem;
+  }
+
+  .source-bar-wrapper {
+    height: 28px;
+  }
+
+  .source-label-section {
+    min-width: 100px;
+    padding: 0 0.5rem;
+  }
+
+  .source-bar-section {
+    left: 0;
+  }
+
+  .source-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+  }
+
+  .source-icon em {
+    font-size: 12px;
+  }
+
+  .source-name {
+    font-size: 11px;
+  }
+
+  .visit-count {
+    font-size: 12px;
+    right: 0.5rem;
+  }
+}
+
+/* Tooltip Styles */
+.traffic-tooltip {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.tooltip-content {
+  background: #364a63;
+  color: white;
+  padding: 0.375rem 0.625rem;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #364a63;
+}
+
+/* Staggered animation delays for each row */
+.traffic-source-row:nth-child(1) .source-bar-section {
+  animation-delay: 0s;
+}
+
+.traffic-source-row:nth-child(2) .source-bar-section {
+  animation-delay: 0.1s;
+}
+
+.traffic-source-row:nth-child(3) .source-bar-section {
+  animation-delay: 0.2s;
+}
+
+.traffic-source-row:nth-child(4) .source-bar-section {
+  animation-delay: 0.3s;
+}
+
+.traffic-source-row:nth-child(5) .source-bar-section {
+  animation-delay: 0.4s;
+}
+
+.traffic-source-row:nth-child(6) .source-bar-section {
+  animation-delay: 0.5s;
+}
+
+.traffic-source-row:nth-child(7) .source-bar-section {
+  animation-delay: 0.6s;
+}
+
+.traffic-source-row:nth-child(8) .source-bar-section {
+  animation-delay: 0.7s;
+}
+
+/* Staggered animation delays for visit counts */
+.traffic-source-row:nth-child(1) .visit-count {
+  animation-delay: 0.2s;
+}
+
+.traffic-source-row:nth-child(2) .visit-count {
+  animation-delay: 0.3s;
+}
+
+.traffic-source-row:nth-child(3) .visit-count {
+  animation-delay: 0.4s;
+}
+
+.traffic-source-row:nth-child(4) .visit-count {
+  animation-delay: 0.5s;
+}
+
+.traffic-source-row:nth-child(5) .visit-count {
+  animation-delay: 0.6s;
+}
+
+.traffic-source-row:nth-child(6) .visit-count {
+  animation-delay: 0.7s;
+}
+
+.traffic-source-row:nth-child(7) .visit-count {
+  animation-delay: 0.8s;
+}
+
+.traffic-source-row:nth-child(8) .visit-count {
+  animation-delay: 0.9s;
+}
+
+/* Custom scrollbar for the chart container */
+.traffic-sources-chart::-webkit-scrollbar {
+  width: 4px;
+}
+
+.traffic-sources-chart::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 2px;
+}
+
+.traffic-sources-chart::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+.traffic-sources-chart::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

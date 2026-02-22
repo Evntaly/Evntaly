@@ -1,0 +1,109 @@
+<div class="nk-sidebar-element nk-sidebar-head">
+  <div class="nk-sidebar-brand">
+    <div class="logo-container">
+      <a href="html/index.html" class="logo-link nk-sidebar-logo">
+        <img class="logo-light logo-img" src="assets/images/logo.png" alt="logo">
+        <img class="logo-dark logo-img" src="assets/images/logo.png" alt="logo-dark">
+        <img class="logo-small logo-img logo-img-small" src="assets/images/logo.png" alt="logo-small">
+      </a>
+      <span *ngIf="isDemo()" class="badge badge-xs rounded-pill bg-danger ms-1">Demo</span>
+    </div>
+  </div>
+  <div class="nk-menu-trigger me-n2">
+    <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
+        class="icon ni ni-arrow-left"></em></a>
+  </div>
+</div>
+<div class="nk-sidebar-element">
+  <div class="nk-sidebar-content">
+    <div class="nk-sidebar-menu" data-simplebar>
+      <ul class="nk-menu">
+        <li class="nk-menu-heading">
+          <h6 class="overline-title text-primary-alt">Analytics</h6>
+        </li>
+        <li class="nk-menu-item" routerLinkActive="active current-page">
+          <a routerLink="/dashboard" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-growth-fill"></em></span>
+            <span class="nk-menu-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nk-menu-item" routerLinkActive="active current-page">
+          <a routerLink="/analytics/funnels" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-pie-fill"></em></span>
+            <span class="nk-menu-text">Funnels</span>
+          </a>
+        </li>
+        <!-- <li class="nk-menu-item" routerLinkActive="active current-page" (click)="isInsightsMenuOpen = false">
+          <a routerLink="/analytics/retention" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-grid-box-alt-fill"></em></span>
+            <span class="nk-menu-text">Retention</span>
+          </a>
+        </li> -->
+        <li class="nk-menu-heading" style="padding-top: 1.4rem;">
+          <h6 class="overline-title text-primary-alt">Feed</h6>
+        </li>
+        <li class="nk-menu-item" routerLinkActive="active current-page">
+          <a routerLink="/occurances/all" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-spark-fill"></em></span>
+            <span class="nk-menu-text">Real-Time</span>
+          </a>
+        </li>
+        <li class="nk-menu-item" routerLinkActive="active current-page">
+          <a routerLink="/insights/users" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-users-fill"></em></span>
+            <span class="nk-menu-text">Users</span>
+          </a>
+        </li>
+        <li class="nk-menu-item" routerLinkActive="active current-page">
+          <a routerLink="/insights/events" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-signal"></em></span>
+            <span class="nk-menu-text">Events</span>
+          </a>
+        </li>
+        <li class="nk-menu-item" routerLinkActive="active current-page">
+          <a routerLink="/insights/features" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
+            <span class="nk-menu-text">Features</span>
+          </a>
+        </li>
+        <!-- <li class="nk-menu-heading" style="padding-top: 1.4rem;">
+          <h6 class="overline-title text-primary-alt">Insights</h6>
+        </li> -->
+
+        <!-- <li class="nk-menu-item has-sub" routerLinkActive="active" (click)="isInsightsMenuOpen = true">
+          <a routerLink="/insights/events" class="nk-menu-link nk-menu-toggle">
+              <span class="nk-menu-icon"><em class="icon ni ni-signal"></em></span>
+              <span class="nk-menu-text">Insights</span>
+          </a>
+          <ul class="nk-menu-sub" [ngStyle]="{'display': isInsightsMenuOpen ? 'block' : 'none'}">
+              <li class="nk-menu-item" routerLinkActive="active current-page" >
+                  <a routerLink="/insights/events" class="nk-menu-link"><span class="nk-menu-text">Events</span></a>
+              </li>
+              <li class="nk-menu-item" routerLinkActive="active current-page">
+                  <a routerLink="/insights/features" class="nk-menu-link"><span class="nk-menu-text">Features</span></a>
+              </li>
+              <li class="nk-menu-item" routerLinkActive="active current-page">
+                  <a routerLink="/insights/topics" class="nk-menu-link"><span class="nk-menu-text">Topics</span></a>
+              </li>
+          </ul>
+        </li> -->
+
+        <!-- <li class="nk-menu-item" routerLinkActive="active current-page">
+          <a routerLink="/journeys/all" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-disk"></em></span>
+            <span class="nk-menu-text">Journeys</span>
+          </a>
+        </li> -->
+        <li class="nk-menu-heading" style="padding-top: 1.4rem;">
+          <h6 class="overline-title text-primary-alt">More</h6>
+        </li>
+        <li class="nk-menu-item" routerLinkActive="active current-page">
+          <a routerLink="/integrations" class="nk-menu-link">
+            <span class="nk-menu-icon"><em class="icon ni ni-swap-alt-fill"></em></span>
+            <span class="nk-menu-text">Integrations</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

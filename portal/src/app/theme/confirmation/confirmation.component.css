@@ -1,0 +1,5 @@
+.center {
+  justify-content: center !important;
+  display: flex !important;
+  text-align: center !important;
+}

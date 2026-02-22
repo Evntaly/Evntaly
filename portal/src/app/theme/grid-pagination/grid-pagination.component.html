@@ -1,0 +1,11 @@
+<div class="g">
+  <ul class="pagination justify-content-center justify-content-md-start">
+    <li class="page-item"><a class="page-link" (click)="getPrevSlider()" *ngIf="showPrevSliderNavigator" >Prev</a></li>
+    <ng-container *ngFor="let page of sliderOnView">
+      <li class="page-item">
+        <a class="page-link" style="cursor: pointer;" [ngClass]="{'active': page == activePage}" (click)="changeSelectedPage(page)">{{ page }}</a>
+      </li>
+    </ng-container>
+    <li class="page-item"><a class="page-link" (click)="getNextSlider()" *ngIf="showNextSliderNavigator">Next</a></li>
+  </ul>
+</div>

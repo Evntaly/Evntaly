@@ -1,0 +1,67 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-primary bg-primary-dim mb-3" style="background-color: #a9aedc !important;">
+          <em style="font-size: 27px;" class="icon ni ni-todo-fill"></em>
+        </div>
+        <h4>SDK Integration</h4>
+        <p>Pick a framework below to get started.</p>
+        <ul class="custom-control-group mb-2">
+          <li>
+            <div class="custom-control custom-checkbox custom-control-pro no-control">
+              <input type="radio" class="custom-control-input" [(ngModel)]="selected_lang" value="javascript" id="javascript" (click)="selectLang('javascript')">
+              <label class="custom-control-label" for="javascript">
+                <img style="width: 20px;" src="../../../../../../assets/images/javascript.svg"> &nbsp; JavaScript
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox custom-control-pro no-control">
+              <input type="radio" class="custom-control-input" [(ngModel)]="selected_lang" value="python" id="python" (click)="selectLang('python')">
+              <label class="custom-control-label" for="python">
+                <img style="width: 20px;" src="../../../../../../assets/images/python.svg"> &nbsp; Python
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox custom-control-pro no-control">
+              <input type="radio" class="custom-control-input" [(ngModel)]="selected_lang" value="go" id="go"  (click)="selectLang('go')">
+              <label class="custom-control-label" for="go">
+                <img style="width: 30px;" src="../../../../../../assets/images/golang.svg"> &nbsp; Go
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox custom-control-pro no-control">
+              <input type="radio" class="custom-control-input" [(ngModel)]="selected_lang" value="csharp" id="csharp" (click)="selectLang('csharp')">
+              <label class="custom-control-label" for="csharp">
+                <img style="width: 18px;" src="../../../../../../assets/images/csharp.svg"> &nbsp; C#
+              </label>
+            </div>
+          </li>
+        </ul>
+        <h6>Installation</h6>
+        <pre style="display: grid;">
+          <code style="border-radius: 10px;" [highlightAuto]="selected_lang_details.code.installation"></code>
+        </pre>
+        <h6>Import and Use</h6>
+
+        <pre style="display: grid;">
+          <code style="border-radius: 10px;" [highlightAuto]="selected_lang_details.code.import"></code>
+        </pre>
+
+        <pre style="display: grid;">
+          <code style="border-radius: 10px;" [highlightAuto]="selected_lang_details.code.use"></code>
+        </pre>
+        <ul class="row gx-12 mt-4">
+          <li class="col-12">
+            <button class="btn btn-primary btn-block" data-bs-dismiss="modal" (click)="next()">
+              Next
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

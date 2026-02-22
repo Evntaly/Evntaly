@@ -1,0 +1,216 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Journeys</h3>
+      <div class="nk-block-des text-soft">
+        <p>User journeys during their Sessions
+          <span style="cursor: pointer;" (click)="showDocs()">
+            <small style="text-decoration: underline;">
+            <em class="icon ni ni-book-fill"></em>
+            Docs
+            </small>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="nk-block-head-content">
+      <div class="toggle-wrap nk-block-tools-toggle">
+        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
+            class="icon ni ni-more-v"></em></a>
+        <div class="toggle-expand-content" data-content="pageMenu">
+          <ul class="nk-block-tools g-3">
+            <li>
+              <div class="dropdown">
+                <a href="#" class="dropdown-toggle btn btn-primary btn-primary" data-bs-toggle="dropdown"
+                  aria-expanded="false"><span><span class="d-none d-md-inline"></span>
+                    {{ selected_range }}
+                  </span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <ul class="link-list-opt no-bdr">
+                    <ng-container *ngFor="let i of dates">
+                      <li (click)="changeDateFilter(i.text)" [ngClass]="{ 'active': i.is_active }"
+                        style="cursor: pointer;"><a><span style="font-size: 13px;">{{ i.text }}</span></a></li>
+                    </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="nk-content-body">
+  <div class="nk-ibx" >
+    <div class="nk-ibx-aside toggle-screen-lg" data-content="inbox-aside" data-toggle-overlay="true" data-toggle-screen="lg">
+      <div class="nk-chat-aside-search mt-2 mb-0">
+        <div class="row">
+          <!-- Input Field -->
+          <div class="col-10" style="padding-right: 0px;">
+            <div class="form-group">
+              <div class="form-control-wrap">
+                <div class="form-icon form-icon-left">
+                  <em class="icon ni ni-search"></em>
+                </div>
+                <input
+                  type="text"
+                  class="form-control form-round"
+                  style="border-radius: 6px;"
+                  [(ngModel)] = "search_text"
+                  (keydown)="searchByProvidedSearchKey($event)"
+                  [placeholder]="search_txt_placeholder">
+              </div>
+            </div>
+          </div>
+
+          <!-- Dropdown -->
+          <div class="col-2" style="padding-left: 0px;">
+            <li>
+              <div class="dropdown">
+                <a
+                  class="dropdown-toggle btn btn-icon btn-trigger"
+                  data-bs-toggle="dropdown">
+                  <em class="icon ni ni-more-v"></em>
+                </a>
+                <div class="dropdown-menu dropdown-menu-sm">
+                  <ul class="link-check">
+                    <li><span>Search By</span></li>
+                    <ng-container *ngFor="let i of search_by">
+                      <li (click)="changeSessionFilter(i.text)"
+                        [ngClass]="{ 'active' : i.is_active}"><a>{{ i.text }}</a></li>
+                    </ng-container>
+                    <li class="divider"></li>
+                    <li>
+                      <a (click)="clearSearch()" style="color: red;">
+                        <em class="icon ni ni-trash-alt"></em>
+                        <span>Clear</span>
+                      </a>
+                    </li>
+                </ul>
+                </div>
+              </div>
+            </li>
+          </div>
+        </div>
+      </div>
+      <div class="nk-ibx-nav">
+        <ul class="nk-ibx-menu">
+          <ul class="nk-ibx-contact" style="padding-left: 0px; padding-right: 0px;">
+            <ng-container *ngFor="let i of data; let last = last">
+              <!-- <li style="cursor: pointer !important" [matTooltip]="i.sessionID" [ngClass]="{ 'active': i.is_active }" style="padding: 2px;">
+                <a (click)="getListOfEventsInSession(i.sessionID)" style="padding: 8px; display: block; border-radius: 4px;">
+                  <div style="display: flex; align-items: center; margin-bottom: 4px; width: 100%;">
+                    <em class="icon ni ni-link-alt text-primary" style="font-size: 12px; margin-right: 4px; flex-shrink: 0;"></em>
+                    <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; font-weight: 500; color: #364a63; width: 80%;">
+                      {{ i.sessionID }}
+                    </div>
+                  </div>
+
+                  <div style="display: flex; flex-direction: column; font-size: 11px; color: #8094ae;">
+                    <div style="display: flex; align-items: center; width: 180px;">
+                      <em class="icon ni ni-user text-soft" style="font-size: 12px; margin-right: 4px; flex-shrink: 0;"></em>
+                      <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        {{ i.userDetails?.email }}
+                      </div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-top: 4px;">
+                      <em class="icon ni ni-calendar text-soft" style="font-size: 12px; margin-right: 3px;"></em>
+                      {{ i.latestTimestamp | date: 'MMM d' }}
+                    </div>
+                  </div>
+                </a>
+              </li> -->
+              <div class="card-inner" style="padding: 15px;" [matTooltip]="i.sessionID">
+                <div class="d-flex" (click)="getListOfEventsInSession(i.sessionID)" style="cursor: pointer;">
+                    <div class="user-avatar me-2 sm" [ngClass]="getBgClassForName( i.userDetails?.name?.charAt(0))">
+                        <span>{{ i.userDetails?.name?.charAt(0) }}</span>
+                    </div>
+                    <div class="fake-class">
+                        <p class="mt-0 d-flex align-center" style="margin-bottom: 5px;">
+                          <span style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; @media (max-width: 420px) { width: 120px; }">
+                            <em (click)="copyToClipboard(i.sessionID); $event.stopPropagation()" style="cursor: pointer;" class="icon ni ni-copy"></em>
+                            {{ i.sessionID }} </span>
+                            <span *ngIf="i.is_active" class="badge badge-dim bg-outline-primary ms-2">Selected</span>
+                        </p>
+                        <div class="d-flex">
+                          <p class="m-0 pe-2">
+                            <small style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; font-size: 11px;">
+                            <em class="icon ni ni-user"></em>
+                            {{ i.userDetails?.email }}</small>
+                          </p>
+                          <small>{{ i.latestTimestamp | date: 'MMM d' }}</small>
+                      </div>
+                        <!-- <p class="text-soft">Time zone depend on your server time as we use that by default. So you need to change that from your server. For data display issues, you may send your website url so we can check what actually wrong.</p> -->
+                    </div>
+                </div>
+            </div>
+            </ng-container>
+          </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="nk-ibx-body bg-white">
+      <div style="display: flex; justify-content: flex-end; margin: 10px;">
+        <ul class="nk-ibx-head-tools g-1">
+          <li class="me-n1 d-lg-none"><a href="#" class="btn btn-trigger btn-icon toggle"
+              data-target="inbox-aside"><em class="icon ni ni-menu-alt-r"></em></a></li>
+        </ul>
+      </div>
+
+      <div class="nk-ibx-list">
+        <ng-container *ngFor="let e of events">
+          <div class="nk-ibx-item" style="cursor:default;">
+            <div class="nk-ibx-item-elem nk-ibx-item-user">
+              <div class="user-card">
+                <div class="user-avatar text-primary" [ngStyle]="{ 'background-color': getEmojiColor(e.icon) }">
+                  {{ e.icon }}
+                </div>
+                <div class="user-name">
+                  <div class="lead-text">{{ e.title }}</div>
+                </div>
+              </div>
+            </div>
+            <div class="nk-ibx-item-elem nk-ibx-item-fluid">
+              <div class="nk-ibx-context-group">
+                <div class="nk-ibx-context">
+                  <span class="nk-ibx-context-text">
+                    {{ e.description }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="nk-ibx-item-elem nk-ibx-item-time" style="width: 230px !important;">
+              <div style="font-size: 14px;" class="sub-text">{{ e.createdAt | date: 'short'}}</div>
+            </div>
+            <div class="nk-ibx-item-elem nk-ibx-item-tools">
+              <div class="ibx-actions">
+                <a (click)="showEventOccurance(e.eventID)" class="dropdown-toggle btn btn-sm btn-icon btn-trigger">
+                  <em class="icon ni ni-arrow-up-right"></em>
+                </a>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div *ngIf="!events_loading && events.length == 0">
+          <div class="justify-content-center py-5">
+            <div class="col-md-7 col-lg-12">
+              <div class="mb-3 text-center">
+                <img src="assets/images/no-documents.svg" alt="" />
+              </div>
+              <div class="nk-block-head text-center">
+                <div class="nk-block-head-content">
+                  <h3 class="nk-block-title mb-2">Oops! No Events Found</h3>
+                  <p>👈 Choose a session from the left panel to view its corresponding events.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

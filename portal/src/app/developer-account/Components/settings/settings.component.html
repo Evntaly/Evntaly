@@ -1,0 +1,56 @@
+
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between g-3">
+      <div class="nk-block-head-content">
+          <h3 class="nk-block-title page-title">Account Settings</h3>
+          <div class="nk-block-des text-soft">
+              <p>Detailed account settings </p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="row g-gs">
+  <div class="col-xl-4">
+    <div class="card">
+      <div class="card-inner-group">
+
+        <div class="card-inner">
+          <div class="user-card">
+            <div class="user-avatar bg-primary"><span>{{ accountDetails?.name?.substring(0, 2).toUpperCase() }}</span></div>
+            <div class="user-info"><span class="lead-text">{{ accountDetails?.name }}</span>
+              <span class="sub-text">{{ accountDetails?.email }}</span></div>
+            <div class="user-action">
+              <div class="dropdown"><a data-bs-toggle="dropdown" href="#" class="btn btn-icon btn-trigger me-n2"><em
+                    class="icon ni ni-more-v"></em></a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-md">
+                  <ul class="link-list-opt no-bdr">
+                    <li><a (click)="copySecretToClipboard()"><em class="icon ni ni-copy-fill"></em><span>Copy Developer Secret</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-inner p-0">
+          <ul class="link-list-menu">
+            <li><a routerLinkActive="active" routerLink="/account/settings/info"><em class="icon ni ni-user-fill-c"></em><span>Account Information</span></a></li>
+            <li><a routerLinkActive="active" routerLink="/account/settings/projects"><em class="icon ni ni-grid-add-fill-c"></em><span>Projects</span></a></li>
+            <li><a routerLinkActive="active" routerLink="/account/settings/api"><em class="icon ni ni-coins"></em><span>API Tokens</span></a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-8">
+    <div class="card">
+      <div class="card-inner">
+          <div class="nk-block">
+            <router-outlet></router-outlet>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

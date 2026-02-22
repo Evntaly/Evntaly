@@ -1,0 +1,63 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-danger bg-danger-dim mb-3">
+          <em style="font-size: 25px;" class="icon ni ni-spark-fill"></em>
+          <!-- <em style="font-size: 30px;" class="icon ni ni-signal"></em> -->
+        </div>
+        <h4>Create New Alert</h4>
+        <p>Receive an alert whenever the event occurs more times than the specified threshold. <span class="text-dark">Specify below</span>.</p>
+        <form class="form-validate is-alter" [formGroup]="alertForm">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label class="form-label">Occurances
+                <em matTooltip="This is the number of times the events need to be received to trigger the alert." matTooltipPosition="above" class="icon ni ni-info"></em>
+              </label>
+              <div class="form-control-wrap">
+                <input type="number" class="form-control" placeholder="100 Times" formControlName="occurances"
+                  [ngClass]="{ 'error' : alertForm.get('occurances')!.touched && !alertForm.get('occurances')!.valid }">
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="form-label">Period
+                <em matTooltip="This is the time window within which the events should be received to trigger the alert." matTooltipPosition="above" class="icon ni ni-info"></em>
+              </label>
+              <div class="form-control-wrap ">
+                <div class="form-control-select lg">
+                  <select class="form-control" formControlName="period"
+                    [ngClass]="{ 'error' : alertForm.get('period')!.touched && !alertForm.get('period')!.valid }">
+                    <option value="null" disabled>Select period</option>
+                    <option value="Hour">One Hour</option>
+                    <option value="Day">One Day</option>
+                    <option value="Week">One Week</option>
+                    <option value="Month">One Month</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Integrations (Medium to receive alerts)
+              <em matTooltip="Select from the list of pre-configured integrations to receive alerts. Ensure they are properly configured to avoid missing important alerts." matTooltipPosition="above" class="icon ni ni-info"></em>
+            </label>
+            <div class="form-control-wrap ">
+              <div class="form-control-select">
+                <select class="form-control" placeholder="Receive alerts on" formControlName="integrationID"
+                  [ngClass]="{ 'error' : alertForm.get('integrationID')!.touched && !alertForm.get('integrationID')!.valid }">
+                  <option value="null" disabled>Default Option</option>
+                  <option value="email">Email</option>
+                  <option value="slack">Slack</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+        <ul class="row gx-4 mt-4">
+          <li class="col-6"><button class="btn btn-danger btn-block" data-bs-dismiss="modal" (click)="createAlert()">Create Alert</button></li>
+          <li class="col-6"><button class="btn btn-outline-light btn-block" data-bs-dismiss="modal" (click)="close()">No, Cancel</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

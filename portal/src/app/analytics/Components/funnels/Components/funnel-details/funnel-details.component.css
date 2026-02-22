@@ -1,0 +1,580 @@
+/* ===== FILTER DROPDOWN STYLES ===== */
+
+.card-title-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.card-tools .dropdown-toggle {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+  border-color: #e2e8f0;
+  color: #64748b;
+  background: #ffffff;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.card-tools .dropdown-toggle:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+}
+
+.card-tools .dropdown-toggle:focus {
+  border-color: #000B73;
+  box-shadow: 0 0 0 0.2rem rgba(0, 11, 115, 0.1);
+}
+
+.card-tools .dropdown-menu {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  min-width: 160px;
+}
+
+.card-tools .dropdown-item {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.card-tools .dropdown-item:hover {
+  background: #f8fafc;
+  color: #000B73;
+}
+
+.card-tools .dropdown-item:active {
+  background: #000B73;
+  color: #ffffff;
+}
+
+/* ===== PROFESSIONAL ECHARTS BAR CHART STYLES ===== */
+
+.funnel-chart-container {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.funnel-chart {
+  width: 100%;
+  height: 400px;
+  min-height: 400px;
+}
+
+/* Metrics Table Styling */
+.metrics-table {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+  min-height: 80px;
+  justify-content: center;
+}
+
+.metric-item:hover {
+  background: #f1f3f4;
+  transform: translateX(2px);
+}
+
+.metric-item:nth-child(1) {
+  border-left-color: #4285f4;
+}
+
+.metric-item:nth-child(2) {
+  border-left-color: #21C55D;
+}
+
+.metric-item:nth-child(3) {
+  border-left-color: #17a2b8;
+}
+
+.metric-item:nth-child(4) {
+  border-left-color: #F59E0B;
+}
+
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.metric-value {
+  margin-bottom: 8px;
+}
+
+.metric-value span {
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+}
+
+.metric-label h6 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6c757d !important;
+  margin: 0;
+}
+
+/* Chart Container */
+.chart {
+  width: 100%;
+  min-height: 400px;
+}
+
+/* Enhanced Horizontal Funnel Line */
+.funnel-line-container {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.funnel-line {
+  width: 100%;
+  max-width: 800px;
+  height: 120px;
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 11, 115, 0.15);
+  transition: all 0.3s ease;
+}
+
+.funnel-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-width: 80px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  border: 2px solid white;
+  margin-right: -2px;
+}
+
+.funnel-segment:last-child {
+  margin-right: 0;
+}
+
+.funnel-segment:hover {
+  transform: scale(1.05) translateY(-2px);
+  z-index: 10;
+  box-shadow: 0 8px 25px rgba(0, 11, 115, 0.3);
+}
+
+.segment-content {
+  text-align: center;
+  color: white;
+  padding: 12px 8px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.segment-name {
+  font-size: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.segment-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+  line-height: 1;
+}
+
+.segment-percentage {
+  font-size: 0.4rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Segment Colors based on #000B73 */
+.segment-1 {
+  background: linear-gradient(135deg, #000B73 0%, #1a237e 100%);
+}
+
+.segment-2 {
+  background: linear-gradient(135deg, #1a237e 0%, #303f9f 100%);
+}
+
+.segment-3 {
+  background: linear-gradient(135deg, #303f9f 0%, #3949ab 100%);
+}
+
+.segment-4 {
+  background: linear-gradient(135deg, #3949ab 0%, #5c6bc0 100%);
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  background: rgba(0, 11, 115, 0.95);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: pre-line;
+  z-index: 1000;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  transform: translateX(-50%);
+  margin-top: -40px;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(0, 11, 115, 0.95);
+}
+
+.funnel-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.card-full {
+  height: 472px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .metrics-table {
+    gap: 16px;
+  }
+
+  .metric-item {
+    padding: 15px;
+    min-height: 70px;
+  }
+
+  .metric-value span {
+    font-size: 1.25rem !important;
+  }
+
+  /* Funnel responsive adjustments */
+  .funnel-line-container {
+    padding: 20px 15px;
+  }
+
+  .funnel-line {
+    height: 100px;
+    max-width: 600px;
+  }
+
+  .segment-name {
+    font-size: 0.45rem;
+  }
+
+  .segment-count {
+    font-size: 0.7rem;
+  }
+
+  .segment-percentage {
+    font-size: 0.4rem;
+  }
+  .card-full {
+    height: 472px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .metrics-table {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .metric-item {
+    flex: 1;
+    min-width: calc(50% - 6px);
+    padding: 12px;
+    min-height: 60px;
+  }
+
+  .metric-value span {
+    font-size: 1.125rem !important;
+  }
+
+  .metric-label h6 {
+    font-size: 0.8rem;
+  }
+
+  /* Funnel mobile adjustments */
+  .funnel-line-container {
+    padding: 15px 10px;
+  }
+
+  .funnel-line {
+    height: 80px;
+    max-width: 100%;
+  }
+
+  .segment-name {
+    font-size: 0.4rem;
+  }
+
+  .segment-count {
+    font-size: 0.6rem;
+  }
+
+  .segment-percentage {
+    font-size: 0.35rem;
+  }
+
+  .funnel-chart-container {
+    padding: 8px 0;
+    gap: 15px;
+  }
+
+  .funnel-chart {
+    height: 350px;
+    min-height: 350px;
+  }
+
+  .card-full {
+    height: 380px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .funnel-chart-container {
+    padding: 5px 0;
+    gap: 15px;
+  }
+
+  .funnel-chart {
+    height: 300px;
+    min-height: 300px;
+  }
+
+  /* Make card full height on mobile */
+  .card-full {
+    height: 380px !important;
+  }
+}
+
+/* ===== FUNNEL KPIs STYLES ===== */
+
+.card-full-key {
+  height: auto !important;
+}
+
+.funnel-kpis-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border: 1px solid #f1f3f4;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kpi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.kpi-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.kpi-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #ffffff;
+}
+
+.kpi-menu .icon {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.kpi-value-section {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.kpi-main-value {
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  line-height: 1;
+}
+
+.kpi-change-positive {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+
+.kpi-change-negative {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+
+
+.kpi-subtitle {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Responsive Design for KPIs */
+@media (max-width: 991.98px) {
+  .funnel-kpis-grid {
+    gap: 10px;
+  }
+
+  .kpi-card {
+    padding: 12px;
+    gap: 6px;
+  }
+
+  .kpi-title {
+    font-size: 0.8125rem;
+  }
+
+  .kpi-main-value {
+    font-size: 1.5rem;
+  }
+
+  .kpi-menu {
+    width: 24px;
+    height: 24px;
+  }
+
+  .kpi-menu .icon {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .funnel-kpis-grid {
+    gap: 8px;
+  }
+
+  .kpi-card {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .kpi-title {
+    font-size: 0.75rem;
+  }
+
+  .kpi-main-value {
+    font-size: 1.375rem;
+  }
+
+  .kpi-change-positive {
+    font-size: 0.6875rem;
+    padding: 2px 5px;
+  }
+
+  .kpi-subtitle {
+    font-size: 0.6875rem;
+  }
+
+  .kpi-menu {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-card {
+    padding: 8px;
+    gap: 5px;
+  }
+
+  .kpi-title {
+    font-size: 0.6875rem;
+  }
+
+  .kpi-main-value {
+    font-size: 1.25rem;
+  }
+
+  .kpi-value-section {
+    gap: 6px;
+  }
+
+  .kpi-change-positive {
+    font-size: 0.625rem;
+    padding: 2px 4px;
+  }
+
+  .kpi-subtitle {
+    font-size: 0.625rem;
+  }
+
+  .kpi-menu {
+    width: 20px;
+    height: 20px;
+  }
+
+  .kpi-menu .icon {
+    font-size: 0.625rem;
+  }
+}
+

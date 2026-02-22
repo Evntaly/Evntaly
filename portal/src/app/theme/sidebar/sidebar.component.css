@@ -1,0 +1,9 @@
+.nk-sidebar-brand {
+  position: relative;
+}
+
+.logo-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}

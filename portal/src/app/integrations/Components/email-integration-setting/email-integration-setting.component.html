@@ -1,0 +1,47 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-primary bg-primary-dim mb-3" style="    background-color: #a9aedc !important;">
+          <em style="font-size: 25px;" class="icon ni ni-setting"></em>
+        </div>
+        <h4>Email Integration Configurations</h4>
+        <p>Configure and add emails to receive all the alerts. <span class="text-dark">Specify below</span>.</p>
+        <form class="form-validate is-alter" [formGroup]="emailForm">
+          <div class="row mb-2">
+            <div class="form-group col-md-12">
+              <label class="form-label">First Email</label>
+              <div class="form-control-wrap">
+                <input type="text" class="form-control" placeholder="example@gmail.com" formControlName="email_1">
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="form-group col-md-12">
+              <label class="form-label">Second Email</label>
+              <div class="form-control-wrap">
+                <input type="text" class="form-control" placeholder="example@gmail.com"  formControlName="email_2">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label class="form-label">Third Email</label>
+              <div class="form-control-wrap">
+                <input type="text" class="form-control" placeholder="example@gmail.com"  formControlName="email_3">
+              </div>
+            </div>
+          </div>
+
+
+        </form>
+        <ul class="row gx-4 mt-4">
+          <li class="col-6"><button class="btn btn-primary btn-block" data-bs-dismiss="modal" (click)="integrate()">Integrate</button></li>
+          <li class="col-6"><button class="btn btn-outline-light btn-block" data-bs-dismiss="modal" (click)="close()">Close</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

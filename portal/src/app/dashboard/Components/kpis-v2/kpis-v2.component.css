@@ -1,0 +1,486 @@
+/* Single KPIs Card Container */
+.kpis-dashboard {
+  width: 100%;
+  padding: 0;
+}
+
+/* Main KPIs Card */
+.kpis-card {
+  background: #ffffff;
+  box-shadow: 0 0 25px -12px rgba(31, 43, 58, 0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+/* Individual KPI Item */
+.kpi-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.kpi-item:first-child {
+  padding-left: 0;
+}
+
+.kpi-item:last-child {
+  padding-right: 0;
+}
+
+/* KPI Header (Label + Checkbox) */
+.kpi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* KPI Label */
+.kpi-label {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #9ca3af;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Checkbox Container - Default white state */
+.kpi-checkbox-container {
+  width: 25px;
+  height: 25px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+/* Hide default checkbox */
+.kpi-checkbox {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+/* Container label covers the entire area */
+.checkbox-container-label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Checked states with colors and borders */
+.kpi-checkbox[data-color="primary"]:checked + .checkbox-container-label {
+  background: #000B73;
+  border: 2px solid #000B73;
+}
+
+.kpi-checkbox[data-color="danger"]:checked + .checkbox-container-label {
+  background: #F2426E;
+  border: 2px solid #F2426E;
+}
+
+.kpi-checkbox[data-color="success"]:checked + .checkbox-container-label {
+  background: #22c55e;
+  border: 2px solid #22c55e;
+}
+
+.kpi-checkbox[data-color="warning"]:checked + .checkbox-container-label {
+  background: #f59e0b;
+  border: 2px solid #f59e0b;
+}
+
+.kpi-checkbox[data-color="info"]:checked + .checkbox-container-label {
+  background: #3b82f6;
+  border: 2px solid #3b82f6;
+}
+
+/* Update parent container borders when checked */
+.kpi-checkbox[data-color="primary"]:checked {
+  background: #000B73;
+}
+
+.kpi-checkbox[data-color="danger"]:checked {
+  background: #ef4444;
+}
+
+.kpi-checkbox[data-color="success"]:checked {
+  background: #22c55e;
+}
+
+.kpi-checkbox[data-color="warning"]:checked {
+  background: #f59e0b;
+}
+
+.kpi-checkbox[data-color="info"]:checked {
+  background: #3b82f6;
+}
+
+/* Icon checkmark styling */
+.kpi-check-icon {
+  color: #ffffff;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show icon when checkbox is checked */
+.kpi-checkbox:checked + .checkbox-container-label .kpi-check-icon {
+  opacity: 1;
+}
+
+/* Container changes when checked - remove old border rule */
+.kpi-checkbox:checked + .checkbox-container-label {
+  /* Border is now handled in individual color rules above */
+}
+
+/* Remove old color variants and checkbox styles */
+.kpi-checkbox-container.bg-primary,
+.kpi-checkbox-container.bg-danger,
+.kpi-checkbox-container.bg-success,
+.kpi-checkbox-container.bg-warning,
+.kpi-checkbox-container.bg-info {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+}
+
+.checkbox-label {
+  display: none;
+}
+
+/* Hover effects */
+.kpi-checkbox-container:hover {
+  transform: scale(1.05);
+  border-color: #d1d5db;
+}
+
+/* KPI Value */
+.kpi-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* KPI Change Section */
+.kpi-change {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.change-positive {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #22c55e;
+}
+
+.change-negative {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ef4444;
+}
+
+.change-constant {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #222dc5;
+}
+
+.change-text {
+  font-size: 0.6875rem;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Separators between KPIs */
+.kpi-separator {
+  width: 1px;
+  background: #e5e7eb;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Pulsing Circle */
+.pulsing-circle {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 0 rgba(34, 197, 94, 0.4);
+  animation: pulse 2s infinite;
+  margin-right: 4px;
+}
+
+.pulsing-circle.offline {
+  background-color: #ef4444;
+  box-shadow: 0 0 0 rgba(239, 68, 68, 0.4);
+  animation: pulse-offline 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes pulse-offline {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Mobile and Tablet Layout - Clean Design Like Reference */
+@media (max-width: 768px) {
+  .kpis-dashboard {
+    padding: 1.5rem;
+    background: #f8f9fa;
+  }
+
+  .kpis-card {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    grid-template-rows: auto auto !important;
+    grid-gap: 1.5rem !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .kpi-item {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: none;
+    transition: none;
+    min-height: auto;
+    position: relative;
+  }
+
+  .kpi-item:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .kpi-item:first-child,
+  .kpi-item:last-child {
+    padding: 0;
+  }
+
+  .kpi-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .kpi-label {
+    font-size: 0.805rem;
+    font-weight: 700;
+    color: #6b7280;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .kpi-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .kpi-change {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0;
+  }
+
+  .change-positive,
+  .change-constant,
+  .change-negative {
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    line-height: 1;
+  }
+
+  .change-positive {
+    color: #10b981;
+  }
+
+  .change-negative {
+    color: #ef4444;
+  }
+
+  .change-constant {
+    color: #222dc5;
+  }
+
+  .change-positive .icon,
+  .change-constant .icon,
+  .change-negative .icon {
+    font-size: 0.75rem;
+  }
+
+  .change-text {
+    display: none;
+  }
+
+  .kpi-separator {
+    display: none !important;
+  }
+
+  .kpi-checkbox-container {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    position: static;
+    background: #e5e7eb;
+    border: none;
+    flex-shrink: 0;
+  }
+
+  .kpi-checkbox {
+    border-radius: 6px;
+  }
+
+  .kpi-checkbox[data-color="primary"]:checked + .checkbox-container-label {
+    background: #3b82f6;
+    border: none;
+  }
+
+  .kpi-checkbox[data-color="danger"]:checked + .checkbox-container-label {
+    background: #f97316;
+    border: none;
+  }
+
+  .kpi-checkbox[data-color="success"]:checked + .checkbox-container-label {
+    background: #22c55e;
+    border: none;
+  }
+
+  .kpi-checkbox[data-color="warning"]:checked + .checkbox-container-label {
+    background: #f97316;
+    border: none;
+  }
+
+  .kpi-checkbox[data-color="info"]:checked + .checkbox-container-label {
+    background: #3b82f6;
+    border: none;
+  }
+
+  .kpi-check-icon {
+    font-size: 10px;
+    color: #ffffff;
+  }
+
+  /* Specific positioning for 5 items in 3x2 grid */
+  .kpi-item:nth-child(1) { grid-column: 1; grid-row: 1; } /* Online Users */
+  .kpi-item:nth-child(3) { grid-column: 2; grid-row: 1; } /* Active Users */
+  .kpi-item:nth-child(5) { grid-column: 3; grid-row: 1; } /* Sessions */
+  .kpi-item:nth-child(7) { grid-column: 1; grid-row: 2; } /* Page Views */
+  .kpi-item:nth-child(9) { grid-column: 2; grid-row: 2; } /* (Was Drop Off Rate, now possibly redundant or repurposed if 9th child) */
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .kpis-dashboard {
+    padding: 0.75rem;
+  }
+
+  .kpis-card {
+    grid-gap: 1rem;
+  }
+
+  .kpi-value {
+    font-size: 1.5rem !important;
+  }
+
+  .kpi-label {
+    font-size: 0.7125rem !important;
+  }
+
+  .change-positive,
+  .change-constant,
+  .change-negative {
+    font-size: 0.8125rem !important;
+  }
+
+  .kpi-checkbox-container {
+    width: 18px;
+    height: 18px;
+  }
+
+  .kpi-check-icon {
+    font-size: 9px;
+  }
+}
+
+/* Chart Skeleton Loader */
+.chart-skeleton {
+  min-height: 40px;
+}
+
+.skeleton-bar {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* End of file - all mobile-specific rules are now properly contained within media queries */

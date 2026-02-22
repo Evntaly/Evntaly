@@ -1,0 +1,44 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-primary bg-primary-dim mb-3" style="background-color: #a9aedc !important;">
+          <em style="font-size: 25px;" class="icon ni ni-coins"></em>
+        </div>
+        <h4>Generate New Token</h4>
+        <p>Generate a token for a specific project and ensure it is securely stored.</p>
+        <div class="form-validate is-alter">
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label" for="cp1-team-name">Project</label>
+                <div class="form-control-wrap">
+                    <div class="form-control-wrap ">
+                      <div class="form-control-select lg">
+                        <select class="form-control" [(ngModel)]= "projectID">
+                          <option value="" disabled>Select project </option>
+                          <ng-container *ngFor="let i of projects">
+                            <option value="{{ i.projectID }}">{{ i.name }}</option>
+                          </ng-container>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <ul class="row gx-4 mt-4">
+          <li class="col-6">
+            <button class="btn btn-primary btn-block" (click)="generateToken()">
+              <span *ngIf="loading" class="spinner-grow spinner-grow-sm"></span>
+              <span>Generate Token</span>
+            </button>
+          </li>
+          <li class="col-6"><button class="btn btn-outline-light btn-block" (click)="close()">No, Cancel</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+
+<div class="card card-full">
+  <div class="card-inner">
+    <div class="card-title-group">
+      <div class="card-title">
+        <h6 class="title">Users Retention</h6>
+      </div>
+      <div class="card-tools">
+        <div class="drodown"><a href="#"
+            class="dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white"
+            data-bs-toggle="dropdown">30 Days</a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+            <ul class="link-list-opt no-bdr">
+              <li class="active"><a href="#"><span>7 Days</span></a></li>
+              <li><a href="#"><span>15 Days</span></a></li>
+              <li><a href="#"><span>30 Days</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-inner pt-0"  style="padding-left: 0px; padding-right: 0px;">
+    <div echarts [options]="chartOptions" class="chart"></div>
+  </div>
+</div>

@@ -1,0 +1,220 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between g-3">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Event Details</h3>
+    </div>
+    <div class="nk-block-head-content">
+      <a (click)="back()" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em
+          class="icon ni ni-arrow-left"></em><span>Back</span></a>
+      <a (click)="back()" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em
+          class="icon ni ni-arrow-left"></em></a>
+    </div>
+  </div>
+</div>
+
+<div class="nk-block">
+  <div class="row g-gs">
+    <div class="col-xl-4">
+      <div class="nk-block mb-3">
+        <div class="card clickable-card">
+          <div class="card-inner">
+            <div class="d-flex position-relative">
+              <div class="ms-4 flex-grow-1">
+                <h4 class="title mb-1">{{ event.title }}
+                </h4>
+                <ul class="nk-history-meta">
+                  <li>Created at {{ event.createdAt| date:'short' }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner-group">
+          <div class="card-inner">
+            <div class="row gy-3 justify-content-center text-center">
+              <div class="col">
+                <div class="profile-stats">
+                  <span class="amount">{{ kpis.occurances }}</span>
+                  <span class="sub-text">Occurances</span>
+                </div>
+              </div>
+              <div class="col">
+                <div class="profile-stats">
+                  <span class="amount">{{ kpis.sessions }}</span>
+                  <span class="sub-text">Sessions</span>
+                </div>
+              </div>
+              <div class="col">
+                <div class="profile-stats">
+                  <span class="amount">{{ kpis.users }}</span>
+                  <span class="sub-text">Users</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-inner">
+            <h6 class="overline-title mb-2"><em class="icon ni ni-spark-fill"></em> Insights</h6>
+
+            <div class="row g-3">
+              <div class="col-sm-6 col-md-4 col-xl-12">
+                <span class="sub-text">First Occurance</span>
+                <span><a>{{ !event_details.first_occurance ? 'Not Provided' : event_details.first_occurance  | date:'fullDate' }}</a></span>
+              </div>
+              <div class="col-sm-6 col-md-4 col-xl-12">
+                <span class="sub-text">Last Occurance</span>
+                <span><a>{{ !event_details.last_occurance ? 'Not Provided' : event_details.last_occurance | date:'fullDate' }}</a></span>
+              </div>
+              <div class="col-sm-6 col-md-4 col-xl-12">
+                <span class="sub-text">Registered At <em
+                    matTooltip="Represents the date when the user has been registered." matTooltipPosition="above"
+                    class="icon ni ni-info"></em></span>
+                <span><a>{{ !event.createdAt ? 'Not Provided' : event.createdAt | date:'fullDate' }}</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8">
+      <div class="card">
+        <div class="card-inner">
+          <div class="nk-block" style="margin-bottom: 20px;">
+            <h6 class="lead-text mb-0">Event occurances <span class="badge rounded-pill bg-light">Last 10 Days</span></h6>
+
+            <div style="height: 200px;" echarts [options]="options" [merge]="mergeOptions" theme="macarons"
+              class="demo-chart"></div>
+
+
+            <!-- <evntaly-empty-state icon="icon ni ni-package" msg="" ></evntaly-empty-state> -->
+          </div>
+
+          <div class="nk-block" style="margin-bottom: 20px;">
+            <h6 class="lead-text mb-3">Top Users</h6>
+
+            <div class="row g-3" *ngIf="event_details.most_interactive_users?.length! > 0">
+              <ng-container *ngFor="let u of event_details.most_interactive_users">
+                <div class="col-12 col-lg-6 col-xl-12" *ngIf="u.full_name.toLowerCase() !== 'unknown user'">
+                  <div class="card">
+                      <div class="card-inner" style="padding: 13px;">
+                          <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center">
+                                  <div class="icon-circle icon-circle-lg bg-primary" style="font-size: 20px;">
+                                    {{ getInitials(u.full_name) }}
+                                  </div>
+                                  <div class="ms-3 ">
+                                      <h6 class="lead-text">{{ u.full_name }}</h6>
+                                      <div class="user-name"> Last seen {{ timeAgo(u.latest_event) }} &#x2022; {{ u.count }} Occurances sent  </div>
+                                  </div>
+                              </div>
+                              <ul class="btn-toolbar justify-center gx-1 me-n1 flex-nowrap" matTooltip="Show user">
+                                  <li><a (click)="showUser(u.userID)" class="btn btn-trigger btn-icon"><em class="icon ni ni-arrow-up-right"></em></a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </ng-container>
+
+            </div>
+
+            <evntaly-empty-state icon="icon ni ni-archived" *ngIf="event_details.most_interactive_users?.length == 0"
+            msg="No users have been registered for this event." link-msg="Look here to register users." link="/occurances/all"></evntaly-empty-state>
+          </div>
+
+
+          <div class="nk-block" style="margin-bottom: 20px;">
+            <h6 class="lead-text mb-3">Top Features</h6>
+            <ul class="custom-control-group">
+              <ng-container *ngFor="let f of event_details.most_adopted_features">
+                <li>
+                  <div class="custom-control custom-checkbox custom-control-pro no-control">
+                    <label class="custom-control-label" for="btnIconRadio1">
+                      <em class="icon ni" [ngClass]="{ 'ni-hash' : f.name , 'ni-caution': f.name == '' }"></em>
+                      <span>{{ f.name == '' ? 'Unspecified feature' : f.name }} &nbsp; ({{ f.count }})</span>
+                    </label>
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+            <evntaly-empty-state icon="icon ni ni-archived" *ngIf="event_details.most_adopted_features?.length == 0"
+            msg="No features added to this occurance."></evntaly-empty-state>
+          </div>
+
+          <div class="nk-block">
+            <h6 class="lead-text">Alert</h6>
+            <div class="card" *ngIf="event_alert">
+              <div class="card-inner">
+                <div class="between-center flex-wrap flex-md-nowrap g-3">
+                  <div class="media media-center gx-3 wide-xs">
+
+                    <div class="media-content">
+                      <h6>Alert Details</h6>
+                      <p>Alert will be triggered if the event sent more than, <strong> {{ event_alert.occurances }}</strong> Times in <strong>One {{
+                          event_alert.period }}</strong>.</p>
+                    </div>
+                  </div>
+                  <div class="nk-block-actions flex-shrink-0">
+                    <div class="dropdown">
+                      <a class="dropdown-toggle btn btn-icon btn-light" data-bs-toggle="dropdown"><em
+                          class="icon ni ni-more-h"></em></a>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <ul class="link-list-opt no-bdr">
+                          <!-- <li aria-disabled="true">
+                            <a href="#">
+                              <em class="icon ni ni-caution-fill"></em>
+                              <span>Disable</span>
+                            </a>
+                          </li> -->
+                          <li><a (click)="deleteAlertConfirmation()" style="color: rgb(193, 0, 0); cursor: pointer;"><em
+                                class="icon ni ni-trash" style="color: rgb(193, 0, 0);"></em><span>Delete</span></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card" *ngIf="!event_alert">
+              <div class="card-inner">
+                <div class="between-center flex-wrap flex-md-nowrap g-3">
+                  <div class="media media-center gx-3 wide-xs">
+                    <div class="media-content">
+                      <p>This event currently has no alerts configured. To monitor this event, please create an alert.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="nk-block-actions flex-shrink-0">
+                    <a (click)="createAlert()" class="btn btn-lg btn-light">Create Alert</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="nk-block">
+            <h6 class="lead-text">Actions</h6>
+            <div class="card">
+              <div class="card-inner">
+                <div class="between-center flex-wrap flex-md-nowrap g-3">
+                  <div class="media media-center gx-3 wide-xs">
+
+                    <div class="media-content">
+                      <p>You can easily delete this events and all of its occurances completely, Take care as this
+                        action is not reversable</p>
+                    </div>
+                  </div>
+                  <div class="nk-block-actions flex-shrink-0">
+                    <a (click)="deleteEventConfirmation()" class="btn btn-lg btn-danger">Delete Event</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

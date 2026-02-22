@@ -1,0 +1,5 @@
+/* Ensure the container takes the full size of its parent */
+.chart {
+  width: 100%;   /* Full width */
+  left: 4%;
+}

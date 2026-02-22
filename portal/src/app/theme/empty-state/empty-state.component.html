@@ -1,0 +1,8 @@
+<div class="card mb-3 msg-bg">
+  <div class="card-inner">
+    <h6 class="msg-empty ">
+      <em [class]="icon"></em> &nbsp; {{ msg }} &nbsp;
+        <a [routerLink]="link" *ngIf = "link" style="text-decoration: underline; color: gray;">{{ !lnk_msg ? 'Click Here' : lnk_msg }}</a>
+    </h6>
+  </div>
+</div>

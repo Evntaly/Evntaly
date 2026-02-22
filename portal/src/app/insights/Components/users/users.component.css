@@ -1,0 +1,21 @@
+.sub-text {
+  display: block;
+  font-size: 14px;
+  color: #8094ae;
+  font-weight: bold;
+}
+
+.amount {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #364a63;
+}
+
+.title {
+  font-size: 15px;
+}
+
+
+.info {
+  font-size: 12px;
+}

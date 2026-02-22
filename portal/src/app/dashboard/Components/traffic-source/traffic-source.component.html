@@ -1,0 +1,33 @@
+<div class="card card-full">
+  <div class="card-inner">
+      <div class="card-title-group mb-1">
+          <div class="card-title">
+              <h6 class="title">Traffic Sources <span class="badge badge-dim rounded-pill bg-success">New</span></h6>
+              <p>Dive into a full breakdown of your traffic sources.</p>
+          </div>
+      </div>
+      <ul *ngIf="trafficSourceData.length > 0" class="nav nav-tabs nav-tabs-card nav-tabs-xs" role="tablist">
+          <li class="nav-item" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" href="#traffic-sources" aria-selected="true" role="tab" (click)="onTabSwitch('traffic-sources')">Sources</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#traffic-types" aria-selected="false" role="tab" tabindex="-1" (click)="onTabSwitch('traffic-types')">Types</a>
+          </li>
+      </ul>
+      <div class="tab-content mt-0">
+          <div class="tab-pane active show" id="traffic-sources" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="trafficSourceData"></evntaly-rank-chart>
+            </div>
+          </div>
+          <div class="tab-pane" id="traffic-types" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="trafficTypeData"></evntaly-rank-chart>
+            </div>
+          </div>
+      </div>
+
+
+  </div>
+</div>
+

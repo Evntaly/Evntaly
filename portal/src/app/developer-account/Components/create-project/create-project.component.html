@@ -1,0 +1,31 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-primary bg-primary-dim mb-3" style="background-color: #a9aedc !important;">
+          <em style="font-size: 25px;" class="icon ni ni-grid-add-fill-c"></em>
+        </div>
+        <h4>Create New Project</h4>
+        <p>Creating projects will help you isolate events coming from your production apps.</p>
+        <div class="form-validate is-alter">
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label" for="cp1-team-name">Project Name</label>
+                <div class="form-control-wrap">
+                  <input type="text" class="form-control" id="cp1-team-name" name="cp1-team-name"
+                    placeholder="Project Name" required [(ngModel)]="projectName">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <ul class="row gx-4 mt-4">
+          <li class="col-6"><button class="btn btn-primary btn-block" data-bs-dismiss="modal" (click)="createNewProject()">Create Project</button></li>
+          <li class="col-6"><button class="btn btn-outline-light btn-block" data-bs-dismiss="modal" (click)="close()">No, Cancel</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

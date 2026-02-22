@@ -1,0 +1,48 @@
+<div class="rank-chart">
+  <div *ngFor="let source of data; trackBy: trackBySource"
+       class="rank-chart-row">
+
+    <div class="rank-chart-bar-wrapper" matTooltip="{{source.value}} {{source.valueLabel}}">
+      <!-- Dark left section with icon and label -->
+      <div class="rank-chart-label-section">
+        <div class="rank-chart-icon" *ngIf="source.isIcon || source.isImage">
+          <!-- Show icon if isIcon is true -->
+          <em *ngIf="source.isIcon" [class]="source.icon"></em>
+
+          <!-- Show image if isImage is true -->
+          <img *ngIf="source.isImage && source.imageSrc && !source.isImageNonResolvable"
+               [src]="source.imageSrc"
+               [alt]="source.name"
+               class="rank-chart-image">
+
+          <img *ngIf="source.isImage && source.isImageNonResolvable"
+              src="assets/images/warning.png"
+               alt="warning"
+               class="rank-chart-image">
+
+          <!-- Empty space if isEmpty is true (no content) -->
+          <!-- <span *ngIf="source.isEmpty" class="rank-chart-empty"></span> -->
+        </div>
+        <span class="rank-chart-name">{{ source.name }}</span>
+      </div>
+
+      <!-- Dynamic colored bar extending right -->
+      <div class="rank-chart-bar-section"
+           [style.width.%]="source.percentage"
+           [style.background-color]="source.barColor">
+      </div>
+
+      <!-- Visit count -->
+      <div class="rank-chart-count">
+        {{ formatValue(source.value, source.valueLabel!) }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="rank-chart-view-more">
+  <div class="rank-chart-view-more-icon">
+    <em class="fa fa-chevron-down"></em>
+  </div>
+  <span class="rank-chart-view-more-text">View More Details</span>
+</div> -->

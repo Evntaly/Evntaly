@@ -1,0 +1,169 @@
+<div class="kpis-dashboard">
+  <div class="kpis-card">
+
+    <div class="kpi-item">
+      <div class="kpi-header mb-2">
+        <div class="d-flex align-items-center gap-1">
+          <h3 class="kpi-label">Online Users</h3>
+          <em class="icon ni ni-info text-light fs-7" matTooltip="Active users in the last 12 hours" style="cursor: help;"></em>
+        </div>
+      </div>
+      <div class="kpi-value d-flex align-items-center gap-2">
+        <span class="pulsing-circle" [ngClass]="{'offline': online_users === 0}"></span>
+        <evntaly-number-counter [targetNumber]="online_users"></evntaly-number-counter>
+      </div>
+      <div class="kpi-chart-container" style="height: 40px; width: 100%; margin-top: auto;">
+        <!-- Skeleton loader when loading or chart option is not available -->
+        <div *ngIf="onlineUsersLoading || !onlineUsersChartOption" class="chart-skeleton placeholder-glow" style="height: 100%; width: 100%; display: flex; align-items: flex-end; gap: 2px; padding: 0 4px;">
+          <span *ngFor="let height of [35, 45, 30, 55, 40, 50, 35, 60, 45, 40, 50, 35]"
+                class="placeholder skeleton-bar"
+                [style.height.%]="height"
+                style="flex: 1; border-radius: 2px 2px 0 0; background-color: rgb(222, 222, 222); min-height: 8px;"></span>
+        </div>
+        <!-- Chart when data is loaded -->
+        <div *ngIf="!onlineUsersLoading && onlineUsersChartOption" echarts [options]="onlineUsersChartOption" class="demo-chart" style="height: 100%; width: 100%;"></div>
+      </div>
+    </div>
+    <div class="kpi-separator"></div>
+
+
+    <!-- Users -->
+    <div class="kpi-item">
+      <div class="kpi-header">
+        <h3 class="kpi-label">Users</h3>
+        <div class="kpi-checkbox-container">
+          <input type="checkbox" class="kpi-checkbox" id="total-users-check" data-color="primary" [checked]="kpiVisibility['Users']" (change)="onCheckboxChange('Users', $event)">
+          <label for="total-users-check" class="checkbox-container-label">
+            <i class="ni ni-check-thick kpi-check-icon"></i>
+          </label>
+        </div>
+      </div>
+      <div class="kpi-value">
+        <evntaly-number-counter [targetNumber]="total_users"></evntaly-number-counter>
+      </div>
+      <div class="kpi-change">
+        <span class="change-positive" *ngIf="new_users_percentage_change > 0">
+          <em class="icon ni ni-arrow-up"></em>
+          {{new_users_percentage_change}}%
+        </span>
+        <span class="change-negative" *ngIf="new_users_percentage_change < 0">
+          <em class="icon ni ni-arrow-down"></em>
+          {{new_users_percentage_change}}%
+        </span>
+        <span class="change-constant" *ngIf="new_users_percentage_change == 0">
+          <em class="icon ni ni-arrow-right"></em>
+          0%
+        </span>
+        <span class="change-text">vs last period</span>
+      </div>
+    </div>
+
+    <!-- Separator -->
+    <div class="kpi-separator"></div>
+
+    <!-- Active Users -->
+    <div class="kpi-item">
+      <div class="kpi-header">
+        <h3 class="kpi-label">Active Users</h3>
+        <div class="kpi-checkbox-container">
+          <input type="checkbox" class="kpi-checkbox" id="active-users-check" data-color="success" [checked]="kpiVisibility['Active Users']" (change)="onCheckboxChange('Active Users', $event)">
+          <label for="active-users-check" class="checkbox-container-label">
+            <i class="ni ni-check-thick kpi-check-icon"></i>
+          </label>
+        </div>
+      </div>
+      <div class="kpi-value">
+        <evntaly-number-counter [targetNumber]="active_users"></evntaly-number-counter>
+      </div>
+      <div class="kpi-change">
+        <span class="change-positive" *ngIf="active_users_percentage_change > 0">
+          <em class="icon ni ni-arrow-up"></em>
+          {{active_users_percentage_change}}%
+        </span>
+        <span class="change-negative" *ngIf="active_users_percentage_change < 0">
+          <em class="icon ni ni-arrow-down"></em>
+          {{active_users_percentage_change}}%
+        </span>
+        <span class="change-constant" *ngIf="active_users_percentage_change == 0">
+          <em class="icon ni ni-arrow-right"></em>
+          0%
+        </span>
+        <span class="change-text">vs last {{active_users_period_text}}</span>
+      </div>
+    </div>
+
+    <!-- Separator -->
+    <div class="kpi-separator"></div>
+
+    <!-- Sessions -->
+        <div class="kpi-item">
+          <div class="kpi-header">
+            <h3 class="kpi-label">Sessions</h3>
+            <div class="kpi-checkbox-container">
+          <input type="checkbox" class="kpi-checkbox" id="sessions-check" data-color="warning" [checked]="kpiVisibility['Sessions']" (change)="onCheckboxChange('Sessions', $event)">
+          <label for="sessions-check" class="checkbox-container-label">
+                <i class="ni ni-check-thick kpi-check-icon"></i>
+              </label>
+            </div>
+          </div>
+      <div class="kpi-value">
+        <evntaly-number-counter [targetNumber]="sessions"></evntaly-number-counter>
+      </div>
+          <div class="kpi-change">
+        <span class="change-positive" *ngIf="sessions_percentage_change > 0">
+          <em class="icon ni ni-arrow-up"></em>
+          {{sessions_percentage_change}}%
+        </span>
+        <span class="change-negative" *ngIf="sessions_percentage_change < 0">
+          <em class="icon ni ni-arrow-down"></em>
+          {{sessions_percentage_change}}%
+        </span>
+        <span class="change-constant" *ngIf="sessions_percentage_change == 0">
+          <em class="icon ni ni-arrow-right"></em>
+          0%
+        </span>
+        <span class="change-text">vs last period</span>
+          </div>
+        </div>
+
+    <!-- Separator -->
+    <div class="kpi-separator"></div>
+
+    <!-- Page Views -->
+    <div class="kpi-item">
+      <div class="kpi-header">
+        <h3 class="kpi-label">Page Views</h3>
+        <div class="kpi-checkbox-container">
+          <input type="checkbox" class="kpi-checkbox" id="page-views-check" data-color="danger" [checked]="kpiVisibility['Page Views']" (change)="onCheckboxChange('Page Views', $event)">
+          <label for="page-views-check" class="checkbox-container-label">
+            <i class="ni ni-check-thick kpi-check-icon"></i>
+          </label>
+        </div>
+      </div>
+      <div class="kpi-value">
+        <evntaly-number-counter [targetNumber]="page_views"></evntaly-number-counter>
+      </div>
+      <div class="kpi-change">
+        <span class="change-positive" *ngIf="page_views_percentage_change > 0">
+          <em class="icon ni ni-arrow-up"></em>
+          {{page_views_percentage_change}}%
+        </span>
+        <span class="change-negative" *ngIf="page_views_percentage_change < 0">
+          <em class="icon ni ni-arrow-down"></em>
+          {{page_views_percentage_change}}%
+        </span>
+        <span class="change-constant" *ngIf="page_views_percentage_change == 0">
+          <em class="icon ni ni-arrow-right"></em>
+          0%
+        </span>
+        <span class="change-text">vs last period</span>
+      </div>
+    </div>
+
+    <!-- Separator -->
+    <!-- <div class="kpi-separator"></div> -->
+
+    <!-- Drop Off Rate -->
+
+  </div>
+</div>

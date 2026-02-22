@@ -1,0 +1,9 @@
+.cta_new {
+  color: #010340;
+  cursor: pointer;
+}
+
+.cta_new:hover {
+  color: #010340;
+  text-decoration: underline;
+}

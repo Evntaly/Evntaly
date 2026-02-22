@@ -1,0 +1,4 @@
+<general-info (notify)="onNotify($event)" *ngIf="steps.general_info.show"></general-info>
+<init-app-token (notify)="onNotify($event)" *ngIf="steps.app_and_tokens.show"></init-app-token>
+<sdk-integration (notify)="onNotify($event)" *ngIf="steps.sdk_integrations.show"></sdk-integration>
+<send-experimental-event (notify)="onNotify($event)" *ngIf="steps.send_exp_event.show"></send-experimental-event>

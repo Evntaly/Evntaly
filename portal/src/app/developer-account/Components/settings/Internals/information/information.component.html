@@ -1,0 +1,113 @@
+<div class="nk-block-head">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h4 class="nk-block-title">Account Information</h4>
+      <div class="nk-block-des">
+        <p>Data about the account and the owner</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="row gy-4" *ngIf="developerDetails">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label class="form-label" for="default-01">Name</label>
+      <div class="form-control-wrap">
+        <input type="text" class="form-control" placeholder="Celien Alameer Ashraf" [(ngModel)] = "developerDetails.name">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label class="form-label" for="default-04">Email</label>
+      <div class="form-control-wrap">
+        <div class="form-icon form-icon-right">
+          <em class="icon ni ni-mail"></em>
+        </div>
+        <input type="text" class="form-control" placeholder="mayan@evntaly.com" [(ngModel)]="developerDetails.email">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label class="form-label" for="default-03">Company</label>
+      <div class="form-control-wrap">
+        <div class="form-icon form-icon-left">
+          <em class="icon ni ni-building"></em>
+        </div>
+        <input type="text" class="form-control" placeholder="Evntaly" [(ngModel)] = "developerDetails.company">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label class="form-label" for="default-06">Team Size</label>
+      <div class="form-control-wrap ">
+        <div class="form-control-select">
+          <select class="form-control" [(ngModel)] = "developerDetails.team_size">
+            <option value="" disabled>Select team size</option>
+            <option value="01-10">01-10</option>
+            <option value="10-20">10-20</option>
+            <option value="20-30">20-30</option>
+            <option value="30-50">30-50</option>
+            <option value="50-100">50-100</option>
+            <option value="above-100">Above 100</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label class="form-label" for="default-03">Country</label>
+      <div class="form-control-wrap">
+        <div class="form-icon form-icon-left">
+          <em class="icon ni ni-map-pin"></em>
+        </div>
+        <input type="text" class="form-control" placeholder="Egypt" [(ngModel)] = "developerDetails.location">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="">
+      <label class="form-label" for="default-06">Timezone</label>
+      <div class="form-control-wrap ">
+        <div class="">
+          <select2 style="width: 85.4%;" class="form-control-wrap" [data]="timeZones" displaySearchStatus="always"
+          noResultMessage="No Events Found" placeholder="Select Event" [(ngModel)]="developerDetails.timezone"> </select2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+  </div>
+  <div class="col-sm-6">
+    <a (click)="updateAccountDetails()" class="btn btn-md btn-light" style="width: 100%;">
+      <span>
+        <span *ngIf="loading" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Save Changes
+      </span>
+    </a>
+  </div>
+</div>
+
+
+<h6 class="lead-text mt-4">Danger Zone</h6>
+
+<div class="card">
+  <div class="card-inner">
+      <div class="between-center flex-wrap flex-md-nowrap g-3">
+          <div class="media media-center gx-3 wide-xs">
+              <div class="media-content">
+                  <p>Deleting your account will permanently remove all your data. This action cannot be undone.</p>
+              </div>
+          </div>
+          <div class="nk-block-actions flex-shrink-0">
+              <a (click)="deleteAccountConfirmation()" class="btn btn-lg btn-danger">Delete Account</a>
+          </div>
+      </div>
+  </div><!-- .nk-card-inner -->
+</div>

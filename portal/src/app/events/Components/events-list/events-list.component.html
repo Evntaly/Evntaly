@@ -1,0 +1,98 @@
+<!-- <evntaly-notification message="New event has been received" status="success" *ngIf="notify"></evntaly-notification> -->
+
+<div class="nk-block-head nk-block-head-sm" *ngIf="!loading && !no_events_logged">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Events Feed</h3>
+      <div class="nk-block-des text-soft">
+        <p>Real-time feed for your events</p>
+      </div>
+    </div>
+    <div class="nk-block-head-content">
+      <div class="toggle-wrap nk-block-tools-toggle">
+        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
+            class="icon ni ni-more-v"></em></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nk-block">
+  <evntaly-filters-bar (notify)="onFiltersChange($event)" (notify_many)="onManyFiltersFoundInURL($event)"
+    [url_filters]="query_params"></evntaly-filters-bar>
+  <div class="row g-3 filter-container filter-animation-off" *ngIf="events.length > 0 && !loading">
+    <div class="col-12 filter-item blog-content" data-category="blog-content">
+      <ng-container *ngFor="let e of events">
+        <div class="card clickable-card">
+          <div class="card-inner">
+            <div class="d-flex position-relative">
+              <div class="user-avatar text-primary" [ngStyle]="{ 'background-color': getEmojiColor(e.icon) }">
+                {{ e.icon }}
+              </div>
+              <div class="ms-4 flex-grow-1">
+                <h4 class="title mb-1"> <a style="cursor: pointer;" (click)="viewEventDetails(e.eventID)"
+                    class="custom-link">
+
+                    {{ e.title }}
+                    <!-- <em *ngIf="e.is_key_event" style="vertical-align: baseline;" class="icon ni ni-activity-round-fill"></em> -->
+
+                  </a>
+                  <div style="padding: 2px;" class="badge badge-sm" *ngIf="e.is_key_event">
+                    <div class="user-avatar xs bg-primary-dim bg-primary" matTooltip="Key Event">
+                      <span>
+                        <!-- <em style="vertical-align: sub;" class="icon ni ni-star-fill"></em> -->
+                        <!-- <em style="vertical-align: sub;" class="icon ni ni-target"></em> -->
+                        <!-- <em style="vertical-align: sub;"  class="icon ni ni-flag-fill"></em> -->
+                        <!-- <em style="vertical-align: sub;" class="icon ni ni-notify"></em> -->
+                        <em style="vertical-align: sub;" class="icon ni ni-spark-fill"></em>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="ms-1 badge badge-sm badge-dim bg-danger rounded-pill text-uppercase" *ngIf="e.status == 'New'">
+                    New
+                  </div>
+
+                </h4>
+
+                <p class="sub-text mb-1">{{ e.description }}</p>
+                <ul class="nk-history-meta">
+                  <li><a href="" class="custom-link">{{ e.topic }}</a></li>
+                  <li>{{ e.createdAt | date:'short' }}</li>
+                </ul>
+              </div>
+              <div class="card-tools me-n1">
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle btn btn-icon btn-sm btn-trigger" data-bs-toggle="dropdown"><em
+                      class="icon ni ni-more-v"></em></a>
+                  <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
+                    <ul class="link-list-plain no-bdr">
+                      <li><a (click)="viewEventDetails(e.eventID)" style="cursor: pointer;"><em class="icon ni ni-eye"></em><span>Occurance details</span></a></li>
+                      <li><a (click)="viewParentEventDetails(e.parentEventID)"  style="cursor: pointer;"><em class="icon ni ni-search"></em><span>Event details</span></a></li>
+                      <!-- <li><a href="#" style="color: rgb(193, 0, 0);"><em style="color: rgb(193, 0, 0);"
+                            class="icon ni ni-trash"></em><span>Delete event</span></a></li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+      <div class="loader-cntnr" *ngIf="show_more">
+          <button (click)="loadMoreEvents()"  class="btn btn-primary btn-md mt-3" type="button">
+            <span *ngIf="show_more_loading"  class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <em *ngIf="!show_more_loading"  class="icon ni ni-redo"></em>
+            <span>Load more events</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<empty-state *ngIf="events.length == 0 && !loading && no_events_logged"></empty-state>
+<no-data-state *ngIf="events.length == 0 && !loading"></no-data-state>
+<loading-state *ngIf="loading"></loading-state>

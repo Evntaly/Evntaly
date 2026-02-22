@@ -1,0 +1,81 @@
+<div class="card card-full">
+  <div class="card-inner">
+      <div class="card-title-group mb-1">
+          <div class="card-title">
+              <h6 class="title">UTM Sources <span class="badge badge-dim rounded-pill bg-success">New</span></h6>
+              <p>Dive into a full breakdown of your UTM sources.</p>
+          </div>
+      </div>
+      <ul *ngIf="utmSourcesData.length > 0" class="nav nav-tabs nav-tabs-card nav-tabs-xs" role="tablist">
+          <li class="nav-item" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" href="#utm-sources" aria-selected="true" role="tab" (click)="onTabSwitch('utm-sources')">Sources</a>
+          </li>
+          <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#utm_mediums" aria-selected="false" role="tab" tabindex="-1" (click)="onTabSwitch('utm_mediums')">Mediums</a>
+          </li>
+          <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#utm_campaigns" aria-selected="false" tabindex="-1" role="tab" (click)="onTabSwitch('utm_campaigns')">Campaigns</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="#utm_terms" aria-selected="false" tabindex="-1" role="tab" (click)="onTabSwitch('utm_terms')">Terms</a>
+        </li>
+          <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#utm_contents" aria-selected="false" tabindex="-1" role="tab" (click)="onTabSwitch('utm_contents')">Content</a>
+          </li>
+      </ul>
+      <div class="tab-content mt-0">
+          <div class="tab-pane active show" id="utm-sources" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="utmSourcesData"></evntaly-rank-chart>
+              <evntaly-block-state *ngIf="utmSourcesData.length == 0"
+                title="No data available"
+                description="No UTM sources data available yet."
+                iconClass="icon ni ni-package-fill"
+              ></evntaly-block-state>
+            </div>
+          </div>
+          <div class="tab-pane" id="utm_mediums" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="utmMediumsData"></evntaly-rank-chart>
+              <evntaly-block-state *ngIf="utmMediumsData.length == 0"
+                title="No data available"
+                description="No UTM mediums data available yet."
+                iconClass="icon ni ni-package-fill"
+              ></evntaly-block-state>
+            </div>
+          </div>
+          <div class="tab-pane" id="utm_campaigns" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="utmCampaignsData"></evntaly-rank-chart>
+              <evntaly-block-state *ngIf="utmCampaignsData.length == 0"
+                title="No data available"
+                description="No UTM campaigns data available yet."
+                iconClass="icon ni ni-package-fill"
+              ></evntaly-block-state>
+            </div>
+          </div>
+          <div class="tab-pane" id="utm_terms" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="utmTermsData"></evntaly-rank-chart>
+              <evntaly-block-state *ngIf="utmTermsData.length == 0"
+                title="No data available"
+                description="No UTM terms data available yet."
+                iconClass="icon ni ni-package-fill"
+              ></evntaly-block-state>
+            </div>
+          </div>
+          <div class="tab-pane" id="utm_contents" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="utmContentData"></evntaly-rank-chart>
+              <evntaly-block-state *ngIf="utmContentData.length == 0"
+                title="No data available"
+                description="No UTM content data available yet."
+                iconClass="icon ni ni-package-fill"
+              ></evntaly-block-state>
+            </div>
+          </div>
+      </div>
+
+
+  </div>
+</div>

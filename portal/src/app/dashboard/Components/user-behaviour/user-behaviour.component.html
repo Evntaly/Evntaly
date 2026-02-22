@@ -1,0 +1,19 @@
+<div class="card card-full">
+
+  <div class="card-inner">
+    <div class="card-title-group">
+      <div class="card-title">
+        <h6 class="title" style="margin-bottom: 0px;">Engagement Metrics</h6>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="card-inner" style="padding: 0px;">
+    <div echarts [options]="chartOptions" [merge]="mergeChartOptions" class="chart"
+    (chartInit)="onChartInit($event)"></div>
+  </div>
+
+
+</div>

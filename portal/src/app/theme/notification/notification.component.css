@@ -1,0 +1,152 @@
+:host {
+  --background: #f3f1f9;
+  --toast-background: #292B2D;
+  --toast-success: #9CE6A8;
+  --text: white;
+}
+
+
+.notification {
+  position: fixed;
+  left: 2%;
+  bottom: 30px;
+  text-align: center;
+  z-index: 1200;
+  border-radius: 6px;
+  max-width: 420px;
+  width: 100%;
+  color: white;
+  background-color: #292B2D;
+  transform: translateY(30px);
+  opacity: 0;
+  visibility: hidden;
+  animation: fade-in 3s linear;
+  border-radius: 12px;
+}
+
+
+
+.notification__description {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 1rem;
+  flex-grow: 2;
+}
+
+.notification__icon_img {
+  color: var(--toast-background) !important;
+}
+
+.notification__icon {
+  height: 26px;
+  width: 26px;
+  margin-right: 4px;
+}
+
+.notification__body {
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+}
+
+.notification__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  margin-left: 20px;
+  flex-grow: 1;
+  color: #f3f1f9;
+}
+
+.notification__button:hover {
+  text-decoration: underline;
+}
+
+
+.notification__progress {
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+  width: calc(100% - 16px);
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: right;
+
+  border-radius: inherit;
+  animation: progress 2.5s 0.3s linear;
+}
+
+.n-success {
+  background: linear-gradient(to right,
+      #292B2D,
+      #9CE6A8);
+}
+
+.n-error {
+  background: linear-gradient(to right,
+      #292B2D,
+      #e69c9c);
+}
+
+.n-warning {
+  background: linear-gradient(to right,
+      #292B2D,
+      #e6d89c);
+}
+
+.n-info {
+  background: linear-gradient(to right,
+      #292B2D,
+      #9ca5e6);
+}
+
+.icon__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 8px;
+  padding: 6px;
+}
+
+.i-success {
+  background-color: #9CE6A8;
+}
+.i-error {
+  background-color: #e69c9c;
+}
+.i-warning {
+  background-color: #e6d39c;
+}
+.i-info {
+  background-color: #9e9ce6;
+}
+
+
+@keyframes fade-in {
+  5% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  95% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progress {
+  to {
+    transform: scaleX(1);
+  }
+}

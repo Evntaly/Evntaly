@@ -1,0 +1,25 @@
+.input-text-ddl {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.btn.custom-hover:hover {
+  background-color: #EEF0FF !important;
+  border-color: #EEF0FF !important;
+  color: #000BA0 !important;
+  cursor: default;
+}
+
+.overload-inner-card {
+  padding: 15px !important;
+  padding-left: 30px !important;
+  padding-right: 30px !important;
+}
+
+
+.btn.close-custom-hover:hover {
+  background-color: #F24283 !important;
+  border-color: #F24283 !important;
+  color: #ffffff !important;
+  cursor: pointer;
+}

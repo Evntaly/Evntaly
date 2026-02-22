@@ -1,0 +1,55 @@
+<div class="card card-full">
+  <div class="card-inner">
+    <div class="card-title-group">
+      <div class="card-title">
+        <h6 class="title">Sessions Activiy
+          <!-- <span matTooltip="Sessions Activiy is redesigned to be more clear and easy to understand, and more enhancements are coming soon." class="badge badge-dim bg-info rounded-pill">👋 New Look</span> -->
+        </h6>
+      </div>
+      <div class="card-tools">
+        <div class="drodown"><a href="#"
+            class="dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white"
+            data-bs-toggle="dropdown">{{ selected_filter }}</a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+            <ul class="link-list-opt no-bdr">
+              <ng-container *ngFor="let f of filters">
+                <li (click)="changeFilter(f.text)" style="cursor: pointer;"
+                  [ngClass]="{ 'active': f.is_active}"><a><span>{{ f.text }}</span></a></li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-inner chart-wrapper" style="padding-top: 0px; padding-bottom: 30px;">
+    <ul class="nav nav-tabs nav-tabs-card nav-tabs-xs" role="tablist">
+      <li class="nav-item" role="presentation">
+          <a class="nav-link active" data-bs-toggle="tab" href="#map" aria-selected="false" role="tab" tabindex="-1">Map</a>
+      </li>
+      <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#countries" aria-selected="true" role="tab">Countries</a>
+      </li>
+      <li class="nav-item" role="presentation">
+          <a class="nav-link" data-bs-toggle="tab" href="#cities" aria-selected="false" role="tab" tabindex="-1">Cities</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#regions" aria-selected="false" role="tab" tabindex="-1">Regions</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" style="margin-top: 0px;">
+      <div class="tab-pane fade show active" id="map">
+        <div echarts [options]="chartOptions" class="demo-chart" style="height: 600px; width: 100%; overflow: auto;"></div>
+      </div>
+      <div class="tab-pane fade" id="countries" style="max-height: 600px; overflow-y: scroll;">
+        <evntaly-rank-chart [data]="countriesData"></evntaly-rank-chart>
+      </div>
+      <div class="tab-pane fade" id="cities" style="max-height: 800px; overflow-y: auto;">
+      </div>
+      <div class="tab-pane fade" id="regions" style="max-height: 600px; overflow-y: auto;">
+      </div>
+    </div>
+  </div>
+</div>

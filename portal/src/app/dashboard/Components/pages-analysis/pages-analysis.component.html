@@ -1,0 +1,32 @@
+<div class="card card-full">
+  <div class="card-inner">
+      <div class="card-title-group mb-1">
+          <div class="card-title">
+              <h6 class="title">Top Pages</h6>
+              <p>Discover which pages on your site are getting the most attention.</p>
+          </div>
+      </div>
+      <div *ngIf="pagesData.length > 0">
+        <div class="tab-content-wrapper scrollable-rank-chart">
+          <evntaly-rank-chart [data]="pagesData"></evntaly-rank-chart>
+        </div>
+      </div>
+
+      <div *ngIf="pagesData.length == 0">
+        <div class="row justify-content-center py-4 py-md-5">
+          <div class="col-12 col-md-10 col-lg-12 col-xl-12">
+            <div class="d-flex flex-column align-items-center text-center mx-auto" style="max-width: 400px;">
+              <div class="mb-3">
+                <em class="icon ni ni-package-fill" style="font-size: 100px; color: #e5e8eb;"></em>
+                <!-- <img src="assets/images/no-history.svg" alt="No data available" style="width: 160px; height: auto;"/> -->
+              </div>
+              <div class="empty-state-content w-100">
+                <h4 class="nk-block-title mb-2">Nothing to see here ... yet!</h4>
+                <p class="text-muted mb-0">No data available yet. Start sending events to see page view insights.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

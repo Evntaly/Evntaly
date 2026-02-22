@@ -1,0 +1,80 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-primary bg-primary-dim mb-3" style="background-color: #a9aedc !important;">
+          <!-- <em style="font-size: 25px;" class="icon ni ni-setting"></em> -->
+          <em style="font-size: 25px;" class="icon ni ni-heart-fill"></em>
+        </div>
+        <h4>Welcome aboard, Tech Builder! 🎉</h4>
+        <p>We’re pumped to have you here! 🚀 Get ready to unlock awesomeness. Let’s rock this journey together!</p>
+        <div class="form-validate is-alter">
+          <div class="row g-3">
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label" for="cp1-team-name">Company / Team Name</label>
+                <div class="form-control-wrap">
+                  <input type="text" class="form-control" id="cp1-team-name" name="cp1-team-name" [(ngModel)]="general_info.company_name"
+                    placeholder="Company / Team Name" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label" for="cp1-team-size">Team Size</label>
+                  <select class="form-control" required [(ngModel)]="general_info.team_size">
+                    <option value="" disabled>Select team size</option>
+                    <option value="01-10">01-10</option>
+                    <option value="10-20">10-20</option>
+                    <option value="20-30">20-30</option>
+                    <option value="30-50">30-50</option>
+                    <option value="50-100">50-100</option>
+                    <option value="above-100">Above 100</option>
+                  </select>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-label">Your application status</label>
+                <ul class="custom-control-group custom-control-vertical custom-control-stacked w-100">
+                  <li>
+                    <div class="custom-control custom-control-sm custom-radio custom-control-pro">
+                      <input type="radio" class="custom-control-input" id="user-choose-s1" name="user-choose" [(ngModel)]="general_info.project_status" value="Production">
+                      <label class="custom-control-label" for="user-choose-s1">
+                        <span class="user-card">
+                          <span class="user-avatar sm">
+                            <em class="icon ni ni-hot"></em>
+                          </span>
+                          <span class="user-name">Production</span>
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="custom-control custom-control-sm custom-radio custom-control-pro">
+                      <input type="radio" class="custom-control-input" id="user-choose-s2" name="user-choose" [(ngModel)]="general_info.project_status" value="Development">
+                      <label class="custom-control-label" for="user-choose-s2">
+                        <span class="user-card">
+                          <span class="user-avatar sm">
+                            <em class="icon ni ni-puzzle-fill"></em>
+                          </span>
+                          <span class="user-name">Development</span>
+                        </span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <ul class="row gx-12 mt-4">
+          <li class="col-12"><button class="btn btn-primary btn-block" data-bs-dismiss="modal" (click)="save()">Let's Get Started
+              👏</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between g-3">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">{{ funnel.name }}</h3>
+      <div class="nk-block-des text-soft">
+        <div class="nk-block-des text-soft">
+          <ul class="list-inline">
+            <li class="d-flex align-items-center">
+              {{ funnel.description }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="nk-block-head-content">
+      <div class="dropdown ">
+        <a class="dropdown-toggle btn btn-icon btn-primary btn-dim" data-bs-toggle="dropdown" aria-expanded="false"><em
+            class="icon ni ni-more-h"></em></a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <ul class="link-list-plain no-bdr">
+            <!-- <li><a href="#"><em style="font-size: 18px;" class="icon ni ni-edit"></em><span>Edit Funnel</span></a></li>
+            <li><a href="#"><em style="font-size: 18px;" class="icon ni ni-copy"></em><span>Duplicate Funnel</span></a>
+            </li> -->
+            <li><a (click)="shareFunnelDashboard()" style="cursor: pointer;"><em style="font-size: 18px;" class="icon ni ni-share"></em><span>Share Funnel</span></a>
+            </li>
+            <li><a (click)="deleteFunnelConfirmation()" style="cursor: pointer;"><em style="font-size: 18px; color: rgb(193, 0, 0);" class="icon ni ni-trash"></em><span
+                  style="color: rgb(193, 0, 0);">Delete Funnel</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-gs" id="funnel-chart-screenshot">
+  <div class="col-lg-8 col-md-8">
+    <div class="card card-full">
+      <div class="card-inner">
+        <div class="card-title-group">
+          <div class="card-title">
+            <h6 class="title" style="margin-bottom: 0px">
+              Funnel Steps Performance
+            </h6>
+          </div>
+          <div class="card-tools">
+            <div class="dropdown">
+              <a data-bs-toggle="dropdown" aria-expanded="true" class="dropdown-toggle btn btn-primary" style="margin-right: 10px;">
+                <span> {{ selectedTimePeriod }}</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-start"
+                style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 38px, 0px);">
+                <ul class="link-list-opt no-bdr" style="padding: 0px;">
+                  <ng-container *ngFor="let i of dates">
+                    <li style="cursor: pointer;" [ngClass]="{ 'active': i.is_active }"
+                      (click)="changeDateFilter(i.text)"><a>
+                        <span style="font-size: 13px;">{{ i.text }}</span></a>
+                    </li>
+                  </ng-container>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-inner" style="padding: 20px">
+        <div class="funnel-chart-container">
+          <div echarts [options]="funnelChartOptions" class="funnel-chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 col-md-4">
+    <div class="card card-full-key">
+      <div class="card-inner">
+        <div class="card-title-group">
+          <div class="card-title">
+            <h6 class="title" style="margin-bottom: 0px">Key Metrics</h6>
+          </div>
+        </div>
+      </div>
+      <div class="card-inner" style="padding: 20px; padding-top: 0px">
+        <div class="kpi-card mt-1" *ngFor="let kpi of funnelKpis">
+          <div class="kpi-header">
+            <h6 class="kpi-title">{{ kpi.name }}</h6>
+            <div class="" *ngIf="kpi.infoText">
+              <em class="icon ni ni-info" [title]="kpi.infoText" matTooltip="{{ kpi.infoText }}"
+                matTooltipPosition="above"></em>
+            </div>
+          </div>
+
+          <div class="kpi-value-section">
+            <h2 class="kpi-main-value">
+              {{ kpi.value }}
+            </h2>
+            <span [ngClass]="{
+                'kpi-change-positive': kpi.change.sign == '+',
+                'kpi-change-negative': kpi.change.sign == '-'
+              }" matTooltip="VS. Last Month" *ngIf="kpi.change">
+              {{ kpi.change.sign }}{{ kpi.change.value }}{{ kpi.suffix || "" }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row g-gs mt-4">
+  <div class="col-12">
+    <div class="card card-full">
+      <div class="card-inner">
+        <div class="card-title-group">
+          <div class="card-title">
+            <h6 class="title" style="margin-bottom: 0px;">Step Completion Over Time</h6>
+          </div>
+        </div>
+      </div>
+      <div class="card-inner" style="padding: 0px;">
+        <div echarts [options]="lineChartOptions" class="chart" style="height: 400px;"></div>
+      </div>
+    </div>
+  </div>
+</div> -->

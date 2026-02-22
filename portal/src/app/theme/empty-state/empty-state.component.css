@@ -1,0 +1,9 @@
+.msg-empty {
+  justify-content: center;
+  display: flex;
+  color: #6c6f73;
+}
+
+.msg-bg {
+  background-color: #F7F7F9;
+}

@@ -1,0 +1,47 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h4 class="nk-block-title page-title">Integrations</h4>
+    </div>
+  </div>
+</div>
+<div class="nk-block">
+  <div class="row g-gs">
+    <ng-container *ngFor="let i of integrations_list">
+      <div class="col-xxl-6">
+        <div class="nk-download">
+          <div class="data">
+            <div class="thumb"><img [src]="i.icon" [alt]="i.name"></div>
+            <div class="info">
+              <h6 class="title"><span class="name">{{ i.name }}</span>
+                <span [ngClass]="{ 'bg-success' : i.status == 'ACTIVE' , 'bg-primary' : i.status == 'NOT_CONFIGURED' , 'bg-dark' : i.status == 'IS_WIP' }" class="badge badge-dim rounded-pill">
+                  {{ getStatusText(i.status) }}
+                </span>
+              </h6>
+              <div class="meta">
+                <span class="version" *ngIf="i.status == 'ACTIVE'">
+                  <span class="text-soft">Last updated: </span> <span> {{ i.updated_at | date: 'short' }} </span>
+                </span>
+                <span class="version" *ngIf="i.status == 'NOT_CONFIGURED' || i.status == 'IS_WIP'">
+                  <span class="text-soft">Last updated: </span> <span> Not provided </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="actions" style="display: none;">
+            <button *ngIf="i.status == 'NOT_CONFIGURED'" (click) = "i.action('create')" class="btn btn-light" type="button">
+              <span *ngIf="i.loading" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              <span *ngIf="!i.loading">Integrate</span>
+              <span *ngIf="i.loading">On it</span>
+            </button>
+
+            <button *ngIf="i.status == 'ACTIVE'" (click) = "i.action('update')" class="btn btn-primary" type="button">
+              <span>Reconfig</span>
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

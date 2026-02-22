@@ -1,0 +1,252 @@
+<div class="onboarding-wrapper">
+
+  <div class="visual-side" [ngClass]="currentStep.gradientClass">
+    <div class="brand-corner">
+      <img src="assets/images/dark logo.png" alt="Logo" class="logo-icon">
+    </div>
+
+    <div class="visual-content fade-in-side">
+      <div class="abstract-shape">
+         <i class="bi" [ngClass]="{
+            'bi-stars': currentStep.id === 'project-setup',
+            'bi-people-fill': currentStep.id === 'profile',
+            'bi-code-slash': currentStep.id === 'integration',
+            'bi-activity': currentStep.id === 'verify',
+            'bi-check-lg': currentStep.id === 'finish'
+         }"></i>
+      </div>
+      <div class="visual-text">
+        <p class="hint-text">{{ currentStep.title }}</p>
+        <p class="sub-hint">{{ currentStep.subtitle }}</p>
+      </div>
+    </div>
+
+    <div class="mesh-gradient"></div>
+  </div>
+
+  <div class="interaction-side">
+
+    <div class="progress-header">
+      <div class="step-dots">
+        <span *ngFor="let step of steps; let i = index"
+              class="dot"
+              [class.active]="i <= currentStepIndex"
+              [class.current]="i === currentStepIndex"></span>
+      </div>
+      <div class="step-count">Step {{ currentStepIndex + 1 }} of {{ steps.length }}</div>
+    </div>
+
+    <div class="form-container">
+      <div *ngIf="currentStep.id === 'project-setup'" class="step-content fade-in">
+        <h1 class="page-title">Welcome to <span class="text-primary">Evntaly</span></h1>
+        <p class="page-subtitle">Let's get started by setting up your first project.</p>
+
+        <form #setupForm="ngForm" (ngSubmit)="submitProjectSetup()">
+          <div class="form-group">
+            <label class="form-label">What is the name of your project? <span class="text-danger">*</span></label>
+            <div class="form-control-wrap">
+              <input type="text" class="form-control form-control-lg"
+                     placeholder="My Awesome Project"
+                     name="project_name"
+                     [(ngModel)]="onboardingData.project_name"
+                     required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">What type of project are you building? <span class="text-danger">*</span></label>
+            <div class="radio-cards">
+              <label class="radio-card" [class.selected]="onboardingData.project_type === 'web'">
+                <input type="radio" name="project_type" value="web" [(ngModel)]="onboardingData.project_type" required>
+                <div class="card-content">
+                  <em class="icon ni ni-b-si" style="font-size: 24px;"></em>
+                  <span>Web App</span>
+                </div>
+              </label>
+              <label class="radio-card" [class.selected]="onboardingData.project_type === 'backend'">
+                <input type="radio" name="project_type" value="backend" [(ngModel)]="onboardingData.project_type" required>
+                <div class="card-content">
+                  <em class="icon ni ni-linux-server" style="font-size: 24px;"></em>
+                  <span>Backend</span>
+                </div>
+              </label>
+               <label class="radio-card" [class.selected]="onboardingData.project_type === 'mobile'">
+                <input type="radio" name="project_type" value="mobile" [(ngModel)]="onboardingData.project_type" required>
+                <div class="card-content">
+                  <em class="icon ni ni-mobile" style="font-size: 24px;"></em>
+                  <span>Mobile</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+           <div class="form-group">
+            <label class="form-label">What's your primary use case? <span class="text-danger">*</span></label>
+            <div class="use-case-pills">
+              <label class="use-case-pill">
+                <input type="radio" name="use_case" value="events" [(ngModel)]="onboardingData.use_case" required>
+                <span class="pill-content">Event Tracking</span>
+              </label>
+              <label class="use-case-pill">
+                <input type="radio" name="use_case" value="integrations" [(ngModel)]="onboardingData.use_case" required>
+                <span class="pill-content">Funnel Analysis</span>
+              </label>
+              <label class="use-case-pill">
+                <input type="radio" name="use_case" value="analytics" [(ngModel)]="onboardingData.use_case" required>
+                <span class="pill-content">Dashboard Analytics</span>
+              </label>
+              <label class="use-case-pill">
+                <input type="radio" name="use_case" value="other" [(ngModel)]="onboardingData.use_case" required>
+                <span class="pill-content">Other</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="action-area">
+            <button type="submit" class="btn btn-xl btn-primary btn-block"
+                    [disabled]="!setupForm.form.valid || isLoading">
+              <span *ngIf="!isLoading">Continue </span>
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Integration -->
+      <div *ngIf="currentStep.id === 'integration'" class="step-content fade-in">
+        <h2 class="step-title">{{ currentStep.title }}</h2>
+        <p class="step-desc">{{ currentStep.subtitle }}</p>
+
+        <div class="form-group">
+          <label class="form-label">Project Credentials</label>
+          <div class="row g-3" style="display: flex; gap: 15px;">
+            <div class="col-md-6" style="flex: 1;">
+              <div class="form-control-wrap">
+                <div class="input-group" style="display: flex;">
+                  <input type="text" class="form-control" [value]="projectDetails.clientId" readonly placeholder="Client ID" style="flex: 1; border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 0;">
+                  <button class="btn btn-outline-light text-primary" style="border: 1px solid #dbdfea; border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" type="button" (click)="copyToClipboard(projectDetails.clientId, 'clientId')">
+                    <em *ngIf="!copiedStates.clientId" class="icon ni ni-copy"></em>
+                    <em *ngIf="copiedStates.clientId" class="icon ni ni-check-thick"></em>
+                  </button>
+                </div>
+                <div class="form-note">Developer Secret (Client ID)</div>
+              </div>
+            </div>
+            <div class="col-md-6" style="flex: 1;">
+              <div class="form-control-wrap">
+                <div class="input-group" style="display: flex;">
+                   <input type="text" class="form-control" [value]="projectDetails.projectToken" readonly placeholder="Project Token" style="flex: 1; border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 0;">
+                   <button class="btn btn-outline-light text-primary" style="border: 1px solid #dbdfea; border-left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0;" type="button" (click)="copyToClipboard(projectDetails.projectToken, 'projectToken')">
+                    <em *ngIf="!copiedStates.projectToken" class="icon ni ni-copy"></em>
+                    <em *ngIf="copiedStates.projectToken" class="icon ni ni-check-thick"></em>
+                   </button>
+                </div>
+                <div class="form-note">Project Token</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Select Framework</label>
+          <div class="framework-grid">
+            <div *ngFor="let fw of frameworks"
+                 class="framework-card"
+                 [class.selected]="selectedFramework === fw.id"
+                 (click)="selectedFramework = fw.id">
+              <img [src]="fw.icon" class="framework-icon" alt="{{fw.name}}">
+              <span class="framework-name">{{ fw.name }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Integration Code</label>
+            <pre class="code-block"><button class="copy-btn" (click)="copyToClipboard(getIntegrationCode(), 'integrationCode')"> <em *ngIf="!copiedStates.integrationCode" class="icon ni ni-copy"></em><em *ngIf="copiedStates.integrationCode" class="icon ni ni-check-thick"></em> Copy</button><code [highlight]="getIntegrationCode()" [language]="getIntegrationLanguage()"></code></pre>
+            <br>
+           <label class="form-note">Can't find your framework? <a href="https://evntaly.com/docs/sdk-integration" target="_blank">View all frameworks</a></label>
+        </div>
+
+        <div class="action-area">
+          <button type="button" class="btn btn-lg btn-back" (click)="back()">Back</button>
+          <button type="button" class="btn btn-lg btn-primary" (click)="next()">
+            Continue <i class="bi bi-arrow-right ms-2"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Step 4: Verify -->
+      <div *ngIf="currentStep.id === 'verify'" class="step-content fade-in">
+        <h2 class="step-title">{{ currentStep.title }}</h2>
+        <p class="step-desc">{{ currentStep.subtitle }}</p>
+
+        <div class="verification-box" [class.verified]="eventsReceived">
+          <div class="verification-status">
+            <div *ngIf="!eventsReceived" class="status-content">
+              <div class="spinner-border text-light" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div class="status-text">
+                <h3>Waiting for events</h3>
+                <p>Verify that your events work before submitting any changes.</p>
+              </div>
+            </div>
+            <div *ngIf="eventsReceived" class="status-content success">
+              <div class="success-icon">
+                <em class="icon ni ni-check-thick"></em>
+              </div>
+              <div class="status-text">
+                <h3>Events Received!</h3>
+                <p>Great job! Your integration is working correctly.</p>
+              </div>
+            </div>
+          </div>
+          <!-- <p class="troubleshoot-link">You can <a href="#" (click)="$event.preventDefault()">troubleshoot</a> if you are having issues connecting your app.</p> -->
+        </div>
+
+        <div class="curl-section">
+          <div class="curl-header" (click)="showCurl = !showCurl">
+            <span>Try out the curl command</span>
+            <i class="bi" [class.bi-chevron-down]="!showCurl" [class.bi-chevron-up]="showCurl"></i>
+          </div>
+          <div class="curl-body" *ngIf="showCurl">
+            <div style="position: relative;">
+              <button class="copy-btn" (click)="copyToClipboard(getCurlCommand(), 'curlCommand')" style="z-index: 10;">
+                <em *ngIf="!copiedStates.curlCommand" class="icon ni ni-copy"></em>
+                <i *ngIf="copiedStates.curlCommand" class="bi bi-hand-thumbs-up-fill"></i> Copy
+              </button>
+              <code [highlight]="getCurlCommand()" language="bash" class="code-block"></code>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-area">
+          <!-- <button type="button" class="btn btn-lg btn-back" (click)="back()">Back</button> -->
+          <div class="right-actions" style="width: 100%;">
+            <button type="button" class="btn btn-lg btn-outline-light text-dark" style="border: 1px solid #dbdfea;" (click)="next()">
+              Skip for now
+            </button>
+            <button type="button" class="btn btn-lg btn-primary" (click)="next()" [disabled]="!eventsReceived">
+              Continue <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: Finish -->
+      <div *ngIf="currentStep.id === 'finish'" class="step-content fade-in text-center">
+        <div class="success-animation">
+          <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+        </div>
+        <h2 class="mt-3">You're All Set!</h2>
+        <p class="mb-4 text-muted">Your workspace has been created. You are ready to explore Evntaly.</p>
+
+        <button class="btn btn-xl btn-primary w-100" (click)="finish()">
+          Go to Dashboard
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

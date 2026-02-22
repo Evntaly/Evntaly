@@ -1,0 +1,90 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Dashboard
+        <!-- <span matTooltip="Dashboard is redesigned to be more clear and easy to understand, and more enhancements are coming soon." class="badge badge-dim bg-info rounded-pill">👋 New Look</span> -->
+      </h3>
+      <div class="nk-block-des text-soft">
+        <p>Top-Level Insights about your application</p>
+      </div>
+    </div>
+    <div class="nk-block-head-content">
+      <div class="dropdown">
+        <a class="btn btn-primary dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+          <em class="icon ni ni-filter-alt"></em>
+          <span>{{ selected_filter }}</span>
+        </a>
+        <div class="dropdown-menu" style="">
+          <ul class="link-list-opt no-bdr">
+            <ng-container *ngFor="let f of filters">
+              <li style="cursor: pointer;"
+                (click)="changeFilter(f.text)"
+                [ngClass]="{ 'active': f.is_active}"><a><span>{{ f.text }}</span></a></li>
+            </ng-container>
+          </ul>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="nk-block">
+  <div class="row g-gs">
+    <app-kpis-v2 (kpiVisibilityChange)="onKpiVisibilityChange($event)"></app-kpis-v2>
+  </div>
+  <br>
+
+  <div class="row g-gs">
+    <div class="col-xxl-12 col-lg-12 col-md-12">
+      <dashboard-user-behaviour [seriesVisibility]="kpiVisibility"></dashboard-user-behaviour>
+    </div>
+
+    <!-- <div class="col-xxl-5 col-lg-5">
+      <dashboard-feature-adoption></dashboard-feature-adoption>
+    </div> -->
+  </div>
+  <br>
+
+  <div class="row g-gs">
+    <div class="col-xxl-6 col-lg-6 col-md-6">
+      <dashboard-map></dashboard-map>
+    </div>
+
+    <div class="col-xxl-6 col-lg-6 col-md-6">
+      <dashboard-countries-analysis></dashboard-countries-analysis>
+    </div>
+  </div>
+  <br>
+
+  <div class="row g-gs">
+    <div class="col-xxl-6 col-lg-6 col-md-6">
+      <dashboard-browser-and-os-analysis></dashboard-browser-and-os-analysis>
+    </div>
+
+    <div class="col-xxl-6 col-lg-6 col-md-6">
+      <dashboard-pages-analysis></dashboard-pages-analysis>
+    </div>
+  </div>
+  <br>
+
+  <div class="row g-gs">
+    <div class="col-xxl-6 col-lg-6 col-md-6">
+      <dashboard-utm-paramters></dashboard-utm-paramters>
+    </div>
+
+    <div class="col-xxl-6 col-lg-6 col-md-6">
+      <dashboard-traffic-source></dashboard-traffic-source>
+    </div>
+  </div>
+
+  <!-- <div class="row g-gs">
+    <div class="col-xxl-6 col-md-7">
+      <dashboard-user-retention></dashboard-user-retention>
+    </div>
+
+    <div class="col-xxl-6 col-md-5">
+      <dashboard-events-type-breakdown></dashboard-events-type-breakdown>
+    </div>
+  </div> -->
+</div>

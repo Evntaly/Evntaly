@@ -1,0 +1,62 @@
+.key {
+  color: #bb3a3d !important;
+  font-weight: bold !important;
+}
+
+.string {
+  color: #177861;
+  font-weight: bold !important;
+}
+
+.number {
+  color: rgb(255, 0, 106);
+  font-weight: bold !important;
+}
+
+.boolean {
+  color: rgb(0, 0, 121);
+  font-weight: bold !important;
+}
+
+.null {
+  color: rgb(255, 0, 225);
+  font-weight: bold !important;
+}
+
+.jsonv {
+  font-size: 13px;
+  font-family: Courier New;
+}
+
+.jsonv-container {
+  height: 210px;
+  overflow-y: scroll;
+}
+
+.jsonv-container::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.jsonv-container::-webkit-scrollbar-track {
+  background: #f7f7f9;
+}
+
+.jsonv-container::-webkit-scrollbar-thumb {
+  background: #e2e2e2; /* color of the thumb */
+  border-radius: 6px; /* roundness of the thumb */
+}
+
+.jsonv-container::-webkit-scrollbar-thumb:hover {
+  background: #dddddd; /* color of the thumb on hover */
+}
+
+
+.cpy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  margin-right: 11px;
+  margin-top: 4px;
+}

@@ -1,0 +1,51 @@
+<div class="card card-full">
+  <div class="card-inner">
+    <div class="card-title-group">
+      <div class="card-title">
+        <h6 class="title">Features Adoption
+          <!-- <span matTooltip="Feature Adoption is redesigned to be more clear and easy to understand." class="badge badge-dim bg-info rounded-pill">👋 New Look</span> -->
+        </h6>
+      </div>
+      <div class="card-tools"><a routerLink="/insights/features" class="link">View All</a></div>
+    </div>
+  </div>
+  <div class="card-inner pt-0">
+    <ul class="gy-4">
+      <evntaly-rank-chart [data]="chartData"></evntaly-rank-chart>
+      <!-- <ng-container *ngFor="let f of data">
+        <li class="justify-between align-center border-bottom border-0 border-dashed">
+          <div class="align-center">
+            <div class="ms-2">
+              <div class="lead-text">{{ f.name }} </div>
+              <div class="sub-text">Last event was sent {{ f.last_seen_active_time_ago }}</div>
+            </div>
+          </div>
+          <div class="align-center">
+            <div class="sub-text me-2">{{ f.adoption.toFixed(0) }}%</div>
+            <div class="progress rounded-pill w-80px">
+              <div class="progress-bar rounded-pill" [attr.data-progress]="f.adoption"
+                [ngClass]="{ 'bg-primary' : f.adoption == 50 , 'bg-success' : f.adoption > 60 , 'bg-danger' : f.adoption < 20 }"></div>
+            </div>
+          </div>
+        </li>
+      </ng-container> -->
+    </ul>
+
+
+        <div *ngIf="data.length == 0">
+      <div class="row justify-content-center py-4 py-md-5">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+          <div class="d-flex flex-column align-items-center text-center mx-auto" style="max-width: 400px;">
+            <div class="mb-4">
+              <img src="assets/images/no-history.svg" alt="No data available" style="width: 160px; height: auto;"/>
+            </div>
+            <div class="empty-state-content w-100">
+              <h4 class="nk-block-title mb-3">No Data ... yet!</h4>
+              <p class="text-muted mb-0">Start integrating the SDK to see data!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

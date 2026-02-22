@@ -1,0 +1,91 @@
+<div class="card card-preview">
+  <div class="card-inner overload-inner-card">
+    <div id="accordion-1" class="accordion accordion-s2">
+      <div class="accordion-item">
+        <a class="accordion-head" data-bs-toggle="collapse" data-bs-target="#accordion-item-1-1">
+          <h6 style="font-size: 16px;" class="title"><em class="icon ni ni-filter-fill"></em> Advanced Filters</h6>
+          <small *ngIf="filters.search_by == 'Tags'" style="color: black; font-style: italic;"><strong>In Tags:</strong> For adding multiple values, use a comma-separated format.</small>
+          <span class="accordion-icon"></span>
+        </a>
+        <div class="accordion-body collapse" id="accordion-item-1-1" data-bs-parent="#accordion-1">
+          <div class="accordion-inner">
+            <ul class="preview-list" style="margin-left: 2px;">
+              <li class="nk-block-tools-opt mt-1 me-1">
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle btn btn-primary btn-dim btn-primary" data-bs-toggle="dropdown"
+                    aria-expanded="false"><span><span class="d-none d-md-inline"></span>{{ filters.selected_range
+                      }}</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                  <div class="dropdown-menu dropdown-menu-start">
+                    <ul class="link-list-opt no-bdr">
+                      <ng-container *ngFor="let i of dates">
+                        <li (click)="changeDateFilter(i.text)" [ngClass]="{ 'active': i.is_active }"
+                          style="cursor: pointer;"><a><span style="font-size: 13px;">{{ i.text }}</span></a></li>
+                      </ng-container>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nk-block-tools-opt mt-1 me-1">
+                <div class="dropdown">
+                  <a href="#" class="dropdown-toggle btn btn-primary btn-dim btn-primary" data-bs-toggle="dropdown"
+                    aria-expanded="false"><span><span class="d-none d-md-inline"></span>{{ filters.selected_statuse
+                      }}</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                  <div class="dropdown-menu dropdown-menu-end">
+                    <ul class="link-list-opt no-bdr">
+                      <ng-container *ngFor="let i of statuses">
+                        <li (click)="changeStatusFilter(i.text)" [ngClass]="{ 'active': i.is_active }"
+                          style="cursor: pointer;"><a><span style="font-size: 13px;">{{ i.text }}</span></a></li>
+                      </ng-container>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+
+              <ng-container *ngFor="let i of dynamic_filters">
+                <li class="nk-block-tools-opt mt-1 me-1">
+                  <div class="btn-group">
+                    <button type="button" class="btn custom-hover btn-primary btn-dim">{{ i.label }}</button>
+                    <button type="button" class="btn close-custom-hover btn-primary btn-dim dropdown-toggle dropdown-toggle-split"
+                      data-bs-toggle="dropdown" (click)="removeGenericFilter(i._id)">
+                      <em class="icon ni ni-cross"></em>
+                    </button>
+                  </div>
+                </li>
+              </ng-container>
+
+              <li class="nk-block-tools-opt  mt-1 me-1">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="dropdown">
+                      <a href="#" class="input-text-ddl dropdown-toggle btn btn-white btn-dim btn-primary"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <em class="icon ni ni-search"></em>
+                        <span>
+                          {{ filters.search_by }}
+                        </span>
+                        <em class="dd-indc icon ni ni-chevron-right"></em>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-end">
+                        <ul class="link-list-opt no-bdr">
+                          <ng-container *ngFor="let i of search_criteria_options">
+                            <li (click)="changeSearchCriteria(i.text)" [ngClass]="{ 'active': i.is_active }"
+                              style="cursor: pointer;"><a><span style="font-size: 13px;">{{ i.text }}</span></a></li>
+                          </ng-container>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Press enter to apply"
+                    (keydown)="addFilter($event)" [(ngModel)]="search_key" aria-label="Text input with dropdown button">
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>

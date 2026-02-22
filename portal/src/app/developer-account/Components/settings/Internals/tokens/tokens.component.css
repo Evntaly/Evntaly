@@ -1,0 +1,17 @@
+.custom-link {
+  color: #000B73;
+  text-decoration: underline;
+}
+
+.custom-link:hover {
+  cursor: pointer;
+}
+
+.blurred-text {
+  color: #000;
+  filter: blur(5px);
+}
+
+.clear-text {
+  filter: none;
+}

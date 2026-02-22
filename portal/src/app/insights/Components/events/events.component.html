@@ -1,0 +1,184 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Events</h3>
+      <div class="nk-block-des text-soft">
+        <p >List of events that being sent aggregated &nbsp;
+            <span style="cursor: pointer;" (click)="showDocs()">
+              <small style="text-decoration: underline;">
+              <em class="icon ni ni-book-fill"></em>
+              Docs
+              </small>
+           </span>
+          </p>
+      </div>
+    </div>
+    <div class="nk-block-head-content">
+      <div class="toggle-wrap nk-block-tools-toggle">
+        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
+            class="icon ni ni-more-v"></em></a>
+        <div class="toggle-expand-content" data-content="pageMenu">
+          <ul class="nk-block-tools g-3">
+            <li>
+              <div class="form-control-wrap">
+                <div class="form-icon form-icon-right">
+                  <em class="icon ni ni-search"></em>
+                </div>
+                <input type="text" class="form-control" id="default-04" placeholder="Search by event name"
+                  (keyup)="searchByEventName($event)">
+              </div>
+            </li>
+            <li>
+              <div class="dropdown">
+                <a href="#" class="dropdown-toggle btn btn-primary btn-primary" data-bs-toggle="dropdown"
+                  aria-expanded="false"><span><span class="d-none d-md-inline"></span>
+                    {{ selected_range }}
+                  </span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <ul class="link-list-opt no-bdr">
+                    <ng-container *ngFor="let i of dates">
+                      <li (click)="changeDateFilter(i.text)" [ngClass]="{ 'active': i.is_active }"
+                        style="cursor: pointer;"><a><span style="font-size: 13px;">{{ i.text }}</span></a></li>
+                    </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <!-- <li class="nk-block-tools-opt">
+              <a href="#" class="toggle btn btn-primary btn-primary d-md-none"><em
+                  class="icon ni ni-download-cloud"></em>Export</a>
+              <a href="#" class="toggle btn btn-primary d-none d-md-inline-flex"><em
+                  class="icon ni ni-download-cloud"></em><span>Export</span></a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="nk-block">
+  <div class="card card-stretch">
+    <div class="card-inner-group">
+      <div class="card-inner p-0">
+        <table class="nk-tb-list nk-tb-ulist">
+          <thead>
+            <tr class="nk-tb-item nk-tb-head">
+              <ng-container *ngFor="let f of columns">
+                <th [class]="f.size"><span class="sub-text" style="font-size: 14px;">{{ f.name }}
+                    <em style="cursor: pointer;" *ngIf="f.sort_enabled" class="icon ni ni-swap-v"
+                      (click)="sortGrid(f.sort_field_name)"></em>
+                  </span>
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+
+
+
+          <tbody *ngIf="loading">
+            <tr class="nk-tb-item">
+              <ng-container *ngFor="let f of columns">
+                <td [ngClass]="f.size">
+                  <p class="placeholder-glow">
+                    <span class="placeholder col-12"
+                      style="border-radius: 8px; background-color: rgb(222, 222, 222);"></span>
+                  </p>
+                </td>
+              </ng-container>
+            </tr>
+            <tr class="nk-tb-item">
+              <ng-container *ngFor="let f of columns">
+                <td [ngClass]="f.size">
+                  <p class="placeholder-glow">
+                    <span class="placeholder col-12"
+                      style="border-radius: 8px; background-color: rgb(222, 222, 222);"></span>
+                  </p>
+                </td>
+              </ng-container>
+            </tr>
+          </tbody>
+
+          <tbody *ngIf="!loading">
+            <ng-container *ngFor="let f of data">
+              <tr class="nk-tb-item">
+                <td [matTooltip]="f.title" class="nk-tb-col" (click)="viewParentEventDetails(f.id)" style="cursor: pointer; max-width: 200px;">
+                  <span class="tb-lead-sub" style="font-size: larger; font-weight: 500; display: inline-block; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ f.title }}</span>
+                </td>
+
+                <td class="nk-tb-col">
+                  <span class="tb-lead-sub" style="font-size: larger; font-weight: 500;">{{ f.occurances }}</span>
+                </td>
+
+                <td class="nk-tb-col tb-col-md">
+                  <span class="tb-lead-sub" style="font-size: larger; font-weight: 500;">{{ f.sessions }}</span>
+                </td>
+
+                <td class="nk-tb-col tb-col-md">
+                  <span class="tb-lead-sub" style="font-size: larger; font-weight: 500;">{{ f.users }}</span>
+                </td>
+
+                <td class="nk-tb-col tb-col-md">
+                  <span class="badge badge-dim" [ngClass]="getTimeAgoBGColor(f.last_sent_time_ago)"><em
+                      class="icon ni ni-clock"></em><span>
+                      {{ f.last_sent_time_ago }}
+                    </span></span>
+                </td>
+
+                <td class="nk-tb-col tb-col-lg">
+                  <span class="tb-lead-sub" style="font-size: larger; font-weight: 500;">
+                    {{ f.registeration_date | date: 'short' }}
+                  </span>
+                </td>
+
+                <td class="nk-tb-col">
+                  <ul class="nk-tb-actions gx-2">
+                    <li>
+                      <div class="drodown">
+                        <a class="btn btn-sm btn-icon btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em
+                            class="icon ni ni-more-h"></em></a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-md">
+                          <ul class="link-list-opt no-bdr">
+                            <li><a (click)="viewParentEventDetails(f.id)" style="cursor: pointer;"><em class="icon ni ni-eye"></em><span>View details</span></a></li>
+                            <li><a (click)="showOccurances(f.title)" style="cursor: pointer;"><em class="icon ni ni-search"></em><span>View occurances</span></a></li>
+                            <!-- <li><a style="color: rgb(148, 18, 18);" href="#"><em class="icon ni ni-trash"></em><span>Delete event</span></a></li> -->
+                            <!-- <li><a href="#"><em class="icon ni ni-download-cloud"></em><span>Get report</span></a></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+
+        </table>
+
+        <div *ngIf="!loading && data.length == 0">
+          <div class="row justify-content-center py-5">
+            <div class="col-md-7 col-lg-7 col-7">
+              <div class="mb-3 text-center">
+                <img src="assets/images/no-documents.svg" alt="" />
+              </div>
+              <div class="nk-block-head text-center">
+                <div class="nk-block-head-content">
+                  <h3 class="nk-block-title mb-2">Oops! No Events Found</h3>
+                  <p>Try tweaking your filters or adjusting the date range to find some events.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-inner" *ngIf="collectionSize > 10">
+        <div class="nk-block-between-md g-3">
+          <evntaly-grid-pagination [pageSize]=pageSize [collectionSize]=collectionSize
+            (changePage)="changeGridPage($event)" selectedPage=1 maxSize=10></evntaly-grid-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

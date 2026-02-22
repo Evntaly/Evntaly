@@ -1,0 +1,12 @@
+.sub-text-inh {
+  display: block;
+  font-size: 14px;
+  color: #8094ae;
+}
+
+.usage-gadget {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}

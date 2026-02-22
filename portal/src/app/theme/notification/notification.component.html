@@ -1,0 +1,20 @@
+<div style="  display: grid;
+place-items: center; /* Centering using grid */
+height: 100%;">
+  <figure class="notification">
+    <div class="notification__body">
+      <div class="notification__description">
+        <div class="icon__wrapper" [ngClass]="{ 'i-error' : status == 'error' , 'i-warning' : status == 'warning' ,
+          'i-info' : status == 'info' , 'i-success' : status == 'success' }">
+          <em class="icon ni ni-check-thick notification__icon_img"></em>
+        </div>
+        {{ message }}
+      </div>
+      <button class="notification__button">
+        Dismiss
+      </button>
+    </div>
+    <div class="notification__progress" [ngClass]="{ 'n-error' : status == 'error' , 'n-warning' : status == 'warning' ,
+    'n-info' : status == 'info' , 'n-success' : status == 'success' }"></div>
+  </figure>
+</div>

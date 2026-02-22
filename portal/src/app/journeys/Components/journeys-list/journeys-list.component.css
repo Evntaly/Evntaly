@@ -1,0 +1,51 @@
+.nk-ibx-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+}
+
+.nk-ibx-menu-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.nk-ibx-item-time {
+  width: 100px;
+  text-align: right;
+}
+
+.avatar-set {
+  height: 40px !important;
+  width: 40px !important;
+}
+
+
+/* Scrollbar container */
+::-webkit-scrollbar {
+  width: 5px; /* Adjust the width of the scrollbar */
+  height: 5px; /* For horizontal scrollbar */
+}
+
+/* Scrollbar track (the container) */
+::-webkit-scrollbar-track {
+  background: #f9f9f9; /* Lighter gray for the track */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #ebebeb; /* Slightly less gray */
+  border-radius: 10px; /* Rounded shape */
+}
+
+/* On hover: Darken the thumb slightly */
+::-webkit-scrollbar-thumb:hover {
+  background: #ebebeb;
+}

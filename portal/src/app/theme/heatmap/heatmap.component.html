@@ -1,0 +1,26 @@
+<div class="all-months-container">
+  <ng-container *ngFor="let r of heatmap">
+
+    <div class="heat-map-container">
+      <div class="month-label">{{ r.month }}</div>
+      <div [ngClass]="{ 'heat-map-year' : mode == 'Vertical' , 'heat-map' : mode == 'Horizontal' }">
+        <div *ngFor="let day of r.days" [ngClass]="day ? getHeatmapColor(day.value) : 'empty-cell'"
+          matTooltip="{{ day?.day ? getTooltipText(day) : '' }}" class="heat-map-cell">
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="heat-map-container-year" *ngIf="heatmapDataYear.length > 0">
+  <div *ngFor="let month of heatmapDataYear" class="month-container">
+    <div class="month-label">{{ month.month }}</div>
+    <div class="heat-map-year">
+      <div *ngFor="let day of month.days"
+           class="heat-map-cell"
+           [matTooltip]="getTooltipText(day)"
+           [ngClass]="getHeatmapColor(day.value)">
+      </div>
+    </div>
+  </div>
+</div>

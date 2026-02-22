@@ -1,0 +1,27 @@
+<div class="modal-sm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="padding-bottom: 15px !important;  padding: 29px;">
+        <div id="confirmation-dialog" class="dialog">
+          <div>
+            <div class="center mb-3">
+              <div class="user-avatar text-primary" style="background-color: #ffd6e0">
+                <em style="color: #F2426E;" class="icon ni ni-alert-fill"></em>
+              </div>
+            </div>
+            <div class="mb-3">
+              <h4 class="center">{{ data.header }}</h4>
+              <p style="font-size: 16px;" class="center">{{ data.message }}</p>
+            </div>
+            <div class="row">
+              <a (click)="close(true)" style="display: block !important;" class="col-md-12 btn btn-md btn-danger mb-2">
+                {{ data.confirm_btn }}</a>
+              <a (click)="close()" style="display: block !important;" class="col-md-12 btn btn-md btn-light">{{
+                data.cancel_btn }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

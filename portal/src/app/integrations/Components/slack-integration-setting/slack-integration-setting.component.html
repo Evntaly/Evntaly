@@ -1,0 +1,31 @@
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="user-avatar md text-primary bg-primary-dim mb-3" style="background-color: #a9aedc !important;">
+          <em style="font-size: 25px;" class="icon ni ni-setting"></em>
+        </div>
+        <h4>Slack Integration Configurations</h4>
+        <p>Select the channel you want Evntaly to use to send the alerts. <span class="text-dark">Specify below</span>.</p>
+        <div class="form-validate is-alter">
+          <div class="row mb-2">
+            <label class="form-label">Channel  &nbsp;
+            </label>
+            <div class="form-group col-md-12">
+              <div class="form-control-wrap">
+                <select2 [data]="channels" displaySearchStatus = 'always' noResultMessage = 'No channels' placeholder = "Select the channel"
+                  (update)="selectChannel($event)" [value]="channelID" > </select2>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <ul class="row gx-4 mt-4">
+          <li class="col-6"><button class="btn btn-primary btn-block" data-bs-dismiss="modal"
+              (click)="joinSlackChannel()">Integrate</button></li>
+          <li class="col-6"><button class="btn btn-outline-light btn-block" data-bs-dismiss="modal" (click)="close()">Close</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

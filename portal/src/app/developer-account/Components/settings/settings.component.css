@@ -1,0 +1,6 @@
+/* .card-aside {
+  min-height: 69vb;
+} */
+a.no-after:after {
+  content: none !important; /* Disable the :after pseudo-element */
+}

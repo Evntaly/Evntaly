@@ -1,0 +1,112 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$evntaly-portal-primary: mat.define-palette(mat.$indigo-palette);
+$evntaly-portal-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$evntaly-portal-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$evntaly-portal-theme: mat.define-light-theme((
+  color: (
+    primary: $evntaly-portal-primary,
+    accent: $evntaly-portal-accent,
+    warn: $evntaly-portal-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($evntaly-portal-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+.cdk-overlay-container {
+  z-index: 1055 !important;
+}
+
+:root {
+    --select2-single-height: 36px;
+
+    /* label */
+    --select2-label-text-color: #3c4d62;
+    --select2-required-color: red;
+
+    /* selection */
+    --select2-selection-border-radius: 4px;
+    --select2-selection-background: #fff;
+    --select2-selection-disabled-background: #eee;
+    --select2-selection-border-color: #dbdfea;
+    --select2-selection-focus-border-color: #dbdfea;
+    --select2-selection-text-color: #3c4d62;
+    --select2-selection-line-height: 32px;
+    --select2-selection-padding: 0 0 2px 8px;
+
+    /* placeholder */
+    --select2-placeholder-color: #3c4d62;
+    --select2-placeholder-overflow: ellipsis;
+
+    /* no result message */
+    --select2-no-result-color: #b5b5b5;
+    --select2-no-result-font-style: italic;
+
+    /* no result message */
+    --select2-too-much-result-color: #888;
+    --select2-too-much-result-style: italic;
+
+    /* reset */
+    --select2-reset-color: #591212;
+
+    /* arrow */
+    --select2-arrow-color: #b5b5b5;
+
+    /* dropdown panel */
+    --select2-dropdown-background: #fff;
+    --select2-dropdown-border-color: #dbdfea;
+    --select2-dropdown-above-border-bottom: none;
+    --select2-dropdown-above-border-bottom-left-radius: 2px;
+    --select2-dropdown-above-border-bottom-right-radius: 5px;
+    --select2-dropdown-below-border-top: none;
+    --select2-dropdown-below-border-top-left-radius: 0;
+    --select2-dropdown-below-border-top-right-radius: 0;
+
+    /* overlay */
+    --select2-overlay-backdrop: transparent;
+
+    /* search field */
+    --select2-search-border-color: #dbdfea;
+    // --select2-search-background: #fff;
+    --select2-search-border-radius: 4px;
+
+    /* dropdown option */
+    --select2-option-text-color: #526484;
+    --select2-option-disabled-text-color: #999;
+    --select2-option-disabled-background: transparent;
+    --select2-option-selected-text-color: #ffffff;
+    --select2-option-selected-background: #00074E;
+    --select2-option-highlighted-text-color: #526484;
+    --select2-option-highlighted-background: #E5E9F2;
+    --select2-option-group-text-color: gray;
+    --select2-option-group-background: transparent;
+    --select2-option-padding: 4px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "../node_modules/highlight.js/styles/pojoaque.min.css";

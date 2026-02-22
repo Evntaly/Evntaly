@@ -1,0 +1,97 @@
+<div class="row g-gs">
+  <div class="col-lg-3 col-sm-6">
+    <div class="card bg-light">
+      <div class="nk-cmwg nk-cmwg1">
+        <div class="card-inner pt-3">
+          <div class="d-flex justify-content-between">
+            <div class="flex-item">
+              <div class="text-dark d-flex flex-wrap"><span class="fs-2 me-1">
+                <evntaly-number-counter [targetNumber]="total_users"></evntaly-number-counter>
+              </span></div>
+              <h6 class="text-dark" style="font-size: 20px;">Total Users</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-sm-6">
+    <div class="card bg-light">
+      <div class="nk-cmwg nk-cmwg1">
+        <div class="card-inner pt-3">
+          <div class="d-flex justify-content-between">
+            <div class="flex-item">
+              <div class="text-dark d-flex flex-wrap">
+                <span class="fs-2 me-1">
+                  <evntaly-number-counter [targetNumber]="drop_off_rate"></evntaly-number-counter>%
+                </span>
+              </div>
+              <h6 class="text-dark" style="font-size: 20px;">Drop-off Rate <em matTooltip="Shows the percentage of users who send only one event in a single session" class="icon ni ni-info"></em></h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-sm-6">
+    <div class="card bg-light">
+      <div class="nk-cmwg nk-cmwg1">
+        <div class="card-inner pt-3">
+          <div class="d-flex justify-content-between">
+            <div class="flex-item">
+              <div class="text-dark d-flex flex-wrap"><span class="fs-2 me-1">
+                <evntaly-number-counter [targetNumber]="new_users"></evntaly-number-counter>
+              </span></div>
+              <h6 class="text-dark" style="font-size: 20px;">New Users</h6>
+            </div>
+            <div class="card-tools me-n1">
+              <div class="dropdown"><a href="#" class="dropdown-toggle btn btn-icon btn-sm btn-trigger"
+                  data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-v"></em></a>
+                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                  <ul class="link-list-opt no-bdr">
+                    <ng-container *ngFor="let d of new_users_filter">
+                      <li (click)="changeNewUsersFilter(d.text)" style="cursor: pointer;"
+                        [ngClass]="{ 'active': d.is_active }"><a><span>{{ d.text }}</span></a></li>
+                    </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-sm-6">
+    <div class="card bg-light">
+      <div class="nk-cmwg nk-cmwg1">
+        <div class="card-inner pt-3">
+          <div class="d-flex justify-content-between">
+            <div class="flex-item">
+              <div class="text-dark d-flex flex-wrap"><span class="fs-2 me-1">
+                <evntaly-number-counter [targetNumber]="active_users"></evntaly-number-counter>
+              </span></div>
+              <h6 class="text-dark" style="font-size: 20px;">{{active_users_period_text }}</h6>
+            </div>
+            <div class="card-tools me-n1">
+              <div class="dropdown"><a href="#" class="dropdown-toggle btn btn-icon btn-sm btn-trigger"
+                  data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-v"></em></a>
+                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                  <ul class="link-list-opt no-bdr">
+                    <ng-container *ngFor="let d of active_users_filter">
+                      <li (click)="changeActiveUsersFilter(d.text)" style="cursor: pointer;"
+                        [ngClass]="{ 'active': d.is_active }"><a><span>{{ d.text }}</span></a></li>
+                    </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

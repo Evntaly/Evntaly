@@ -1,0 +1,261 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between g-3">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Event Details</h3>
+      <div class="nk-block-des text-soft">
+        <div class="nk-block-des text-soft">
+          <ul class="list-inline">
+            <li class="d-flex align-items-center">Event Id: &nbsp; <span class="text-base"> {{ event.eventID }}
+              </span>
+              <em class="icon ni ni-copy ms-2" style="cursor: pointer; margin-left: 5px !important;" title="Copy Event Id" (click)="copyToClipboard(event.eventID!)"></em>
+            </li>
+            <!-- <li>Submited At: <span class="text-base">{{ event.createdAt | date: 'short'}}</span></li> -->
+            <li *ngIf="event.sessionID">Session Id: &nbsp;
+              <span class="text-base">{{ event.sessionID }}
+              </span>
+              <em class="icon ni ni-copy ms-2" style="cursor: pointer; margin-left: 5px !important;" title="Copy Session Id" (click)="copyToClipboard(event.sessionID!)"></em>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="nk-block-head-content">
+      <a (click)="back()" class="btn btn-outline-light bg-white d-none d-sm-inline-flex"><em
+          class="icon ni ni-arrow-left"></em><span>Back</span></a>
+      <a (click)="back()" class="btn btn-icon btn-outline-light bg-white d-inline-flex d-sm-none"><em
+          class="icon ni ni-arrow-left"></em></a>
+    </div>
+  </div>
+</div>
+
+<div class="nk-block">
+  <div class="row g-gs">
+    <div class="col-xl-4">
+      <div class="nk-block mb-3">
+        <div class="card clickable-card">
+          <div class="card-inner">
+            <div class="d-flex position-relative">
+              <div class="user-avatar text-primary" [ngStyle]="{ 'background-color': getEmojiColor(event.icon) }">
+                {{ event.icon }}
+              </div>
+              <div class="ms-4 flex-grow-1">
+                <h4 class="title mb-1">{{ event.title }}
+                </h4>
+                <p class="sub-text mb-1">{{ event.description }}</p>
+                <ul class="nk-history-meta">
+                  <li><a style="cursor: pointer;" (click)="showOccurancesByTopic(event.topic)" class="custom-link">{{ event.topic }}</a></li>
+                  <li>{{ event.createdAt| date:'short' }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner-group">
+          <div class="card-inner">
+            <h6 class="overline-title mb-2"><em class="icon ni ni-spark-fill"></em> Event Insights</h6>
+            <div class="col-sm-6 col-md-4 col-xl-12 mb-4">
+              <span class="sub-text">Status</span>
+              <span class="lead-text"
+                [ngClass]="{ 'text-success': event.status == 'New' , 'text-primary' : event.status == 'Seen'}">
+                {{ event.status }}
+              </span>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-12 mb-4">
+              <span class="sub-text">Feature</span>
+              <div class="custom-control custom-checkbox custom-control-pro no-control" *ngIf="event.feature">
+                <label class="custom-control-label" (click)="showOccurancesByUserFeature(event.feature)" >
+                  <em class="icon ni ni-hash"></em> <span>{{ event.feature }}</span>
+                </label>
+              </div>
+              <span *ngIf="!event.feature">Not Provided</span>
+
+            </div>
+
+
+            <h6 class="overline-title mb-2"><em class="icon ni ni-user-fill"></em> User Details</h6>
+            <div class="row g-3">
+              <div class="col-sm-6 col-md-4 col-xl-12">
+                <span class="sub-text">ID</span>
+                <span><a class="custom-link" *ngIf="event.user?.id" style="cursor: pointer;" (click)="showOccurancesByUserInfo(event.user?.id)">{{ event.user?.id }}</a></span>
+                <span><a *ngIf="!event.user?.id">Not Provided</a></span>
+              </div>
+              <div class="col-sm-6 col-md-4 col-xl-12">
+                <span class="sub-text">Email</span>
+                <span><a class="custom-link" *ngIf="event.user?.email" style="cursor: pointer;" (click)="showOccurancesByUserInfo(event.user?.email)">{{ event.user?.email }}</a></span>
+                <span><a *ngIf="!event.user?.email">Not Provided</a></span>
+              </div>
+              <div class="col-sm-6 col-md-4 col-xl-12">
+                <span class="sub-text">Full name</span>
+                <span><a class="custom-link" *ngIf="event.user?.full_name" style="cursor: pointer;" (click)="showOccurancesByUserInfo(event.user?.full_name)">{{ event.user?.full_name }}</a></span>
+                <span><a *ngIf="!event.user?.full_name">Not Provided</a></span>
+              </div>
+              <div class="col-sm-6 col-md-4 col-xl-12">
+                <span class="sub-text">Last Active <em
+                    matTooltip="Represents the date when the user submitted their most recent event regardless the event name."
+                    matTooltipPosition="above" class="icon ni ni-info"></em></span>
+                <span>{{ event_details.user_latest_activity_date == null ? 'Not Provided' :
+                  event_details.user_latest_activity_date | date: 'fullDate' }}</span>
+              </div>
+              <div class="col-sm-6 col-md-4 col-xl-12">
+                <span class="sub-text">Registered At <em
+                    matTooltip="Represents the date when the user has been registered." matTooltipPosition="above"
+                    class="icon ni ni-info"></em></span>
+                <span>{{ event_details.user_created_at == null ? 'Not Provided' : event_details.user_created_at | date:
+                  'fullDate' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8">
+      <div class="card">
+        <div class="card-inner">
+          <div *ngIf="event.context?.sdkVersion || event.context?.sdkRuntime || event.requestContext?.os || event.requestContext?.osVersion || event.requestContext?.browser || event.requestContext?.browserVersion">
+            <h6 class="lead-text mb-3">Context </h6>
+            <div style="margin-bottom: 40px;">
+              <ul class="custom-control-group">
+                <li matTooltip="Evntaly SDK Version" *ngIf="event.context?.sdkVersion">
+                    <div class="custom-control custom-checkbox custom-control-pro no-control checked">
+                        <label class="custom-control-label" for="btnIconCheckNc1">
+                          <img style="width: 20px; height: 20px;" src="assets/images/evntaly-logo-context.png" alt="user" class="icon">
+                          <span>
+                            SDK V{{ event.context!.sdkVersion }}
+                          </span>
+                        </label>
+                    </div>
+                </li>
+                <li matTooltip="Runtime" *ngIf="event.context?.sdkRuntime">
+                  <div class="custom-control custom-checkbox custom-control-pro no-control">
+                      <label class="custom-control-label" for="btnIconCheckNc4">
+                        <img style="width: 20px; height: 20px;" [src]="getRuntimeImageSrc(event.context?.sdkRuntime)" alt="runtime" class="icon">
+                        <span>
+                          {{ event.context!.sdkRuntime }} {{ event.context!.runtimeVersion ?? '' }}
+                        </span>
+                      </label>
+                  </div>
+              </li>
+                <li matTooltip="Operating System" *ngIf="event.requestContext?.os && event.requestContext?.osVersion">
+                    <div class="custom-control custom-checkbox custom-control-pro no-control">
+                        <label class="custom-control-label" for="btnIconCheckNc2">
+                          <img style="width: 20px; height: 20px;" [src]="getOperatingSystemImageSrc(event.requestContext?.os)" alt="os" class="icon">
+                          <span>
+                            {{ event.requestContext!.os }} {{ event.requestContext!.osVersion ?? '' }}
+                          </span>
+                        </label>
+                    </div>
+                </li>
+                <li matTooltip="Browser Version" *ngIf="event.requestContext?.browser && event.requestContext?.browserVersion">
+                    <div class="custom-control custom-checkbox custom-control-pro no-control">
+                        <label class="custom-control-label" for="btnIconCheckNc3">
+                          <img style="width: 20px; height: 20px;" [src]="getBrowserImageSrc(event.requestContext?.browser)" alt="browser" class="icon">
+                          <span>
+                            {{ event.requestContext!.browser }} {{ event.requestContext!.browserVersion ?? '' }}
+                          </span>
+                        </label>
+                    </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div *ngIf="event.requestContext?.location">
+            <h6 class="lead-text mb-3">Location </h6>
+            <div style="margin-bottom: 40px;">
+              <ul class="custom-control-group">
+                <li matTooltip="Country" *ngIf="event.requestContext?.location?.country">
+                    <div class="custom-control custom-checkbox custom-control-pro no-control checked">
+                        <label class="custom-control-label" for="btnIconCheckNc1">
+                          <img style="width: 20px; height: 20px;"
+                            [src]="event.requestContext!.location!.countryCode?.toLowerCase() == 'unknown' ? '../../../assets/images/warning.png' : 'https://flagsapi.com/' + event.requestContext!.location!.countryCode + '/flat/64.png'"
+                          alt="user" class="icon">
+                          <span>
+                            {{ event.requestContext!.location!.country }}
+                          </span>
+                        </label>
+                    </div>
+                </li>
+                <li matTooltip="City" *ngIf="event.requestContext?.location?.city">
+                  <div class="custom-control custom-checkbox custom-control-pro no-control">
+                      <label class="custom-control-label" for="btnIconCheckNc2">
+                        <span>
+                          {{ event.requestContext!.location!.city }}
+                        </span>
+                      </label>
+                  </div>
+              </li>
+                <li matTooltip="Timezone" *ngIf="event.requestContext?.location?.timezone">
+                    <div class="custom-control custom-checkbox custom-control-pro no-control">
+                        <label class="custom-control-label" for="btnIconCheckNc3">
+                          <span>
+                            {{ event.requestContext!.location!.timezone }}
+                          </span>
+                        </label>
+                    </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="nk-block" style="margin-bottom: 20px;">
+            <h6 class="lead-text mb-3">Payload</h6>
+
+            <div class="card unshadowed-card">
+              <button *ngIf="event.data" (click)="copyJsonToClipboard()" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" title="Copy JSON" class="btn btn-xs btn-dark cpy">
+                <em class="icon ni ni-copy-fill"></em>
+              </button>
+              <pre class="prettyprint lang-html jsonv-container" *ngIf="event.data != undefined"
+                [innerHTML]="syntaxHighlight()"></pre>
+            </div>
+            <evntaly-empty-state icon="icon ni ni-archived" *ngIf="!event.data"
+              msg="It looks like this event didn't bring any data along."></evntaly-empty-state>
+          </div>
+
+          <h6 class="lead-text mb-3">Tags</h6>
+          <div style="margin-bottom: 40px;">
+            <div *ngIf="event.tags?.length! > 0">
+              <ng-container *ngFor="let t of event.tags">
+                <a (click)="showOccurancesByUserTags(t)" class="custom-link btn btn-sm btn-dim btn-outline-light mt-1 me-1">{{ t }}</a>
+              </ng-container>
+            </div>
+
+            <evntaly-empty-state *ngIf="event.tags?.length! == 0" icon="icon ni ni-archived"
+              msg="No tags has been found for this event"></evntaly-empty-state>
+
+          </div>
+
+
+          <!-- <div class="nk-block" style="margin-bottom: 20px; padding-top: 10px;"
+            [ngStyle]="{ 'display' : showTree ? 'block' : 'none' }">
+            <div class="card unshadowed-card" style="padding: 10px;background-color: #FAF9FB;">
+              <div id="basic-tree"></div>
+            </div>
+          </div> -->
+
+          <div class="nk-block">
+            <h6 class="lead-text">Actions</h6>
+            <div class="card">
+              <div class="card-inner">
+                <div class="between-center flex-wrap flex-md-nowrap g-3">
+                  <div class="media media-center gx-3 wide-xs">
+
+                    <div class="media-content">
+                      <p>You can easily delete this occurance completely, Take care as this
+                        action is not reversable</p>
+                    </div>
+                  </div>
+                  <div class="nk-block-actions flex-shrink-0">
+                    <a (click)="deleteOccuranceConfirmation()" class="btn btn-lg btn-danger">Delete Occurance</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

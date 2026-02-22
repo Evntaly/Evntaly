@@ -1,0 +1,96 @@
+<div class="nk-block-head">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h4 class="nk-block-title">API Tokens</h4>
+      <div class="nk-block-des">
+        <p>Find your generated tokens here. Or <a (click)="generateNewToken()" class="custom-link">Generate New Token</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nk-files nk-files-view-list" *ngIf="data.length > 0">
+  <div class="nk-files-head">
+    <div class="nk-file-item">
+      <div class="nk-file-info">
+        <div class="tb-head" data-bs-toggle="dropdown">Token</div>
+      </div>
+      <div class="nk-file-meta">
+        <div class="dropdown">
+          <div class="tb-head" data-bs-toggle="dropdown">Project</div>
+        </div>
+      </div>
+      <div class="nk-file-members">
+        <div class="tb-head">Expiry</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nk-files-list">
+
+    <ng-container *ngFor="let i of data; let index = index">
+      <div class="nk-file-item nk-file">
+        <div class="nk-file-info">
+          <div class="nk-file-title">
+            <div class="nk-file-name">
+              <div class="nk-file-name-text">
+                <a class="title" [ngClass]="{ 'blurred-text' : !i.show, 'clear-text' : i.show }">{{ i.token }}</a>
+                <div class="nk-file-star asterisk">
+                  <a class="active">
+                    <em style="cursor: pointer;" (click)="copyCodeToClipboard(i.token)" class="icon ni ni-copy"></em> &nbsp;
+                    <em style="cursor: pointer;" (click)="showToken(index)" *ngIf="!i.show" class="icon ni ni-eye-off"></em>
+                    <em style="cursor: pointer;" (click)="showToken(index)" *ngIf="i.show" class="icon ni ni-eye"></em>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nk-file-meta">
+          <div class="tb-lead">{{ i.projectName }}</div>
+        </div>
+        <div class="nk-file-members">
+          <div class="tb-lead">Never</div>
+        </div>
+        <div class="nk-file-actions">
+          <div class="dropdown">
+            <a href="" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em
+                class="icon ni ni-more-h"></em></a>
+            <div class="dropdown-menu dropdown-menu-end">
+              <ul class="link-list-plain no-bdr">
+                <li>
+                  <a style="cursor: pointer;" (click)="showToken(index)"><em class="icon ni ni-eye"></em><span>Show/Hide</span></a>
+                </li>
+                <li>
+                  <a style="cursor: pointer;" (click)="copyCodeToClipboard(i.token)"><em class="icon ni ni-copy"></em><span>Copy</span></a>
+                </li>
+                <li style="cursor: pointer;">
+                  <a style="color: #D45A55;" (click)="deleteToken(i.token, i.projectID)">
+                    <em style="color: #D45A55;" class="icon ni ni-repeat-v"></em><span>Revoke</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+</div>
+
+<div *ngIf="data.length == 0">
+  <div class="row justify-content-center py-3">
+    <div class="col-md-7 col-lg-7 col-7">
+      <div class="mb-3 text-center">
+        <img src="assets/images/no-documents.svg" alt="" />
+      </div>
+      <div class="nk-block-head text-center">
+        <div class="nk-block-head-content">
+          <h5 class="nk-block-title mb-2 mt-2">No API Tokens Yet</h5>
+          <p>Start now by creating tokens to integrate your projects and experience the awesomeness of Evntaly. <a (click)="generateNewToken()" class="custom-link">Generate New Token</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

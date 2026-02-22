@@ -1,0 +1,291 @@
+<div class="nk-block-head nk-block-head-sm">
+  <div class="nk-block-between">
+    <div class="nk-block-head-content">
+      <h3 class="nk-block-title page-title">Users</h3>
+      <div class="nk-block-des text-soft">
+        <p>Users overview
+          <span style="cursor: pointer;" (click)="showDocs()">
+            <small style="text-decoration: underline;">
+            <em class="icon ni ni-book-fill"></em>
+            Docs
+            </small>
+         </span>
+        </p>
+      </div>
+    </div>
+    <div class="nk-block-head-content">
+      <div class="toggle-wrap nk-block-tools-toggle">
+        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em
+            class="icon ni ni-more-v"></em></a>
+        <div class="toggle-expand-content" data-content="pageMenu">
+          <ul class="nk-block-tools g-3">
+            <li>
+              <div class="form-control-wrap">
+                <div class="form-icon form-icon-right">
+                  <em class="icon ni ni-search"></em>
+                </div>
+                <input [matTooltip]="'Search by Usser Name Or Email Or User ID'" type="text" class="form-control" id="default-04" placeholder="Search in users"
+                  (keyup)="searchByUsers($event)">
+              </div>
+            </li>
+            <!-- <li class="nk-block-tools-opt">
+              <a href="#" class="toggle btn btn-primary btn-primary d-md-none"><em
+                  class="icon ni ni-download-cloud"></em>Export</a>
+              <a href="#" class="toggle btn btn-primary d-none d-md-inline-flex"><em
+                  class="icon ni ni-download-cloud"></em><span>Export</span></a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nk-block">
+
+  <div class="row g-gs">
+    <div class="col-sm-6 col-xxl-6">
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-title-group align-start">
+            <div class="card-title">
+              <h6 class="title">Active Users <em class="card-hint icon ni ni-info-fill"
+                  matTooltip="Active users calculated based on the sent events by user in a specific period"
+                  matTooltipPosition="above"></em></h6>
+            </div>
+            <!-- <div class="card-tools"><em class="card-hint icon ni ni-help-fill"
+                matTooltip="Active users calculated based on the sent events by user in a specific period"
+                matTooltipPosition="above"></em></div> -->
+          </div>
+          <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
+            <div class="nk-sale-data">
+              <span class="amount">{{ active_users_today }}</span><span class="sub-title">
+                <span class="change"
+                  [ngClass]="{ 'text-danger' : change_in_active_users < 0 , 'text-success': change_in_active_users > 0 }">
+                  <em [ngClass]="{ 'icon ni ni-arrow-long-down' : change_in_active_users < 0 , 'icon ni ni-arrow-long-up': change_in_active_users > 0 }"></em>
+                  {{ variance_in_active_users.toFixed(2) }}%
+                </span>since yesterday
+              </span>
+            </div>
+            <div class="nk-sales-ck" style="width: 100%; height: 90px;">
+              <div echarts [options]="options" [merge]="active_users_merge_options" theme="macarons" style="width: 100%; height: 100%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xxl-6">
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-title-group align-start">
+            <div class="card-title">
+              <h6 class="title">Registered Users <em class="card-hint icon ni ni-info-fill"
+                matTooltip="Active users calculated based on the sent events by user in a specific period"
+                matTooltipPosition="above"></em></h6>
+            </div>
+            <!-- <div class="card-tools"><em class="card-hint icon ni ni-help-fill"
+                matTooltip="Total newly registered users in specific period" matTooltipPosition="above"></em>
+            </div> -->
+          </div>
+          <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
+            <div class="nk-sale-data">
+              <span class="amount">{{ registered_users_today }}</span>
+              <span class="sub-title">
+                <span class="change"
+                  [ngClass]="{ 'text-danger' : change_in_registered_users < 0 , 'text-success': change_in_registered_users > 0 }">
+                  <em [ngClass]="{ 'icon ni ni-arrow-long-down' : change_in_registered_users < 0 , 'icon ni ni-arrow-long-up': change_in_registered_users > 0 }"></em>
+                  {{ variance_in_registered_users.toFixed(2) }}%
+                </span>since yesterday
+              </span>
+            </div>
+            <div class="nk-sales-ck" style="width: 100%; height: 90px;">
+              <div echarts [options]="options" [merge]="registered_users_merge_options" theme="macarons" style="width: 100%; height: 100%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-stretch mt-4">
+    <div class="card-inner-group">
+      <div class="card-inner p-0">
+        <div class="nk-tb-list nk-tb-ulist is-compact">
+          <div class="nk-tb-item nk-tb-head">
+            <div class="nk-tb-col"><span class="sub-text">
+                <em class="icon ni ni-activity-alt"></em>
+              </span></div>
+            <ng-container *ngFor="let c of columns">
+              <div [ngClass]="c.size">
+                <span class="sub-text">{{ c.name }}
+                  <em style="cursor: pointer;" *ngIf="c.sort_enabled" class="icon ni ni-swap-v"
+                    (click)="sortGrid(c.sort_field_name)"></em>
+                </span>
+              </div>
+            </ng-container>
+          </div>
+
+          <ng-container *ngIf="!loading">
+            <ng-container *ngFor="let u of data">
+              <div class="nk-tb-item">
+                <div class="nk-tb-col">
+                  <div *ngIf="u.is_gold_user" style="margin-right: 0px; height: 2rem; width: 2rem;"
+                    class="nk-tnx-type-icon" [ngClass]="{'bg-warning-dim text-warning': u.is_gold_user }"
+                    matTooltip="Power user">
+                    <!-- <em *ngIf="u.is_silver_user" class="icon ni ni-flag-fill"></em> -->
+                    <em *ngIf="u.is_gold_user"  class="icon ni ni-star-fill"></em>
+                  </div>
+                </div>
+
+                <div class="nk-tb-col" style="max-width: 150px;">
+                  <div style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
+                    <span style="display: inline-block; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                          [matTooltip]="u.id!"
+                          matTooltipPosition="above">{{ u.id }}</span>
+                    <em class="icon ni ni-copy"
+                        style="cursor: pointer; font-size: 14px; color: #6e82a5;"
+                        [matTooltip]="'Copy ID'"
+                        (click)="$event.stopPropagation(); copyToClipboard(u.id)"></em>
+                  </div>
+                </div>
+
+                <div class="nk-tb-col" (click)="viewUserDetails(u.id)" style="cursor: pointer;">
+                  <div class="user-card" *ngIf="u.full_name">
+                    <div class="user-avatar xs" [ngClass]="u.avatar_cover">
+                      <span>{{ u.name_init }}</span>
+                    </div>
+                    <div class="user-name" style="max-width: 130px;">
+                      <span class="tb-lead" style="display: inline-block; width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ u.full_name }}</span>
+                    </div>
+                  </div>
+                  <div class="user-card" *ngIf="!u.full_name">
+                    N/A
+                  </div>
+                </div>
+
+                <div class="nk-tb-col tb-col-lg">
+                  <span *ngIf="u.email">{{ u.email }}</span>
+                  <span *ngIf="!u.email">N/A</span>
+                </div>
+
+                <div class="nk-tb-col tb-col-lg">
+                  <span>{{ u.organization }}</span>
+                </div>
+
+                <div class="nk-tb-col tb-col-md">
+                  <ul class="list-status">
+                    <li>
+                      <!-- <em style="font-size: 17px;" class="icon text-success ni ni-check-circle"></em> -->
+                      <span style="font-size: 14px;">{{ u.total_number_of_events || 0 }}</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="nk-tb-col tb-col-md">
+                  <span class="badge badge-dim" *ngIf="u.last_seen_active_time_ago"
+                    [ngClass]="getTimeAgoBGColor(u.last_seen_active_time_ago)"><em class="icon ni ni-clock"></em><span>
+                      {{ u.last_seen_active_time_ago }}
+                    </span></span>
+                </div>
+
+                <div class="nk-tb-col tb-col-lg">
+                  <span class="tb-lead-sub" style="font-size: 15px;color: #8094ae;">
+                    {{ u.createdAt | date: 'mediumDate'}}
+                  </span>
+                </div>
+
+                <div class="nk-tb-col nk-tb-col-tools">
+                  <ul class="nk-tb-actions gx-2">
+                    <li class="nk-tb-action-hidden">
+                      <a (click)="viewUserDetails(u.id)" class="btn btn-sm btn-icon btn-trigger"
+                        matTooltip="View user details">
+                        <em class="icon ni ni-eye-fill"></em>
+                      </a>
+                    </li>
+                    <li class="nk-tb-action-hidden">
+                      <a (click)="showOccurances(u.email)" class="btn btn-sm btn-icon btn-trigger"
+                        matTooltip="Search in events">
+                        <em class="icon ni ni-search"></em>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="drodown">
+                        <a class="btn btn-sm btn-icon btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em
+                            class="icon ni ni-more-h"></em></a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-md">
+                          <ul class="link-list-opt no-bdr">
+                            <li><a (click)="viewUserDetails(u.id)" style="cursor: pointer;"><em class="icon ni ni-eye"></em><span>View details</span></a></li>
+                            <li><a (click)="showOccurances(u.email)" style="cursor: pointer;"><em class="icon ni ni-search"></em><span>Search in events</span></a></li>
+                            <!-- <li><a href="#"><em class="icon ni ni-download-cloud"></em><span>Get report</span></a></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <tbody *ngIf="loading">
+            <tr class="nk-tb-item">
+              <ng-container *ngFor="let f of columns">
+                <td [ngClass]="f.size">
+                  <p class="placeholder-glow">
+                    <span class="placeholder col-12"
+                      style="border-radius: 8px; background-color: rgb(222, 222, 222);"></span>
+                  </p>
+                </td>
+              </ng-container>
+              <td class="nk-tb-col text-end">
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"
+                    style="border-radius: 8px; background-color: rgb(222, 222, 222);"></span>
+                </p>
+              </td>
+            </tr>
+            <tr class="nk-tb-item">
+              <ng-container *ngFor="let f of columns">
+                <td [ngClass]="f.size">
+                  <p class="placeholder-glow">
+                    <span class="placeholder col-12"
+                      style="border-radius: 8px; background-color: rgb(222, 222, 222);"></span>
+                  </p>
+                </td>
+              </ng-container>
+              <td class="nk-tb-col text-end">
+                <p class="placeholder-glow">
+                  <span class="placeholder col-12"
+                    style="border-radius: 8px; background-color: rgb(222, 222, 222);"></span>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </div>
+
+        <div *ngIf="!loading && data.length == 0">
+          <div class="row justify-content-center py-5">
+            <div class="col-md-7 col-lg-7 col-7">
+              <div class="mb-3 text-center">
+                <img src="assets/images/no-documents.svg" alt="" />
+              </div>
+              <div class="nk-block-head text-center">
+                <div class="nk-block-head-content">
+                  <h3 class="nk-block-title mb-2">Oops! No Users Found</h3>
+                  <p>You haven't registered any users. For a better experience, use the SDK to register your users <a href="#">See In Docs</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-inner" *ngIf="collectionSize > 10">
+        <div class="nk-block-between-md g-3">
+          <evntaly-grid-pagination [pageSize]=pageSize [collectionSize]=collectionSize
+            (changePage)="changeGridPage($event)" selectedPage=1 maxSize=10></evntaly-grid-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

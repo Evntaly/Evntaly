@@ -1,0 +1,27 @@
+<div class="card card-full">
+  <div class="card-inner">
+    <div class="card-title-group">
+      <div class="card-title">
+        <h6 class="title">Traffic Sources</h6>
+      </div>
+      <div class="card-tools">
+        <div class="drodown"><a href="#"
+            class="dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white"
+            data-bs-toggle="dropdown">{{ selected_filter }}</a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+            <ul class="link-list-opt no-bdr">
+              <ng-container *ngFor="let f of filters">
+                <li (click)="changeFilter(f.text)" style="cursor: pointer;"
+                  [ngClass]="{ 'active': f.is_active}"><a><span>{{ f.text }}</span></a></li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-inner pt-0">
+    <evntaly-rank-chart></evntaly-rank-chart>
+  </div>
+</div>

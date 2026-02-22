@@ -1,0 +1,29 @@
+<div class="card card-full">
+  <!-- Header Section -->
+  <div class="card-inner">
+    <div class="card-title-group">
+      <div class="card-title">
+        <h6 class="title" (click)="onViewDetails()">
+          <em class="icon ni ni-filter-alt"></em>
+          {{ funnelData.name }}</h6>
+        <p class="funnel-description mt-1" *ngIf="funnelData.description">{{ funnelData.description }}</p>
+        <p class="funnel-description mt-1" >{{ funnelData.createdAt | date:'short' }}</p>
+      </div>
+      <div class="card-tools">
+        <div class="conversion-rate-display">
+          <span class="rate-value" matTooltip="Conversion rate is the percentage of users who completed the funnel.">{{ funnelData.conversionRate }}%</span>
+          <span class="trend-indicator" [ngClass]="{'positive': funnelData.trendSign == '+', 'negative': funnelData.trendSign == '-'}">
+            <em *ngIf="funnelData.trendValue >= 0" class="icon ni ni-arrow-up"></em>
+            <em *ngIf="funnelData.trendValue < 0" class="icon ni ni-arrow-down"></em>
+            <span class="trend-value">{{ Math.abs(funnelData.trendValue) }}%</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <div class="card-inner pt-0" style="padding-bottom: 0px !important;">
+    <div echarts [options]="chartOptions" class="chart-container" style="height: 120px;"></div>
+  </div> -->
+</div>

@@ -1,0 +1,55 @@
+<div class="card card-full">
+  <div class="card-inner">
+      <div class="card-title-group mb-1">
+          <div class="card-title">
+              <h6 class="title">Top Countries</h6>
+              <p>Dive into a full breakdown of your users by country, city, and region.</p>
+          </div>
+      </div>
+      <ul *ngIf="countriesData.length > 0" class="nav nav-tabs nav-tabs-card nav-tabs-xs" role="tablist">
+          <li class="nav-item" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" href="#countries" aria-selected="true" role="tab" (click)="onTabSwitch('countries')">Countries</a>
+          </li>
+          <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#cities" aria-selected="false" role="tab" tabindex="-1" (click)="onTabSwitch('cities')">Cities</a>
+          </li>
+          <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" href="#regions" aria-selected="false" tabindex="-1" role="tab" (click)="onTabSwitch('regions')">Regions</a>
+          </li>
+      </ul>
+      <div class="tab-content mt-0">
+          <div class="tab-pane active show" id="countries" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart [data]="countriesData"></evntaly-rank-chart>
+              <evntaly-block-state *ngIf="countriesData.length == 0"
+                title="No data available"
+                description="No countries data available yet."
+                iconClass="icon ni ni-package-fill"
+              ></evntaly-block-state>
+            </div>
+          </div>
+          <div class="tab-pane" id="cities" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart *ngIf="citiesData.length > 0" [data]="citiesData"></evntaly-rank-chart>
+              <evntaly-block-state *ngIf="citiesData.length == 0"
+                title="No data available"
+                description="No cities data available yet."
+                iconClass="icon ni ni-package-fill"
+              ></evntaly-block-state>
+            </div>
+          </div>
+          <div class="tab-pane" id="regions" role="tabpanel">
+            <div class="tab-content-wrapper scrollable-rank-chart">
+              <evntaly-rank-chart *ngIf="regionsData.length > 0" [data]="regionsData"></evntaly-rank-chart>
+              <evntaly-block-state *ngIf="regionsData.length == 0"
+                title="No data available"
+                description="No regions data available yet."
+                iconClass="icon ni ni-package-fill"
+              ></evntaly-block-state>
+            </div>
+          </div>
+      </div>
+
+
+  </div>
+</div>

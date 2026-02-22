@@ -1,0 +1,29 @@
+.select2-search__field:focus {
+  outline: none;
+  outline-color: #b9b9b9 !important;
+}
+
+.select2-results {
+  padding: 6px !important;
+}
+
+.select2-results__option {
+  border-radius: 4px !important;
+}
+
+.select2-results__options::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+.select2-results__options::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+}
+
+.select2-results__options::-webkit-scrollbar-thumb {
+  background: #E5E9F2;
+  border-radius: 10px;
+}
+
+.select2-results__options::-webkit-scrollbar-thumb:hover {
+  background: #E5E9F2;
+}
