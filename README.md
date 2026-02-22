@@ -218,11 +218,12 @@ Authentication is via JWT token in the `Authorization` header for dashboard endp
 Contributions are welcome! Here's how to get started:
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/my-feature`
-3. Make your changes and add tests if applicable
-4. Commit: `git commit -m "Add my feature"`
-5. Push: `git push origin feature/my-feature`
-6. Open a Pull Request
+2. (Optional) Run `./scripts/setup-git-hooks.sh` to use project git hooks
+3. Create a feature branch: `git checkout -b feature/my-feature`
+4. Make your changes and add tests if applicable
+5. Commit: `git commit -m "Add my feature"`
+6. Push: `git push origin feature/my-feature`
+7. Open a Pull Request
 
 Please open an issue first for major changes to discuss the approach.
 

@@ -1,0 +1,9 @@
+---
+description: Never add Co-authored-by to commit messages
+alwaysApply: true
+---
+
+# Commit Messages
+
+- **Never** add `Co-authored-by:` or any co-author attribution to commit messages
+- Keep commit messages clean with only the commit description

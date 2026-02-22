@@ -1,0 +1,6 @@
+#!/bin/sh
+# Remove Co-authored-by lines from commit messages
+if [ -n "$1" ] && [ -f "$1" ]; then
+  sed -i.bak '/Co-authored-by:/d' "$1" 2>/dev/null || sed -i '' '/Co-authored-by:/d' "$1" 2>/dev/null
+  rm -f "$1.bak" 2>/dev/null
+fi
