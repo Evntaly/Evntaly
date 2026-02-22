@@ -8,11 +8,18 @@ import * as Sentry from '@sentry/node';
 
 @Injectable()
 export class mailerService {
-  private resend: Resend;
+  private resend: Resend | null = null;
   private readonly logger = new Logger(mailerService.name);
 
   constructor() {
-    this.resend = new Resend(process.env.RESEND_API_KEY);
+    const apiKey = process.env.RESEND_API_KEY;
+    if (apiKey) {
+      this.resend = new Resend(apiKey);
+    } else {
+      this.logger.warn(
+        'RESEND_API_KEY not set - email sending disabled. Add RESEND_API_KEY to .env to enable.',
+      );
+    }
   }
 
   compileTemplate(templateName: string, context: any): string {
@@ -44,6 +51,13 @@ export class mailerService {
     context?: any,
     isHTML: boolean = false,
   ) {
+    if (!this.resend) {
+      this.logger.debug(
+        `Email skipped (no API key): ${subject} to ${to}`,
+      );
+      return { id: null };
+    }
+
     try {
       let html;
 

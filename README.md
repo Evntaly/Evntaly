@@ -122,9 +122,9 @@ cp .env.example .env
 docker compose up -d
 ```
 
-Open [http://localhost](http://localhost) in your browser.
+Open [http://localhost:8080](http://localhost:8080) in your browser.
 
-The API is available at `http://localhost/api/v1/`.
+The API is available at `http://localhost:8080/api/v1/`.
 
 ## Manual Setup
 

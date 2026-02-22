@@ -36,22 +36,22 @@ export class AppComponent implements AfterViewInit {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      window.scrollTo(0, 0); // Scroll to the top of the page
-      console.log('Navigation ended and scrolled to top.');
+      this.checkBasicLayoutRoutes();
+      window.scrollTo(0, 0);
     });
   }
 
   checkBasicLayoutRoutes(): void {
     const module_paths = ['account'];
     const excluded_paths = ['account/settings'];
-    const url_segments = window.location.href.split('/');
+    const url = this.router.url;
 
     const is_excluded = excluded_paths.some((excluded_path) =>
-      window.location.href.includes(excluded_path)
+      url.includes(excluded_path)
     );
 
     const is_from_specific_module = module_paths.some((module_path) =>
-      url_segments.includes(module_path)
+      url.startsWith('/' + module_path)
     );
 
     if (is_from_specific_module && !is_excluded) {

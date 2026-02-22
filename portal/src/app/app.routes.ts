@@ -30,6 +30,11 @@ export const routes: Routes = [
     loadChildren: () => import('./analytics/analytics.module').then(m => m.AnalyticsModule)
   },
   {
+    path: '',
+    redirectTo: 'account/signin',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     redirectTo: 'dashboard'
   }
