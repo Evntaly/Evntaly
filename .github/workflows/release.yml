@@ -28,7 +28,7 @@ jobs:
 
             ### Quick Start
             ```bash
-            git clone https://github.com/AlameerAshraf/Evntaly.git
+            git clone https://github.com/Evntaly/Evntaly.git
             cd Evntaly
             cp .env.example .env
             docker compose up -d

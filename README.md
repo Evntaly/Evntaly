@@ -112,7 +112,7 @@ The fastest way to run Evntaly is with Docker Compose.
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/AlameerAshraf/Evntaly.git
+git clone https://github.com/Evntaly/Evntaly.git
 cd Evntaly
 
 # 2. Copy and configure environment variables
