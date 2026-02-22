@@ -1,1 +1,1 @@
-export * from './create-funnel.dto'; 
+export * from './create-funnel.dto';

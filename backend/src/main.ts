@@ -44,9 +44,7 @@ async function bootstrap() {
   if (process.env.SENTRY_DSN) {
     Sentry.init({
       dsn: process.env.SENTRY_DSN,
-      integrations: [
-        new Sentry.Integrations.Http({ tracing: true }),
-      ],
+      integrations: [new Sentry.Integrations.Http({ tracing: true })],
       tracesSampleRate: 0.5,
     });
     app.use(Sentry.Handlers.requestHandler());

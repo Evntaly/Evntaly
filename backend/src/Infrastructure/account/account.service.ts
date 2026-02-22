@@ -86,7 +86,7 @@ export class accountService {
     }
   }
 
-  async createWithGithub(code: string, req: any): Promise<any> {
+  async createWithGithub(code: string): Promise<any> {
     try {
       const data = await this.githubauth.getGithubAccountInfo(code);
       if (data) {
@@ -186,7 +186,7 @@ export class accountService {
     }
   }
 
-  async createWithGoogle(code: string, req: any): Promise<any> {
+  async createWithGoogle(code: string): Promise<any> {
     try {
       const data = await this.googleauth.getGoogleAccountInfo(code);
       if (data) {

@@ -42,10 +42,7 @@ import {
 
 import { HttpModule } from '@nestjs/axios';
 import { mailerService, utilitiesService } from './@core/helpers';
-import {
-  accountQuotaChecker,
-  authMiddleware,
-} from './@core/middlewares';
+import { accountQuotaChecker, authMiddleware } from './@core/middlewares';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
 import { ConfigModule } from '@nestjs/config';
@@ -190,6 +187,5 @@ export class AppModule {
         { path: 'v1/register/user', method: RequestMethod.ALL },
         { path: 'v1/register/is-allowed', method: RequestMethod.ALL },
       );
-
   }
 }

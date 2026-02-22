@@ -51,7 +51,7 @@ export class accountController {
   }
 
   @Post('create')
-  async createAccount(@Body() dto: authAccountDTO, @Req() req: Request) {
+  async createAccount(@Body() dto: authAccountDTO) {
     try {
       this.logger.log(`Creating new account for email [${dto.email}]`);
       this.logger.debug('Account creation payload', { dto });
@@ -95,15 +95,11 @@ export class accountController {
   }
 
   @Get('github/auth')
-  async createAccountWithGithub(
-    @Query('code') code: string,
-    @Res() res: any,
-    @Req() req: Request,
-  ) {
+  async createAccountWithGithub(@Query('code') code: string, @Res() res: any) {
     try {
       this.logger.log('Processing GitHub OAuth callback');
 
-      const result = await this.accService.createWithGithub(code, req);
+      const result = await this.accService.createWithGithub(code);
 
       this.logger.log(
         `Successfully created/authenticated GitHub account for tenant [${result.tenantID}]`,
@@ -119,15 +115,11 @@ export class accountController {
   }
 
   @Get('google/auth')
-  async createAccountWithGoogle(
-    @Query('code') code: string,
-    @Res() res: any,
-    @Req() req: Request,
-  ) {
+  async createAccountWithGoogle(@Query('code') code: string, @Res() res: any) {
     try {
       this.logger.log('Processing Google OAuth callback');
 
-      const result = await this.accService.createWithGoogle(code, req);
+      const result = await this.accService.createWithGoogle(code);
 
       this.logger.log(
         `Successfully created/authenticated Google account for tenant [${result.tenantID}]`,
@@ -167,7 +159,7 @@ export class accountController {
   }
 
   @Post('signin')
-  async signin(@Body() dto: authAccountDTO, @Req() req: Request) {
+  async signin(@Body() dto: authAccountDTO) {
     try {
       this.logger.log(`Signing in account with email [${dto.email}]`);
       this.logger.debug('Sign in attempt', { email: dto.email });
