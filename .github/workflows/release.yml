@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          body: |
+            ## Evntaly - Event Analytics Platform
+
+            Open-source event analytics platform for tracking users, sessions, and product events in real time.
+
+            ### Quick Start
+            ```bash
+            git clone https://github.com/AlameerAshraf/Evntaly.git
+            cd Evntaly
+            cp .env.example .env
+            docker compose up -d
+            ```
+            Open http://localhost in your browser.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
