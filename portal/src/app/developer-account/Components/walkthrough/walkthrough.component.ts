@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { httpService, urls } from '../../../core';
+import { environment } from '../../../../environments/environment';
 import confetti from 'canvas-confetti';
 
 interface WalkthroughStep {
@@ -227,7 +228,11 @@ export class WalkthroughComponent implements OnInit, OnDestroy {
 
   getCurlCommand(): string {
     const { clientId, projectToken } = this.projectDetails;
-    return `curl -X POST https://app.evntaly.com/prod/api/v1/register/event \\
+    const apiUrl =
+      environment.apiBaseUrl.startsWith('http')
+        ? environment.apiBaseUrl
+        : `${window.location.origin}${environment.apiBaseUrl}`;
+    return `curl -X POST ${apiUrl}/register/event \\
   -H 'Content-Type: application/json' \\
   -H 'secret: ${clientId}' \\
   -H 'pat: ${projectToken}' \\

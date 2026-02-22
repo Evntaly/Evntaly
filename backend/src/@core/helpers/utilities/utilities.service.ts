@@ -32,7 +32,9 @@ export class utilitiesService {
     },
   ) {
     try {
-      const url = 'https://app.evntaly.com/prod/api/v1/register/event';
+      const baseUrl =
+        process.env.API_BASE_URL || 'https://app.evntaly.com/prod/api/v1';
+      const url = `${baseUrl.replace(/\/$/, '')}/register/event`;
 
       const headers = {
         secret: credentials.secret,

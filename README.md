@@ -13,6 +13,7 @@
   <a href="#quick-start">Quick Start</a> •
   <a href="#test-results">Test Results</a> •
   <a href="#features">Features</a> •
+  <a href="#sdk--documentation">SDK & Docs</a> •
   <a href="#architecture">Architecture</a> •
   <a href="#manual-setup">Manual Setup</a> •
   <a href="#environment-variables">Configuration</a> •
@@ -57,6 +58,19 @@ cd portal && npm test
 - **OAuth Login** — Sign in with GitHub or Google
 - **REST API** — Full API with JWT authentication and PAT tokens
 
+## SDK & Documentation
+
+Track events from your app using the official SDKs:
+
+| SDK | Install | Docs |
+|-----|---------|------|
+| **JavaScript/Node** | `npm install evntaly-js` | [SDK Integration Guide](https://evntaly.com/docs/sdk-integration) |
+| **Python** | `pip install evntaly-python` | [SDK Integration Guide](https://evntaly.com/docs/sdk-integration) |
+| **Go** | `go get github.com/Evntaly/evntaly-go` | [SDK Integration Guide](https://evntaly.com/docs/sdk-integration) |
+| **C#** | `dotnet add package EvntalySDK` | [SDK Integration Guide](https://evntaly.com/docs/sdk-integration) |
+
+**Self-hosted:** When running Evntaly yourself, configure the SDK with your backend URL (e.g. `http://localhost/api/v1` or your domain). See each SDK's docs for the `apiUrl` or `baseUrl` option.
+
 ## Architecture
 
 ```
@@ -98,8 +112,8 @@ The fastest way to run Evntaly is with Docker Compose.
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/evntaly/evntaly.git
-cd evntaly
+git clone https://github.com/AlameerAshraf/Evntaly.git
+cd Evntaly
 
 # 2. Copy and configure environment variables
 cp .env.example .env
@@ -166,6 +180,7 @@ docker run -d --name evntaly-mongo -p 27017:27017 mongo:7
 | `PORT` | No | `3000` | Backend server port |
 | `DB_CONNECTION` | **Yes** | — | MongoDB connection string |
 | `CLIENT_URL` | No | `http://localhost:8945` | Frontend URL for CORS |
+| `API_BASE_URL` | No | — | Backend API URL for server-side event forwarding (self-hosted) |
 | `SENTRY_DSN` | No | — | Sentry DSN for error tracking |
 | `GITHUB_CLIENT_ID` | No | — | GitHub OAuth app client ID |
 | `GITHUB_SECRET` | No | — | GitHub OAuth app secret |
