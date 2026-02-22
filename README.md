@@ -2,9 +2,6 @@
   <img src="https://cdn.evntaly.com/Resources/og.png" alt="Evntaly Cover" width="100%">
 </p>
 
-<p align="center">
-  <img src="https://evntaly.com/logo.png" width="120" alt="Evntaly Logo" />
-</p>
 
 <h1 align="center">Evntaly</h1>
 
