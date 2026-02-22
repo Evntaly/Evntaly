@@ -1,0 +1,2 @@
+# Exclude CSS from language statistics (minified/vendor styles)
+*.css linguist-generated=true
