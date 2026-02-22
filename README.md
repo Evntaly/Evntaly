@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="https://cdn.evntaly.com/Resources/og.png" alt="Evntaly Cover" width="100%">
+</p>
+
+<p align="center">
   <img src="https://evntaly.com/logo.png" width="120" alt="Evntaly Logo" />
 </p>
 
@@ -10,6 +14,7 @@
 
 <p align="center">
   <a href="#quick-start">Quick Start</a> •
+  <a href="#test-results">Test Results</a> •
   <a href="#features">Features</a> •
   <a href="#architecture">Architecture</a> •
   <a href="#manual-setup">Manual Setup</a> •
@@ -21,6 +26,25 @@
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" />
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome" />
 </p>
+
+---
+
+## Test Results
+
+| Suite | Tests | Status |
+|-------|-------|--------|
+| **Backend** (Jest) | 14 tests, 3 suites | ✅ Passing |
+| **Portal** (Karma/Jasmine) | 4 tests, 2 components | ✅ Passing |
+
+**Backend coverage:** `utilities.service`, `lookups.service`, `lookup.controller`
+
+```bash
+# Run backend tests
+cd backend && npm test
+
+# Run portal tests
+cd portal && npm test
+```
 
 ---
 
